@@ -22,7 +22,7 @@ struct ContentView: View {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            logoutButton
         }
 				.frame(
 					minWidth: 0,
@@ -36,6 +36,8 @@ struct ContentView: View {
 			// Called when a redirect is received from Spotify.
 			.onOpenURL(perform: handleURL(_:))
     }
+	
+	
 	
 	/**
 	 Handle the URL that Spotify redirects to after the user Either authorizes
