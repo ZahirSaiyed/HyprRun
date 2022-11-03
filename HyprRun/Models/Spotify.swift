@@ -1,12 +1,3 @@
-//
-//  Spotify.swift
-//  HyprRun
-//
-//  Taken from Peter Schorn's Example App: https://github.com/Peter-Schorn/SpotifyAPIExampleApp
-//  Required to work with Spotify API
-//  Created by Katie Lin, Emily Ngo, and Zahir Saiyed on 10/31/22.
-//
-
 import Foundation
 import Combine
 import UIKit
@@ -45,9 +36,13 @@ final class Spotify: ObservableObject {
 		
 		/// The URL that Spotify will redirect to after the user either authorizes
 		/// or denies authorization for your application.
-		let loginCallbackURL = URL(
-				string: "spotify-api-example-app://login-callback"
-		)!
+//		let loginCallbackURL = URL(
+//				string: "spotify-api-example-app://login-callback"
+//		)!
+	let loginCallbackURL = URL(
+			string: "hypr-run://login-callback"
+	)!
+
 		
 		/// A cryptographically-secure random string used to ensure than an incoming
 		/// redirect from Spotify was the result of a request made by this app, and
@@ -82,8 +77,8 @@ final class Spotify: ObservableObject {
 		@Published var currentUser: SpotifyUser? = nil
 		
 		/// The keychain to store the authorization information in.
-		let keychain = Keychain(service: "com.Peter-Schorn.SpotifyAPIExampleApp")
-		
+//		let keychain = Keychain(service: "com.Peter-Schorn.SpotifyAPIExampleApp")
+	let keychain = Keychain(service: "com.Zahir-Saiyed.HyprRun")
 		/// An instance of `SpotifyAPI` that you use to make requests to the Spotify
 		/// web API.
 		let api = SpotifyAPI(
@@ -310,3 +305,4 @@ final class Spotify: ObservableObject {
 		}
 
 }
+
