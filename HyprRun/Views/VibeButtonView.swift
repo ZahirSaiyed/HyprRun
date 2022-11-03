@@ -9,16 +9,16 @@ import SwiftUI
 
 struct VibeButtonView: View {
 
-		@State private var buttonBackColor:Color = .white
+		@State private var buttonBackColor:Color = .gray
 
 		var body: some View {
 				Button(action: {
 						
 						 switch self.buttonBackColor {
-						 case .white:
-								 self.buttonBackColor = .blue
+						 case .gray:
+								 self.buttonBackColor = Color(red: 0, green: 0, blue: 290)
 						 default:
-								 self.buttonBackColor = .white
+								 self.buttonBackColor = .gray
 						 }
 				}, label: {Text(".").padding(20).foregroundColor(buttonBackColor)})
 //			{

@@ -47,7 +47,9 @@ struct ContentView: View {
 		.modifier(LoginView())
 		// Called when a redirect is received from Spotify.
 		.onOpenURL(perform: handleURL(_:))
-		.background(Color(red: 34, green: 0, blue: 290))
+		//.background(Color(red: 0, green: 0, blue: 290))
+		
+		newRunButton
 	}
 	
 	
@@ -148,6 +150,21 @@ struct ContentView: View {
 							.cornerRadius(10)
 							.shadow(radius: 3)
 			}).frame(alignment: .topLeading)
+	}
+	
+	/// Removes the authorization information for the user.
+	var newRunButton: some View {
+			Button(action: spotify.api.authorizationManager.deauthorize, label: {
+				Text("NEW RUN").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
+					.foregroundColor(.white)
+							.padding(7)
+							.frame(width: 250, height: 50)
+							.background(
+								Color(red: 0, green: 0, blue: 290)
+							)
+							.cornerRadius(50)
+							.shadow(radius: 10)
+			})
 	}
 }
 
