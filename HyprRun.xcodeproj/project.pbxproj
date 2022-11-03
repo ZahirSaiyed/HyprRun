@@ -15,6 +15,10 @@
 		E013DB9B291043BC0029093B /* Spotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013DB9A291043BC0029093B /* Spotify.swift */; };
 		E013DB9E291044820029093B /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = E013DB9D291044820029093B /* KeychainAccess */; };
 		E025E5C02914598300FF1922 /* VibeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E025E5BF2914598300FF1922 /* VibeButtonView.swift */; };
+		E02D56C02914689A004C955C /* PlaylistPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D56BF2914689A004C955C /* PlaylistPreviewView.swift */; };
+		E02D56C229146908004C955C /* PlaylistsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D56C129146908004C955C /* PlaylistsListView.swift */; };
+		E02D56C729146ADC004C955C /* PlaylistDeduplicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D56C629146ADC004C955C /* PlaylistDeduplicator.swift */; };
+		E02D56C929146D30004C955C /* PlaylistCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D56C829146D30004C955C /* PlaylistCellView.swift */; };
 		E0B7155F2910455D0037B331 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B7155E2910455D0037B331 /* LoginView.swift */; };
 		E0B71562291046BF0037B331 /* ImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B71561291046BF0037B331 /* ImageName.swift */; };
 		E0B7156429104AB60037B331 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B7156329104AB60037B331 /* AlertItem.swift */; };
@@ -28,6 +32,10 @@
 		E013DB8D29103ED60029093B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E013DB9A291043BC0029093B /* Spotify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotify.swift; sourceTree = "<group>"; };
 		E025E5BF2914598300FF1922 /* VibeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeButtonView.swift; sourceTree = "<group>"; };
+		E02D56BF2914689A004C955C /* PlaylistPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistPreviewView.swift; sourceTree = "<group>"; };
+		E02D56C129146908004C955C /* PlaylistsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsListView.swift; sourceTree = "<group>"; };
+		E02D56C629146ADC004C955C /* PlaylistDeduplicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistDeduplicator.swift; sourceTree = "<group>"; };
+		E02D56C829146D30004C955C /* PlaylistCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCellView.swift; sourceTree = "<group>"; };
 		E0B7155E2910455D0037B331 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E0B71561291046BF0037B331 /* ImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageName.swift; sourceTree = "<group>"; };
 		E0B7156329104AB60037B331 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
@@ -90,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				E013DB9A291043BC0029093B /* Spotify.swift */,
+				E02D56C629146ADC004C955C /* PlaylistDeduplicator.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -100,6 +109,8 @@
 				E013DB8829103ED50029093B /* ContentView.swift */,
 				E0B7155E2910455D0037B331 /* LoginView.swift */,
 				E025E5BF2914598300FF1922 /* VibeButtonView.swift */,
+				E02D56BF2914689A004C955C /* PlaylistPreviewView.swift */,
+				E02D56C32914698B004C955C /* Playlist Views */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -109,6 +120,15 @@
 			children = (
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E02D56C32914698B004C955C /* Playlist Views */ = {
+			isa = PBXGroup;
+			children = (
+				E02D56C129146908004C955C /* PlaylistsListView.swift */,
+				E02D56C829146D30004C955C /* PlaylistCellView.swift */,
+			);
+			path = "Playlist Views";
 			sourceTree = "<group>";
 		};
 		E0B71560291046AA0037B331 /* Project Utilities */ = {
@@ -199,9 +219,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E013DB9B291043BC0029093B /* Spotify.swift in Sources */,
+				E02D56C929146D30004C955C /* PlaylistCellView.swift in Sources */,
 				E025E5C02914598300FF1922 /* VibeButtonView.swift in Sources */,
 				E0B7156429104AB60037B331 /* AlertItem.swift in Sources */,
+				E02D56C229146908004C955C /* PlaylistsListView.swift in Sources */,
+				E02D56C02914689A004C955C /* PlaylistPreviewView.swift in Sources */,
 				E0B71562291046BF0037B331 /* ImageName.swift in Sources */,
+				E02D56C729146ADC004C955C /* PlaylistDeduplicator.swift in Sources */,
 				E013DB8929103ED50029093B /* ContentView.swift in Sources */,
 				E0B7155F2910455D0037B331 /* LoginView.swift in Sources */,
 				E013DB8729103ED50029093B /* HyprRunApp.swift in Sources */,

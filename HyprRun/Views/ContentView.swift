@@ -18,13 +18,20 @@ struct ContentView: View {
 	  @State private var cancellables: Set<AnyCancellable> = []
 	
 	var body: some View {
+		NavigationView {
 		ZStack{
 
-			VStack(alignment: .leading, spacing: 50) {
+			VStack(alignment: .leading, spacing: 35) {
 					logoutButton
 					Text("Run").font(.custom("HelveticaNeue-Bold", fixedSize: 48))
 					Text("Your Running Mix").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
-					Text("The Vibe").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
+				
+					PlaylistPreviewView()
+						.disabled(!spotify.isAuthorized)
+						.frame(height: 50)
+				
+					Text("The Vibe")
+						.font(.custom("HelveticaNeue-Bold", fixedSize: 28))
 				
 					HStack{
 						VibeButtonView()
@@ -34,6 +41,9 @@ struct ContentView: View {
 						VibeButtonView()
 					}
 					.frame(alignment: .center)
+				
+				newRunButton.offset(x:50, y:0)
+
 				}
 		}
 		.frame(
@@ -47,9 +57,8 @@ struct ContentView: View {
 		.modifier(LoginView())
 		// Called when a redirect is received from Spotify.
 		.onOpenURL(perform: handleURL(_:))
-		//.background(Color(red: 0, green: 0, blue: 290))
 		
-		newRunButton
+	}
 	}
 	
 	
