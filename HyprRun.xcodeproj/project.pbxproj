@@ -14,6 +14,7 @@
 		E013DB99291043440029093B /* SpotifyAPI in Frameworks */ = {isa = PBXBuildFile; productRef = E013DB98291043440029093B /* SpotifyAPI */; };
 		E013DB9B291043BC0029093B /* Spotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013DB9A291043BC0029093B /* Spotify.swift */; };
 		E013DB9E291044820029093B /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = E013DB9D291044820029093B /* KeychainAccess */; };
+		E025E5C02914598300FF1922 /* VibeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E025E5BF2914598300FF1922 /* VibeButtonView.swift */; };
 		E0B7155F2910455D0037B331 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B7155E2910455D0037B331 /* LoginView.swift */; };
 		E0B71562291046BF0037B331 /* ImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B71561291046BF0037B331 /* ImageName.swift */; };
 		E0B7156429104AB60037B331 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B7156329104AB60037B331 /* AlertItem.swift */; };
@@ -26,6 +27,7 @@
 		E013DB8A29103ED60029093B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E013DB8D29103ED60029093B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E013DB9A291043BC0029093B /* Spotify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotify.swift; sourceTree = "<group>"; };
+		E025E5BF2914598300FF1922 /* VibeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeButtonView.swift; sourceTree = "<group>"; };
 		E0B7155E2910455D0037B331 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E0B71561291046BF0037B331 /* ImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageName.swift; sourceTree = "<group>"; };
 		E0B7156329104AB60037B331 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			children = (
 				E013DB8829103ED50029093B /* ContentView.swift */,
 				E0B7155E2910455D0037B331 /* LoginView.swift */,
+				E025E5BF2914598300FF1922 /* VibeButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E013DB9B291043BC0029093B /* Spotify.swift in Sources */,
+				E025E5C02914598300FF1922 /* VibeButtonView.swift in Sources */,
 				E0B7156429104AB60037B331 /* AlertItem.swift in Sources */,
 				E0B71562291046BF0037B331 /* ImageName.swift in Sources */,
 				E013DB8929103ED50029093B /* ContentView.swift in Sources */,

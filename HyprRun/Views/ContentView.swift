@@ -17,25 +17,38 @@ struct ContentView: View {
 
 	  @State private var cancellables: Set<AnyCancellable> = []
 	
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            logoutButton
-        }
-				.frame(
-					minWidth: 0,
-					maxWidth: .infinity,
-					minHeight: 0,
-					maxHeight: .infinity,
-					alignment: .topLeading
-				)
-        .padding()
-				.modifier(LoginView())
-			// Called when a redirect is received from Spotify.
-			.onOpenURL(perform: handleURL(_:))
-    }
+	var body: some View {
+		ZStack{
+
+			VStack(alignment: .leading, spacing: 50) {
+					logoutButton
+					Text("Run").font(.custom("HelveticaNeue-Bold", fixedSize: 48))
+					Text("Your Running Mix").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
+					Text("The Vibe").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
+				
+					HStack{
+						VibeButtonView()
+						VibeButtonView()
+						VibeButtonView()
+						VibeButtonView()
+						VibeButtonView()
+					}
+					.frame(alignment: .center)
+				}
+		}
+		.frame(
+			minWidth: 0,
+			maxWidth: .infinity,
+			minHeight: 0,
+			maxHeight: .infinity,
+			alignment: .topLeading
+		)
+		.padding()
+		.modifier(LoginView())
+		// Called when a redirect is received from Spotify.
+		.onOpenURL(perform: handleURL(_:))
+		.background(Color(red: 34, green: 0, blue: 290))
+	}
 	
 	
 	
@@ -134,8 +147,7 @@ struct ContentView: View {
 							)
 							.cornerRadius(10)
 							.shadow(radius: 3)
-					
-			})
+			}).frame(alignment: .topLeading)
 	}
 }
 
