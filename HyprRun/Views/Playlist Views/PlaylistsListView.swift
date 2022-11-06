@@ -22,57 +22,48 @@ struct PlaylistsListView: View {
 		@State private var couldntLoadPlaylists = false
 		
 		@State private var alert: AlertItem? = nil
-
+	
 		init() { }
 		
 		var body: some View {
 				VStack {
-						if playlists.isEmpty {
-								if isLoadingPlaylists {
-										HStack {
-												ProgressView()
-														.padding()
-												Text("Loading Playlists")
-														.font(.title)
-														.foregroundColor(.secondary)
-										}
-								}
-								else if couldntLoadPlaylists {
-										Text("Couldn't Load Playlists")
-												.font(.title)
-												.foregroundColor(.secondary)
-								}
-								else {
-										Text("No Playlists Found")
-												.font(.title)
-												.foregroundColor(.secondary)
-								}
+					if playlists.isEmpty {
+						if isLoadingPlaylists {
+							HStack {
+								ProgressView()
+									.padding()
+								Text("Loading Playlists")
+									.font(.title)
+									.foregroundColor(.secondary)
+							}
+						}
+						else if couldntLoadPlaylists {
+							Text("Couldn't Load Playlists")
+								.font(.title)
+								.foregroundColor(.secondary)
 						}
 						else {
-								Text(
-										"""
-										Tap on a playlist to play it. Tap and hold on a Playlist \
-										to remove duplicates.
-										"""
-								)
-								.font(.caption)
+							Text("No Playlists Found")
+								.font(.title)
 								.foregroundColor(.secondary)
-								List {
-										ForEach(playlists, id: \.uri) { playlist in
-												PlaylistCellView(spotify: spotify, playlist: playlist)
-										}
-								}
-								.listStyle(PlainListStyle())
-								.accessibility(identifier: "Playlists List View")
 						}
+					}
+					else {
+						List {
+							ForEach(playlists, id: \.uri) { playlist in
+								PlaylistCellView(spotify: spotify, playlist: playlist)
+							}
+						}
+						.listStyle(PlainListStyle())
+						.accessibility(identifier: "Playlists List View")
+					}
 				}
-				.navigationTitle("Playlists")
+				.navigationTitle("Build Your Soundtrack")
 				.navigationBarItems(trailing: refreshButton)
 				.alert(item: $alert) { alert in
-						Alert(title: alert.title, message: alert.message)
+					Alert(title: alert.title, message: alert.message)
 				}
 				.onAppear(perform: retrievePlaylists)
-				
 		}
 		
 		var refreshButton: some View {

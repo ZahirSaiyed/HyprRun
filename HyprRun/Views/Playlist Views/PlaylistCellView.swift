@@ -27,6 +27,10 @@ struct PlaylistCellView: View {
 		// MARK: Cancellables
 		@State private var loadImageCancellable: AnyCancellable? = nil
 		@State private var playPlaylistCancellable: AnyCancellable? = nil
+	
+		//keep track of selected or not
+		@State private var selected = true
+
 		
 		init(spotify: Spotify, playlist: Playlist<PlaylistItemsReference>) {
 				self.spotify = spotify
@@ -38,33 +42,36 @@ struct PlaylistCellView: View {
 		
 		var body: some View {
 				Button(action: playPlaylist, label: {
-						HStack {
-								image
-										.resizable()
-										.aspectRatio(contentMode: .fit)
-										.frame(width: 70, height: 70)
-										.padding(.trailing, 5)
-								Text("\(playlist.name) - \(playlistDeduplicator.totalItems) items")
-								if playlistDeduplicator.isDeduplicating {
-										ProgressView()
-												.padding(.leading, 5)
-								}
+					HStack {
+						image
+							.resizable()
+							.aspectRatio(contentMode: .fit)
+							.frame(width: 70, height: 70)
+							.padding(.trailing, 5)
+						Text("\(playlist.name) - \(playlistDeduplicator.totalItems) items")
+						SelectBoxView(selected: $selected)
+
+//						if playlistDeduplicator.isDeduplicating {
+//							ProgressView()
+//								.padding(.leading, 5)
+//						}
+						
 								Spacer()
 						}
 						// Ensure the hit box extends across the entire width of the frame.
 						// See https://bit.ly/2HqNk4S
 						.contentShape(Rectangle())
-						.contextMenu {
-								// you can only remove duplicates from a playlist you own
-								if let currentUserId = spotify.currentUser?.id,
-												playlist.owner?.id == currentUserId {
-										
-										Button("Remove Duplicates") {
-												playlistDeduplicator.findAndRemoveDuplicates()
-										}
-										.disabled(playlistDeduplicator.isDeduplicating)
-								}
-						}
+//						.contextMenu {
+//								// you can only remove duplicates from a playlist you own
+//								if let currentUserId = spotify.currentUser?.id,
+//												playlist.owner?.id == currentUserId {
+//
+//										Button("Remove Duplicates") {
+//												playlistDeduplicator.findAndRemoveDuplicates()
+//										}
+//										.disabled(playlistDeduplicator.isDeduplicating)
+//								}
+//						}
 				})
 				.buttonStyle(PlainButtonStyle())
 				.alert(item: $alert) { alert in

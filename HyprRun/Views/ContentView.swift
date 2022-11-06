@@ -17,6 +17,8 @@ struct ContentView: View {
 
 	  @State private var cancellables: Set<AnyCancellable> = []
 	
+		@State private var showRunView = false
+	
 	var body: some View {
 		NavigationView {
 		ZStack{
@@ -43,6 +45,7 @@ struct ContentView: View {
 					.frame(alignment: .center)
 				
 				newRunButton.offset(x:50, y:0)
+				NavigationLink("", destination:  RunView(), isActive: $showRunView)
 
 				}
 		}
@@ -161,9 +164,9 @@ struct ContentView: View {
 			}).frame(alignment: .topLeading)
 	}
 	
-	/// Removes the authorization information for the user.
+	///
 	var newRunButton: some View {
-			Button(action: spotify.api.authorizationManager.deauthorize, label: {
+		Button(action: {showRunView = true}, label: {
 				Text("NEW RUN").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
 					.foregroundColor(.white)
 							.padding(7)
