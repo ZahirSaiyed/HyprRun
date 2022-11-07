@@ -27,6 +27,7 @@ struct SelectBoxView: View {
 								self.selected.toggle()
 							if(self.selected){
 								self.selectedPlaylists.append(self.name)
+								self.selectedPlaylists = self.selectedPlaylists.removingDuplicates()
 							}
 							else {
 								self.selectedPlaylists.removeAll { playList in

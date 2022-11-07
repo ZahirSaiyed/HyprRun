@@ -42,10 +42,6 @@ struct ContentView: View {
 				
 					HStack{
 						VibeButtonView()
-						VibeButtonView()
-						VibeButtonView()
-						VibeButtonView()
-						VibeButtonView()
 					}
 					.frame(alignment: .center)
 				
