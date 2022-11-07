@@ -29,12 +29,16 @@ struct PlaylistCellView: View {
 		@State private var playPlaylistCancellable: AnyCancellable? = nil
 	
 		//keep track of selected or not
-		@State private var selected = true
+		@State private var selected = false
+	
+		//Binding for selected playlists
+		@Binding var selectedPlaylists: [String]
 
 		
-		init(spotify: Spotify, playlist: Playlist<PlaylistItemsReference>) {
+	init(spotify: Spotify, playlist: Playlist<PlaylistItemsReference>, selectedPlaylists: Binding<[String]>) {
 				self.spotify = spotify
 				self.playlist = playlist
+				self._selectedPlaylists = selectedPlaylists
 				self.playlistDeduplicator = PlaylistDeduplicator(
 						spotify: spotify, playlist: playlist
 				)
@@ -49,8 +53,8 @@ struct PlaylistCellView: View {
 							.frame(width: 70, height: 70)
 							.padding(.trailing, 5)
 						Text("\(playlist.name) - \(playlistDeduplicator.totalItems) items")
-						SelectBoxView(selected: $selected)
-
+						SelectBoxView(selected: $selected, selectedPlaylists: $selectedPlaylists, name: playlist.name)
+						
 //						if playlistDeduplicator.isDeduplicating {
 //							ProgressView()
 //								.padding(.leading, 5)
@@ -81,6 +85,7 @@ struct PlaylistCellView: View {
 				.onReceive(playlistDeduplicator.alertPublisher) { alert in
 						self.alert = alert
 				}
+			
 		}
 		
 		/// Loads the image for the playlist.

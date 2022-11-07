@@ -23,7 +23,12 @@ struct PlaylistsListView: View {
 		
 		@State private var alert: AlertItem? = nil
 	
-		init() { }
+		//@State private var selectedPlaylists: [String] = []
+		@Binding var selectedPlaylists: [String]
+	
+		init(selectedPlaylists: Binding<[String]>) {
+			self._selectedPlaylists = selectedPlaylists
+		}
 		
 		var body: some View {
 				VStack {
@@ -51,8 +56,10 @@ struct PlaylistsListView: View {
 					else {
 						List {
 							ForEach(playlists, id: \.uri) { playlist in
-								PlaylistCellView(spotify: spotify, playlist: playlist)
+								PlaylistCellView(spotify: spotify, playlist: playlist, selectedPlaylists: $selectedPlaylists)
 							}
+							Text("Selected Playlists")
+							Text("There are \(selectedPlaylists.count) selected playlists")
 						}
 						.listStyle(PlainListStyle())
 						.accessibility(identifier: "Playlists List View")

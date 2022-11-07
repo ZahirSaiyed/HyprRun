@@ -19,6 +19,9 @@ struct ContentView: View {
 	
 		@State private var showRunView = false
 	
+		@State private var selectedPlaylists: [String] = []
+
+	
 	var body: some View {
 		NavigationView {
 		ZStack{
@@ -28,9 +31,11 @@ struct ContentView: View {
 					Text("Run").font(.custom("HelveticaNeue-Bold", fixedSize: 48))
 					Text("Your Running Mix").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
 				
-					PlaylistPreviewView()
+					PlaylistPreviewView(selectedPlaylists: $selectedPlaylists)
 						.disabled(!spotify.isAuthorized)
 						.frame(height: 50)
+				
+					Text("\(selectedPlaylists.count) playlists selected")
 				
 					Text("The Vibe")
 						.font(.custom("HelveticaNeue-Bold", fixedSize: 28))
