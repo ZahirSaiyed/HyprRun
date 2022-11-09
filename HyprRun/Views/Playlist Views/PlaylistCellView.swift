@@ -122,25 +122,25 @@ struct PlaylistCellView: View {
 						)
 		}
 		
-		func playPlaylist() {
-				
-				let playbackRequest = PlaybackRequest(
-						context: .contextURI(playlist), offset: nil
-				)
-//				self.playPlaylistCancellable = self.spotify.api
-//						.getAvailableDeviceThenPlay(playbackRequest)
-//						.receive(on: RunLoop.main)
-//						.sink(receiveCompletion: { completion in
-//								if case .failure(let error) = completion {
-//										self.alert = AlertItem(
-//												title: "Couldn't Play Playlist \(playlist.name)",
-//												message: error.localizedDescription
-//										)
-//								}
-//						})
-				
-		}
-		
+	func playPlaylist() {
+//
+//			let playbackRequest = PlaybackRequest(
+//					context: .contextURI(playlist), offset: nil
+//			)
+//			self.playPlaylistCancellable = self.spotify.api
+//					.getAvailableDeviceThenPlay(playbackRequest)
+//					.receive(on: RunLoop.main)
+//					.sink(receiveCompletion: { completion in
+//							if case .failure(let error) = completion {
+//									self.alert = AlertItem(
+//											title: "Couldn't Play Playlist \(playlist.name)",
+//											message: error.localizedDescription
+//									)
+//							}
+//					})
+//
+	}
+
 }
 
 

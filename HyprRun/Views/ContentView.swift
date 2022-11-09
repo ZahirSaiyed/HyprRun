@@ -20,6 +20,12 @@ struct ContentView: View {
 		@State private var showRunView = false
 	
 		@State private var selectedPlaylists: [String] = []
+	
+	  @State private var playlists: [Playlist<PlaylistItemsReference>] = []
+	
+		@State private var tracks: [PlaylistItem] = []
+
+
 
 	
 	var body: some View {
@@ -31,7 +37,7 @@ struct ContentView: View {
 					Text("Run").font(.custom("HelveticaNeue-Bold", fixedSize: 48))
 					Text("Your Running Mix").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
 				
-					PlaylistPreviewView(selectedPlaylists: $selectedPlaylists)
+				PlaylistPreviewView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
 						.disabled(!spotify.isAuthorized)
 						.frame(height: 50)
 				
@@ -46,7 +52,12 @@ struct ContentView: View {
 					.frame(alignment: .center)
 				
 				newRunButton.offset(x:50, y:0)
-				NavigationLink("", destination:  RunView(), isActive: $showRunView)
+				NavigationLink("",
+											 destination:  RunView(spotify: spotify,playlists: $playlists,selectedPlaylists: $selectedPlaylists, tracks: $tracks),
+											 isActive: $showRunView)
+				
+				
+					
 
 				}
 		}

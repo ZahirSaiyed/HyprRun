@@ -13,7 +13,7 @@ import SpotifyWebAPI
  and save them to persistent storage in the keychain.
  */
 final class Spotify: ObservableObject {
-		
+
 		private static let clientId: String = {
 				if let clientId = ProcessInfo.processInfo
 								.environment["CLIENT_ID"] {
@@ -21,7 +21,7 @@ final class Spotify: ObservableObject {
 				}
 				fatalError("Could not find 'CLIENT_ID' in environment variables")
 		}()
-		
+
 		private static let clientSecret: String = {
 				if let clientSecret = ProcessInfo.processInfo
 								.environment["CLIENT_SECRET"] {
@@ -29,11 +29,11 @@ final class Spotify: ObservableObject {
 				}
 				fatalError("Could not find 'CLIENT_SECRET' in environment variables")
 		}()
-		
+
 		/// The key in the keychain that is used to store the authorization
 		/// information: "authorizationManager".
 		let authorizationManagerKey = "authorizationManager"
-		
+
 		/// The URL that Spotify will redirect to after the user either authorizes
 		/// or denies authorization for your application.
 //		let loginCallbackURL = URL(
@@ -43,13 +43,13 @@ final class Spotify: ObservableObject {
 			string: "hypr-run://login-callback"
 	)!
 
-		
+
 		/// A cryptographically-secure random string used to ensure than an incoming
 		/// redirect from Spotify was the result of a request made by this app, and
 		/// not an attacker. **This value is regenerated after each authorization**
 		/// **process completes.**
 		var authorizationState = String.randomURLSafe(length: 128)
-		
+
 		/**
 		 Whether or not the application has been authorized. If `true`, then you can
 		 begin making requests to the Spotify web API using the `api` property of
@@ -69,13 +69,13 @@ final class Spotify: ObservableObject {
 		 `SpotifyAPI.authorizationManager.deauthorize()` is called.
 		 */
 		@Published var isAuthorized = false
-		
+
 		/// If `true`, then the app is retrieving access and refresh tokens. Used by
 		/// `LoginView` to present an activity indicator.
 		@Published var isRetrievingTokens = false
-		
+
 		@Published var currentUser: SpotifyUser? = nil
-		
+
 		/// The keychain to store the authorization information in.
 //		let keychain = Keychain(service: "com.Peter-Schorn.SpotifyAPIExampleApp")
 	let keychain = Keychain(service: "com.Zahir-Saiyed.HyprRun")
@@ -87,17 +87,17 @@ final class Spotify: ObservableObject {
 						clientSecret: Spotify.clientSecret
 				)
 		)
-		
+
 		var cancellables: Set<AnyCancellable> = []
 
 		// MARK: - Methods -
-		
+
 		init() {
-				
+
 				// Configure the loggers.
 				self.api.apiRequestLogger.logLevel = .trace
 				// self.api.logger.logLevel = .trace
-				
+
 				// MARK: Important: Subscribe to `authorizationManagerDidChange` BEFORE
 				// MARK: retrieving `authorizationManager` from persistent storage
 				self.api.authorizationManagerDidChange
@@ -106,17 +106,17 @@ final class Spotify: ObservableObject {
 						.receive(on: RunLoop.main)
 						.sink(receiveValue: authorizationManagerDidChange)
 						.store(in: &cancellables)
-				
+
 				self.api.authorizationManagerDidDeauthorize
 						.receive(on: RunLoop.main)
 						.sink(receiveValue: authorizationManagerDidDeauthorize)
 						.store(in: &cancellables)
-				
-				
+
+
 				// MARK: Check to see if the authorization information is saved in
 				// MARK: the keychain.
 				if let authManagerData = keychain[data: self.authorizationManagerKey] {
-						
+
 						do {
 								// Try to decode the data.
 								let authorizationManager = try JSONDecoder().decode(
@@ -124,7 +124,7 @@ final class Spotify: ObservableObject {
 										from: authManagerData
 								)
 								print("found authorization information in keychain")
-								
+
 								/*
 								 This assignment causes `authorizationManagerDidChange` to emit
 								 a signal, meaning that `authorizationManagerDidChange()` will
@@ -140,7 +140,7 @@ final class Spotify: ObservableObject {
 								 already done in `authorizationManagerDidChange()`.
 								 */
 								self.api.authorizationManager = authorizationManager
-								
+
 						} catch {
 								print("could not decode authorizationManager from data:\n\(error)")
 						}
@@ -148,9 +148,9 @@ final class Spotify: ObservableObject {
 				else {
 						print("did NOT find authorization information in keychain")
 				}
-				
+
 		}
-		
+
 		/**
 		 A convenience method that creates the authorization URL and opens it in the
 		 browser.
@@ -162,7 +162,7 @@ final class Spotify: ObservableObject {
 		 `LoginView`.
 		 */
 		func authorize() {
-				
+
 				let url = self.api.authorizationManager.makeAuthorizationURL(
 						redirectURI: self.loginCallbackURL,
 						showDialog: true,
@@ -180,14 +180,14 @@ final class Spotify: ObservableObject {
 								.userReadRecentlyPlayed
 						]
 				)!
-				
+
 				// You can open the URL however you like. For example, you could open
 				// it in a web view instead of the browser.
 				// See https://developer.apple.com/documentation/webkit/wkwebview
 				UIApplication.shared.open(url)
-				
+
 		}
-		
+
 		/**
 		 Saves changes to `api.authorizationManager` to the keychain.
 
@@ -204,40 +204,40 @@ final class Spotify: ObservableObject {
 		 [1]: https://peter-schorn.github.io/SpotifyAPI/documentation/spotifywebapi/spotifyapi/authorizationmanagerdidchange
 		 */
 		func authorizationManagerDidChange() {
-				
+
 				withAnimation(LoginView.animation) {
 						// Update the @Published `isAuthorized` property. When set to
 						// `true`, `LoginView` is dismissed, allowing the user to interact
 						// with the rest of the app.
 						self.isAuthorized = self.api.authorizationManager.isAuthorized()
 				}
-				
+
 				print(
 						"Spotify.authorizationManagerDidChange: isAuthorized:",
 						self.isAuthorized
 				)
-				
+
 				self.retrieveCurrentUser()
-				
+
 				do {
 						// Encode the authorization information to data.
 						let authManagerData = try JSONEncoder().encode(
 								self.api.authorizationManager
 						)
-						
+
 						// Save the data to the keychain.
 						self.keychain[data: self.authorizationManagerKey] = authManagerData
 						print("did save authorization manager to keychain")
-						
+
 				} catch {
 						print(
 								"couldn't encode authorizationManager for storage " +
 										"in keychain:\n\(error)"
 						)
 				}
-				
+
 		}
-		
+
 		/**
 		 Removes `api.authorizationManager` from the keychain and sets `currentUser`
 		 to `nil`.
@@ -246,13 +246,13 @@ final class Spotify: ObservableObject {
 		 called.
 		 */
 		func authorizationManagerDidDeauthorize() {
-				
+
 				withAnimation(LoginView.animation) {
 						self.isAuthorized = false
 				}
-				
+
 				self.currentUser = nil
-				
+
 				do {
 						/*
 						 Remove the authorization information from the keychain.
@@ -265,7 +265,7 @@ final class Spotify: ObservableObject {
 						 */
 						try self.keychain.remove(self.authorizationManagerKey)
 						print("did remove authorization manager from keychain")
-						
+
 				} catch {
 						print(
 								"couldn't remove authorization manager " +
@@ -276,12 +276,12 @@ final class Spotify: ObservableObject {
 
 		/**
 		 Retrieve the current user.
-		 
+
 		 - Parameter onlyIfNil: Only retrieve the user if `self.currentUser`
 					 is `nil`.
 		 */
 		func retrieveCurrentUser(onlyIfNil: Bool = true) {
-				
+
 				if onlyIfNil && self.currentUser != nil {
 						return
 				}
@@ -301,8 +301,9 @@ final class Spotify: ObservableObject {
 								}
 						)
 						.store(in: &cancellables)
-				
+
 		}
 
 }
+
 

@@ -14,7 +14,8 @@ struct PlaylistsListView: View {
 		
 		@EnvironmentObject var spotify: Spotify
 
-		@State private var playlists: [Playlist<PlaylistItemsReference>] = []
+//		@State private var playlists: [Playlist<PlaylistItemsReference>] = []
+		@Binding var playlists: [Playlist<PlaylistItemsReference>]
 		
 		@State private var cancellables: Set<AnyCancellable> = []
 		
@@ -26,8 +27,13 @@ struct PlaylistsListView: View {
 		//@State private var selectedPlaylists: [String] = []
 		@Binding var selectedPlaylists: [String]
 	
-		init(selectedPlaylists: Binding<[String]>) {
+		@Binding var tracks: [PlaylistItem]
+	
+	init(selectedPlaylists: Binding<[String]>, playlists: Binding<[Playlist<PlaylistItemsReference>]>,
+			 tracks: Binding<[PlaylistItem]>) {
 			self._selectedPlaylists = selectedPlaylists
+			self._playlists = playlists
+			self._tracks = tracks
 		}
 		
 		var body: some View {
@@ -71,6 +77,8 @@ struct PlaylistsListView: View {
 					Alert(title: alert.title, message: alert.message)
 				}
 				.onAppear(perform: retrievePlaylists)
+//				.onChange(of: self.playlists.count, perform: retrieveTracks)
+//				.onAppear(perform: retrievePlaylists)
 		}
 		
 		var refreshButton: some View {
@@ -82,7 +90,12 @@ struct PlaylistsListView: View {
 				.disabled(isLoadingPlaylists)
 				
 		}
-		
+	
+//	func retrieveData() {
+//		retrievePlaylists()
+//		retrieveTracks()
+//	}
+//
 		func retrievePlaylists() {
 				
 				self.isLoadingPlaylists = true
@@ -114,9 +127,35 @@ struct PlaylistsListView: View {
 								}
 						)
 						.store(in: &cancellables)
-
 		}
-		
+	
+	func retrieveTracks() {
+		//retrievePlaylists()
+		self.tracks = []
+		print("\(playlists.count)")
+		for playlist in playlists {
+			let pURI = playlist.uri
+			spotify.api.playlist(pURI, market: "US")
+				.sink(
+					receiveCompletion: { completion in
+						print("completion:", completion, terminator: "\n\n\n")
+					},
+					receiveValue: { playlist in
+						
+						print("\nReceived Playlist")
+						print("------------------------")
+						print("name:", playlist.name)
+						print("link:", playlist.externalURLs?["spotify"] ?? "nil")
+						print("description:", playlist.description ?? "nil")
+						print("total tracks:", playlist.items.total)
+						
+						for track in playlist.items.items.compactMap(\.item) {
+							self.tracks.append(track)
+						}
+					}
+				)		.store(in: &cancellables)
+		}
+		}
 		
 }
 
