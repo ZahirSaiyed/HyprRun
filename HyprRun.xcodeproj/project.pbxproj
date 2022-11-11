@@ -87,7 +87,6 @@
 				E0D55EBD2910660600EC755E /* Info.plist */,
 				E0B71560291046AA0037B331 /* Project Utilities */,
 				E013DB8629103ED50029093B /* HyprRunApp.swift */,
-				E013DB96291042680029093B /* Controllers */,
 				E013DB95291042390029093B /* Views */,
 				E013DB94291041F30029093B /* Models */,
 				E013DB8A29103ED60029093B /* Assets.xcassets */,
@@ -127,13 +126,6 @@
 				E031EEFD291EB14D002B8164 /* SplashView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		E013DB96291042680029093B /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		E02D56C32914698B004C955C /* Playlist Views */ = {
