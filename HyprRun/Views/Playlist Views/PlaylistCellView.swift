@@ -53,6 +53,7 @@ struct PlaylistCellView: View {
 							.frame(width: 70, height: 70)
 							.padding(.trailing, 5)
 						Text("\(playlist.name) - \(playlistDeduplicator.totalItems) items")
+						Spacer()
 						SelectBoxView(selected: $selected, selectedPlaylists: $selectedPlaylists, name: playlist.name)
 						
 //						if playlistDeduplicator.isDeduplicating {

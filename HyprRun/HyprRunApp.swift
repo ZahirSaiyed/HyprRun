@@ -13,6 +13,8 @@ import SwiftUI
 struct HyprRunApp: App {
 	
 		@StateObject var spotify = Spotify()
+		@State private var isAuthorized = false
+
 	
 	init() {
 			SpotifyAPILogHandler.bootstrap()
@@ -20,7 +22,7 @@ struct HyprRunApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+					ContentView(isAuthorized: $isAuthorized)
 						.environmentObject(spotify)
         }
     }

@@ -255,22 +255,22 @@ struct LoginView2: ViewModifier {
 		}
 		
 }
-
-struct LoginView_Previews: PreviewProvider {
-		
-		static let spotify = Spotify()
-		
-		static var previews: some View {
-				ContentView()
-						.environmentObject(spotify)
-						.onAppear(perform: onAppear)
-		}
-		
-		static func onAppear() {
-				spotify.isAuthorized = false
-				spotify.isRetrievingTokens = true
-				LoginView.debugAlwaysShowing = true
-		}
-
-}
+//
+//struct LoginView_Previews: PreviewProvider {
+//		
+//		static let spotify = Spotify()
+//		
+//		static var previews: some View {
+//				ContentView()
+//						.environmentObject(spotify)
+//						.onAppear(perform: onAppear)
+//		}
+//		
+//		static func onAppear() {
+//				spotify.isAuthorized = false
+//				spotify.isRetrievingTokens = true
+//				LoginView.debugAlwaysShowing = true
+//		}
+//
+//}
 
