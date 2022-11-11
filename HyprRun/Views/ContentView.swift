@@ -10,28 +10,35 @@ import Combine
 import SpotifyWebAPI
 
 struct ContentView: View {
-	
-		@EnvironmentObject var spotify: Spotify
-	
-	  @State private var alert: AlertItem? = nil
+  @EnvironmentObject var spotify: Spotify
+  @StateObject private var viewRouter = ViewRouter()
+  @State var root: Route = .splashView
 
-	  @State private var cancellables: Set<AnyCancellable> = []
-	
-		@State private var showRunView = false
-		@Binding var isAuthorized: Bool
+  @State private var alert: AlertItem? = nil
+  @State private var cancellables: Set<AnyCancellable> = []
 
-	
-		@State private var selectedPlaylists: [String] = []
-	
-	  @State private var playlists: [Playlist<PlaylistItemsReference>] = []
-	
-		@State private var tracks: [PlaylistItem] = []
-	
-	@State private var vibe = 0.0
-		@State private var isEditing = false
+  @State private var showRunView = false
+  @Binding var isAuthorized: Bool
+
+
+  @State private var selectedPlaylists: [String] = []
+  @State private var playlists: [Playlist<PlaylistItemsReference>] = []
+  @State private var tracks: [PlaylistItem] = []
+  @State private var vibe = 0.0
+  @State private var isEditing = false
 
 	
 	var body: some View {
+    switch viewRouter.root {
+    case Route.splashView:
+      SplashView(isAuthorized: $isAuthorized)
+    case Route.homeView:
+      SplashView(isAuthorized: $isAuthorized)
+    case Route.runView:
+      SplashView(isAuthorized: $isAuthorized)
+    case Route.postRunView:
+      SplashView(isAuthorized: $isAuthorized)
+    }
 		
 		if !self._isAuthorized.wrappedValue{
 //		if !spotify.isAuthorized{

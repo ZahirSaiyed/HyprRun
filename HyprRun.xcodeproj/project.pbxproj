@@ -13,6 +13,7 @@
 		7EAD37E4291EC37F00BCBE02 /* HyprRun.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E2291EC37F00BCBE02 /* HyprRun.xcdatamodeld */; };
 		7EAD37E6291EC43F00BCBE02 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E5291EC43F00BCBE02 /* LocationManager.swift */; };
 		7EAD37E9291EC51F00BCBE02 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E8291EC51F00BCBE02 /* Route.swift */; };
+		7EAD37EB291EC7D300BCBE02 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37EA291EC7D300BCBE02 /* ViewRouter.swift */; };
 		E013DB8729103ED50029093B /* HyprRunApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013DB8629103ED50029093B /* HyprRunApp.swift */; };
 		E013DB8929103ED50029093B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013DB8829103ED50029093B /* ContentView.swift */; };
 		E013DB8B29103ED60029093B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E013DB8A29103ED60029093B /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 		7EAD37E3291EC37F00BCBE02 /* HyprRun.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HyprRun.xcdatamodel; sourceTree = "<group>"; };
 		7EAD37E5291EC43F00BCBE02 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7EAD37E8291EC51F00BCBE02 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		7EAD37EA291EC7D300BCBE02 /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
 		E013DB8329103ED50029093B /* HyprRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HyprRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E013DB8629103ED50029093B /* HyprRunApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyprRunApp.swift; sourceTree = "<group>"; };
 		E013DB8829103ED50029093B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				7EAD37E8291EC51F00BCBE02 /* Route.swift */,
+				7EAD37EA291EC7D300BCBE02 /* ViewRouter.swift */,
 			);
 			path = ViewRouter;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 			files = (
 				E013DB9B291043BC0029093B /* Spotify.swift in Sources */,
 				E031EEFE291EB14D002B8164 /* SplashView.swift in Sources */,
+				7EAD37EB291EC7D300BCBE02 /* ViewRouter.swift in Sources */,
 				E02D56C929146D30004C955C /* PlaylistCellView.swift in Sources */,
 				E06CA5C1291E763B004F0C6D /* SpotifyAPIExtensions.swift in Sources */,
 				E0D1ADD4291B522D007B2893 /* TrackView.swift in Sources */,
