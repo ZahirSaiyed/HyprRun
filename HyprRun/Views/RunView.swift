@@ -14,11 +14,14 @@ struct RunView: View {
 	
 	@ObservedObject var spotify: Spotify
 	let dispatchGroup = DispatchGroup()
+	let start = Date()
+
 	@State var cancellables: Set<AnyCancellable> = []
 
 
 	
 	@State var secondsLeft = 4
+	@State var songDuration = 0
 	@State var isPlaying : Bool = false
 	@State var isRunning : Bool = false
 	@State var currSong = 0
@@ -44,6 +47,7 @@ struct RunView: View {
 	
 	let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 	
+	
 	var body: some View {
 		
 		
@@ -63,7 +67,15 @@ struct RunView: View {
 					if(trackArray.count > 0){
 						let trackZero = trackArray[self.currSong]
 						Text("\(trackZero.element.name)").foregroundColor(Color.white)
-						Text("Song Artist").foregroundColor(Color.white)
+					//	spotify.api.artis
+						Text("ARTIST").foregroundColor(Color.white)
+						Text("\(elapsedTimeAsString())")
+							.foregroundColor(Color.white)
+							.onReceive(timer) { input in
+								if isPlaying{
+									songDuration = songDuration + 1
+								}
+							}
 					}
 //					Text("Song Name").foregroundColor(Color.white)
 //					Text("Song Artist").foregroundColor(Color.white)
@@ -99,10 +111,10 @@ struct RunView: View {
 					
 				}
 			}
-			Text("You have selected \(selectedPlaylists.count) playlists")
-			Text("You have \(playlists.count) total playlists")
-			
-			Text("You have \(tracks.count) total tracks")
+//			Text("You have selected \(selectedPlaylists.count) playlists")
+//			Text("You have \(playlists.count) total playlists")
+//			
+//			Text("You have \(tracks.count) total tracks")
 			
 			
 //			ForEach(
@@ -112,13 +124,13 @@ struct RunView: View {
 //					Text("\(track.element.name)")
 //			}x
 		
-			let trackArray = Array(tracks.enumerated())
-			if(trackArray.count > 0){
-				let trackZero = trackArray[self.currSong]
-				Text("\(trackZero.element.name)")
+//			let trackArray = Array(tracks.enumerated())
+//			if(trackArray.count > 0){
+//				let trackZero = trackArray[self.currSong]
+//				Text("\(trackZero.element.name)")
 				//let trackURI = spotify.api.track(trackZero.element.id!)
 //				Text("\(trackURI)")
-			}
+//			}
 			
 //			ForEach(
 //					Array(playlists.enumerated()),
@@ -194,7 +206,7 @@ struct RunView: View {
 //				})
 //				.buttonStyle(PlainButtonStyle())
 				
-				Button(action: {self.currSong += 1}) {
+				Button(action: nextSong) {
 					Image(systemName: "forward.fill")
 						.resizable()
 						.frame(width: 40, height: 40)
@@ -224,7 +236,7 @@ struct RunView: View {
 	}
 	
 	var pauseRunButton: some View {
-		Button(action: {isRunning = true}, label: {
+		Button(action: {isRunning = false}, label: {
 				Text("PAUSE RUN").font(.custom("HelveticaNeue-Bold", fixedSize: 18))
 					.foregroundColor(.white)
 							.padding(7)
@@ -269,14 +281,29 @@ struct RunView: View {
 		if(self.currSong > 0){
 			self.currSong -= 1
 			playTrack()
+			self.songDuration = 0
 		}
+	}
+	
+	func nextSong () {
+		self.currSong += 1
+		playTrack()
+		self.songDuration = 0
 	}
 	
 	func playButton () {
 		self.isPlaying.toggle()
 		if(self.isPlaying && self.tracks.count > 0){
-			playTrack()
-			print("PLAYING SONG")
+			if(self.songDuration > 0){
+				resumeTrack()
+			}
+			else{
+				playTrack()
+			}
+		}
+		
+		else{
+			pauseTrack()
 		}
 	}
 	
@@ -322,6 +349,65 @@ struct RunView: View {
 							}
 					})
 			
+	}
+	
+	func pauseTrack () {
+		let alertTitle = "Couldn't Pause Song"
+		
+		self.playTrackCancellable =
+		self.spotify.api.pausePlayback()
+			.receive(on: RunLoop.main)
+			.sink(receiveCompletion: { completion in
+				if case .failure(let error) = completion {
+					self.alert = AlertItem(
+						title: alertTitle,
+						message: error.localizedDescription
+					)
+				}
+			})
+	}
+	
+	func resumeTrack () {
+		let alertTitle = "Couldn't Resume Song"
+		
+		self.playTrackCancellable =
+		self.spotify.api.resumePlayback()
+			.receive(on: RunLoop.main)
+			.sink(receiveCompletion: { completion in
+				if case .failure(let error) = completion {
+					self.alert = AlertItem(
+						title: alertTitle,
+						message: error.localizedDescription
+					)
+				}
+			})
+		
+	}
+	
+	func elapsedTimeAsString() -> String {
+		// return the formatted string...
+		let duration = self.songDuration
+		let minutes = (Int)(duration/60)
+		var str_minutes = ""
+		if(minutes < 10){
+			str_minutes = "0" + "\(minutes)"
+		}
+		else {
+			str_minutes = "\(minutes)"
+		}
+		
+		
+//    let seconds_milli = String(format: "%.2f", elapsedTime.truncatingRemainder(dividingBy: 60))
+		var str_sec = ""
+		let seconds = duration % 60
+		if(seconds < 10){
+			str_sec = "0" + "\(seconds)"
+		}
+		else {
+			str_sec = "\(seconds)"
+		}
+		
+		return str_minutes + ":" + str_sec
 	}
 	
 }
