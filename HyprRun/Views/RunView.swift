@@ -21,10 +21,15 @@ struct RunView: View {
 	@State var secondsLeft = 4
 	@State var isPlaying : Bool = false
 	@State var isRunning : Bool = false
+	@State var currSong = 0
+
 	
 	@State var pTracks : [PlaylistItem] = []
 	
 	@State private var alert: AlertItem? = nil
+	
+	@State private var playTrackCancellable: AnyCancellable? = nil
+
 	
 	@Binding var selectedPlaylists: [String]
 	@Binding var playlists: [Playlist<PlaylistItemsReference>]
@@ -46,15 +51,22 @@ struct RunView: View {
 			
 			//MusicBar
 			HStack(spacing: 20){
-				Image(systemName: "photo.fill")
-					.resizable()
-					.frame(width: 40, height: 40, alignment: .leading)
-				
-					.foregroundColor(Color(.white))
-					.padding(.top, 10)
+//				Image(systemName: "photo.fill")
+//					.resizable()
+//					.frame(width: 40, height: 40, alignment: .leading)
+//				
+//					.foregroundColor(Color(.white))
+//					.padding(.top, 10)
 				VStack(alignment: .leading){
-					Text("Song Name").foregroundColor(Color.white)
-					Text("Song Artist").foregroundColor(Color.white)
+					
+					let trackArray = Array(tracks.enumerated())
+					if(trackArray.count > 0){
+						let trackZero = trackArray[self.currSong]
+						Text("\(trackZero.element.name)").foregroundColor(Color.white)
+						Text("Song Artist").foregroundColor(Color.white)
+					}
+//					Text("Song Name").foregroundColor(Color.white)
+//					Text("Song Artist").foregroundColor(Color.white)
 				}
 				.frame(alignment: .center)
 				.padding(.bottom, 60)
@@ -92,11 +104,20 @@ struct RunView: View {
 			
 			Text("You have \(tracks.count) total tracks")
 			
-			ForEach(
-				Array(tracks.enumerated()),
-				id: \.offset
-			) { track in
-				Text("\(track.element.name)")
+			
+//			ForEach(
+//				Array(tracks.enumerated()),
+//				id: \.offset
+//			) { track in
+//					Text("\(track.element.name)")
+//			}x
+		
+			let trackArray = Array(tracks.enumerated())
+			if(trackArray.count > 0){
+				let trackZero = trackArray[self.currSong]
+				Text("\(trackZero.element.name)")
+				//let trackURI = spotify.api.track(trackZero.element.id!)
+//				Text("\(trackURI)")
 			}
 			
 //			ForEach(
@@ -147,23 +168,39 @@ struct RunView: View {
 			.padding(.bottom, 50)
 			
 			HStack(spacing: 70){
+			Button(action: {prevSong()}) {
+
 				Image(systemName: "backward.fill")
 					.resizable()
 					.frame(width: 40, height: 40)
 					.foregroundColor(Color(.white))
 					.padding(.top, 10)
-				Button(action: {self.isPlaying.toggle()}) {
-						Image(systemName: self.isPlaying == true ? "pause.fill" : "play.fill")
+			}
+				
+				Button(action: playButton) {
+					Image(systemName: self.isPlaying == true ? "pause.fill" : "play.fill")
 						.resizable()
 						.frame(width: 40, height: 40)
 						.padding(.top, 10)
 						.foregroundColor(Color(.white))
 				}
-				Image(systemName: "forward.fill")
-					.resizable()
-					.frame(width: 40, height: 40)
-					.padding(.top, 10)
-					.foregroundColor(Color(.white))
+				
+//				Button(action: playTrack, label: {
+//						Text("PLAY BUTTON")
+//								.lineLimit(1)
+//								.frame(maxWidth: .infinity, alignment: .leading)
+//								.padding()
+//								.contentShape(Rectangle())
+//				})
+//				.buttonStyle(PlainButtonStyle())
+				
+				Button(action: {self.currSong += 1}) {
+					Image(systemName: "forward.fill")
+						.resizable()
+						.frame(width: 40, height: 40)
+						.padding(.top, 10)
+						.foregroundColor(Color(.white))
+				}
 			}
 			.frame(maxWidth: .infinity)
 			.background(Color.black)
@@ -227,5 +264,64 @@ struct RunView: View {
 				)		.store(in: &cancellables)
 		}
 		}
+	
+	func prevSong () {
+		if(self.currSong > 0){
+			self.currSong -= 1
+			playTrack()
+		}
+	}
+	
+	func playButton () {
+		self.isPlaying.toggle()
+		if(self.isPlaying && self.tracks.count > 0){
+			playTrack()
+			print("PLAYING SONG")
+		}
+	}
+	
+	func playTrack() {
+		
+			let trackArray = Array(tracks.enumerated())
+		let track = trackArray[self.currSong].element
+			let alertTitle = "Couldn't play \(track.name)"
+
+			guard let trackURI = track.uri else {
+					self.alert = AlertItem(
+							title: alertTitle,
+							message: "Missing data"
+					)
+					return
+			}
+			
+			let playbackRequest: PlaybackRequest
+			
+//			if let albumURI = self.album.uri {
+//					// Play the track in the context of its album. Always prefer
+//					// providing a context; otherwise, the back and forwards buttons may
+//					// not work.
+//					playbackRequest = PlaybackRequest(
+//							context: .contextURI(albumURI),
+//							offset: .uri(trackURI)
+//					)
+//			}
+//			else {
+			playbackRequest = PlaybackRequest(trackURI)
+//			}
+
+			self.playTrackCancellable = self.spotify.api
+					.getAvailableDeviceThenPlay(playbackRequest)
+					.receive(on: RunLoop.main)
+					.sink(receiveCompletion: { completion in
+							if case .failure(let error) = completion {
+									self.alert = AlertItem(
+											title: alertTitle,
+											message: error.localizedDescription
+									)
+									print("\(alertTitle): \(error)")
+							}
+					})
+			
+	}
 	
 }

@@ -21,6 +21,7 @@
 		E02D56C229146908004C955C /* PlaylistsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D56C129146908004C955C /* PlaylistsListView.swift */; };
 		E02D56C729146ADC004C955C /* PlaylistDeduplicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D56C629146ADC004C955C /* PlaylistDeduplicator.swift */; };
 		E02D56C929146D30004C955C /* PlaylistCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D56C829146D30004C955C /* PlaylistCellView.swift */; };
+		E06CA5C1291E763B004F0C6D /* SpotifyAPIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06CA5C0291E763B004F0C6D /* SpotifyAPIExtensions.swift */; };
 		E0B7155F2910455D0037B331 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B7155E2910455D0037B331 /* LoginView.swift */; };
 		E0B71562291046BF0037B331 /* ImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B71561291046BF0037B331 /* ImageName.swift */; };
 		E0B7156429104AB60037B331 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B7156329104AB60037B331 /* AlertItem.swift */; };
@@ -41,6 +42,7 @@
 		E02D56C129146908004C955C /* PlaylistsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsListView.swift; sourceTree = "<group>"; };
 		E02D56C629146ADC004C955C /* PlaylistDeduplicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistDeduplicator.swift; sourceTree = "<group>"; };
 		E02D56C829146D30004C955C /* PlaylistCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCellView.swift; sourceTree = "<group>"; };
+		E06CA5C0291E763B004F0C6D /* SpotifyAPIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyAPIExtensions.swift; sourceTree = "<group>"; };
 		E0B7155E2910455D0037B331 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E0B71561291046BF0037B331 /* ImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageName.swift; sourceTree = "<group>"; };
 		E0B7156329104AB60037B331 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			children = (
 				E0B71561291046BF0037B331 /* ImageName.swift */,
 				E0B7156329104AB60037B331 /* AlertItem.swift */,
+				E06CA5C0291E763B004F0C6D /* SpotifyAPIExtensions.swift */,
 			);
 			path = "Project Utilities";
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 			files = (
 				E013DB9B291043BC0029093B /* Spotify.swift in Sources */,
 				E02D56C929146D30004C955C /* PlaylistCellView.swift in Sources */,
+				E06CA5C1291E763B004F0C6D /* SpotifyAPIExtensions.swift in Sources */,
 				E0D1ADD4291B522D007B2893 /* TrackView.swift in Sources */,
 				E025E5C02914598300FF1922 /* VibeButtonView.swift in Sources */,
 				E021935529180A1500FAF91E /* RunView.swift in Sources */,
