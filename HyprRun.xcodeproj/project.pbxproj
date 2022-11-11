@@ -11,6 +11,7 @@
 		7EAD37DF291EC2EE00BCBE02 /* UnitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37DE291EC2EE00BCBE02 /* UnitExtensions.swift */; };
 		7EAD37E1291EC34A00BCBE02 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E0291EC34A00BCBE02 /* CoreDataStack.swift */; };
 		7EAD37E4291EC37F00BCBE02 /* HyprRun.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E2291EC37F00BCBE02 /* HyprRun.xcdatamodeld */; };
+		7EAD37E6291EC43F00BCBE02 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E5291EC43F00BCBE02 /* LocationManager.swift */; };
 		E013DB8729103ED50029093B /* HyprRunApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013DB8629103ED50029093B /* HyprRunApp.swift */; };
 		E013DB8929103ED50029093B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013DB8829103ED50029093B /* ContentView.swift */; };
 		E013DB8B29103ED60029093B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E013DB8A29103ED60029093B /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 		7EAD37DE291EC2EE00BCBE02 /* UnitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitExtensions.swift; sourceTree = "<group>"; };
 		7EAD37E0291EC34A00BCBE02 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		7EAD37E3291EC37F00BCBE02 /* HyprRun.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HyprRun.xcdatamodel; sourceTree = "<group>"; };
+		7EAD37E5291EC43F00BCBE02 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E013DB8329103ED50029093B /* HyprRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HyprRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E013DB8629103ED50029093B /* HyprRunApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyprRunApp.swift; sourceTree = "<group>"; };
 		E013DB8829103ED50029093B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				E0B71561291046BF0037B331 /* ImageName.swift */,
 				E0B7156329104AB60037B331 /* AlertItem.swift */,
 				E06CA5C0291E763B004F0C6D /* SpotifyAPIExtensions.swift */,
+				7EAD37E5291EC43F00BCBE02 /* LocationManager.swift */,
 				7EAD37DC291EC2E400BCBE02 /* FormatDisplay.swift */,
 				7EAD37DE291EC2EE00BCBE02 /* UnitExtensions.swift */,
 				7EAD37E0291EC34A00BCBE02 /* CoreDataStack.swift */,
@@ -254,6 +257,7 @@
 				E02193532918071F00FAF91E /* SelectBoxView.swift in Sources */,
 				E013DB8929103ED50029093B /* ContentView.swift in Sources */,
 				7EAD37E4291EC37F00BCBE02 /* HyprRun.xcdatamodeld in Sources */,
+				7EAD37E6291EC43F00BCBE02 /* LocationManager.swift in Sources */,
 				7EAD37DD291EC2E400BCBE02 /* FormatDisplay.swift in Sources */,
 				E0B7155F2910455D0037B331 /* LoginView.swift in Sources */,
 				E013DB8729103ED50029093B /* HyprRunApp.swift in Sources */,
