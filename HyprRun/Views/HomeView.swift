@@ -52,8 +52,7 @@ struct HomeView: View {
             .foregroundColor(isEditing ? .red : .blue)
         }.frame(alignment: .center)
         
-        
-        // New run button here
+        newRunButton.offset(x: 50, y: 0)
 
       }
     }.frame(
@@ -146,6 +145,22 @@ struct HomeView: View {
       // MARK: and not an attacker.
       self.spotify.authorizationState = String.randomURLSafe(length: 128)
       
+  }
+  
+  var newRunButton: some View {
+    Button(action: {
+      self.viewRouter.setRoute(.runView)
+//      self.viewModel.startRun()
+    }, label: {
+      Text("NEW RUN")
+        .font(.custom("HelveticaNeue-Bold", fixedSize: 28))
+        .foregroundColor(.white)
+        .padding(7)
+        .frame(width: 250, height: 50)
+        .background(Color(red: 0, green: 0, blue: 290))
+        .cornerRadius(50)
+        .shadow(radius: 10)
+    })
   }
 
   /// Removes the authorization information for the user.
