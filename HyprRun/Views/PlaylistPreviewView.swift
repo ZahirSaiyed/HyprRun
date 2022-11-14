@@ -9,8 +9,7 @@ import SwiftUI
 import SpotifyWebAPI
 
 struct PlaylistPreviewView: View {
-	
-	//@State private var selectedPlaylists: [String] = []
+
 	@Binding var selectedPlaylists: [String]
 	@Binding var playlists: [Playlist<PlaylistItemsReference>]
 	@Binding var tracks: [PlaylistItem]
