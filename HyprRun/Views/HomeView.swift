@@ -12,6 +12,7 @@ import SpotifyWebAPI
 struct HomeView: View {
   @EnvironmentObject var viewRouter: ViewRouter
   @EnvironmentObject var spotify: Spotify
+  @ObservedObject var viewModel: UIViewModel
   
   @State private var alert: AlertItem? = nil
   @State private var cancellables: Set<AnyCancellable> = []
@@ -68,11 +69,13 @@ struct HomeView: View {
   }
 }
 
+
+
 extension HomeView {
   var newRunButton: some View {
     Button(action: {
       self.viewRouter.setRoute(.runView)
-//      self.viewModel.startRun()
+      self.viewModel.startRun()
     }, label: {
       Text("NEW RUN")
         .font(.custom("HelveticaNeue-Bold", fixedSize: 28))

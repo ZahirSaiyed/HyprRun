@@ -14,7 +14,7 @@ struct ContentView: View {
   @State var root: Route = .homeView
   
   @EnvironmentObject var spotify: Spotify
-  //  @ObservedObject var viewModel: UIViewModel = UIViewModel()
+  @ObservedObject var viewModel: UIViewModel = UIViewModel()
   
   @State private var alert: AlertItem? = nil
   @State private var cancellables: Set<AnyCancellable> = []
@@ -28,14 +28,16 @@ struct ContentView: View {
       if !self._isAuthorized.wrappedValue{
         SplashView(isAuthorized: $isAuthorized)
       } else {
-        HomeView(isAuthorized: $isAuthorized).environmentObject(self.viewRouter)
+        HomeView(viewModel: self.viewModel, isAuthorized: $isAuthorized).environmentObject(self.viewRouter)
       }
     case Route.splashView:
       SplashView(isAuthorized: $isAuthorized)
     case Route.runView:
       SplashView(isAuthorized: $isAuthorized)
+      // Need to change this to be run view
     case Route.postRunView:
       SplashView(isAuthorized: $isAuthorized)
+      // Need to change this to be the post-run view
     }
   }
 }
