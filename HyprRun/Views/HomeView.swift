@@ -10,8 +10,8 @@ import Combine
 import SpotifyWebAPI
 
 struct HomeView: View {
-  @EnvironmentObject var spotify: Spotify
   @EnvironmentObject var viewRouter: ViewRouter
+  @EnvironmentObject var spotify: Spotify
   
   @State private var alert: AlertItem? = nil
   @State private var cancellables: Set<AnyCancellable> = []
