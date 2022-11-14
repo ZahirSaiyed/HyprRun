@@ -13,6 +13,7 @@ import Combine
 struct RunView: View {
   @EnvironmentObject var viewRouter: ViewRouter
   
+  @ObservedObject var runViewModel: UIRunViewModel
 	@ObservedObject var spotify: Spotify
   
 	let dispatchGroup = DispatchGroup()
@@ -38,7 +39,8 @@ struct RunView: View {
 	@Binding var playlists: [Playlist<PlaylistItemsReference>]
 	@Binding var tracks: [PlaylistItem]
 	
-	init(spotify: Spotify, playlists: Binding<[Playlist<PlaylistItemsReference>]>, selectedPlaylists: Binding<[String]>, tracks: Binding<[PlaylistItem]>){
+  init(runViewModel: UIRunViewModel, spotify: Spotify, playlists: Binding<[Playlist<PlaylistItemsReference>]>, selectedPlaylists: Binding<[String]>, tracks: Binding<[PlaylistItem]>){
+    self.runViewModel = runViewModel
 		self.spotify = spotify
 		self._playlists = playlists
 		self._selectedPlaylists = selectedPlaylists

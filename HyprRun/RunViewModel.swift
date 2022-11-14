@@ -14,7 +14,7 @@ import Foundation
 import CoreLocation
 import UIKit
 
-class ViewModel: NSObject {
+class RunViewModel: NSObject {
   let locationManager = LocationManager.shared
   
   var run: Run?
@@ -41,7 +41,7 @@ class ViewModel: NSObject {
   }
 }
 
-extension ViewModel: CLLocationManagerDelegate {
+extension RunViewModel: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     for newLocation in locations {
       let howRecent = newLocation.timestamp.timeIntervalSinceNow
@@ -59,7 +59,7 @@ extension ViewModel: CLLocationManagerDelegate {
   }
 }
 
-class UIViewModel: ViewModel, ObservableObject {
+class UIRunViewModel: RunViewModel, ObservableObject {
   @Published var currentState: RunState
   
   override init() {
