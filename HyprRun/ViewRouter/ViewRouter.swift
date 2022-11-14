@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class ViewRouter: ObservableObject {
-  @Published var root: Route = .splashView
+  @Published var root: Route = .homeView
   
   private let routeSubject = PassthroughSubject<Route, Never>()
   private var cancellable: AnyCancellable?

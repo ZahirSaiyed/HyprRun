@@ -11,7 +11,7 @@ import SpotifyWebAPI
 
 struct ContentView: View {
   @StateObject private var viewRouter = ViewRouter()
-  @State var root: Route = .splashView
+  @State var root: Route = .homeView
   
   @EnvironmentObject var spotify: Spotify
   //  @ObservedObject var viewModel: UIViewModel = UIViewModel()
@@ -30,9 +30,13 @@ struct ContentView: View {
   
   var body: some View {
     switch viewRouter.root {
-    case Route.splashView:
-      SplashView(isAuthorized: $isAuthorized)
     case Route.homeView:
+      if !self._isAuthorized.wrappedValue{
+        SplashView(isAuthorized: $isAuthorized)
+      } else {
+        HomeView(isAuthorized: $isAuthorized).environmentObject(self.viewRouter)
+      }
+    case Route.splashView:
       SplashView(isAuthorized: $isAuthorized)
     case Route.runView:
       SplashView(isAuthorized: $isAuthorized)
@@ -40,10 +44,7 @@ struct ContentView: View {
       SplashView(isAuthorized: $isAuthorized)
     }
     
-    if !self._isAuthorized.wrappedValue{
-      //		if !spotify.isAuthorized{
-      SplashView(isAuthorized: $isAuthorized)
-    }
+    
     
     //		else {
     //			NavigationView {
