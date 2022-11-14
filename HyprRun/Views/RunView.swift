@@ -11,14 +11,14 @@ import Foundation
 import Combine
 
 struct RunView: View {
-	
+  @EnvironmentObject var viewRouter: ViewRouter
+  
 	@ObservedObject var spotify: Spotify
+  
 	let dispatchGroup = DispatchGroup()
 	let start = Date()
 
 	@State var cancellables: Set<AnyCancellable> = []
-
-
 	
 	@State var secondsLeft = 4
 	@State var songDuration = 0
