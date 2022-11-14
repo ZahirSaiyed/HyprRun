@@ -12,7 +12,10 @@ import SpotifyWebAPI
 struct HomeView: View {
   @EnvironmentObject var viewRouter: ViewRouter
   @EnvironmentObject var spotify: Spotify
+  
+  @ObservedObject var playerViewModel: PlayerViewModel
   @ObservedObject var runViewModel: UIRunViewModel
+
   
   @State private var alert: AlertItem? = nil
   @State private var cancellables: Set<AnyCancellable> = []
@@ -75,6 +78,7 @@ extension HomeView {
   var newRunButton: some View {
     Button(action: {
       self.viewRouter.setRoute(.runView)
+      // destination:  RunView(spotify: spotify,playlists: $playlists,selectedPlaylists: $selectedPlaylists, tracks: $tracks), isActive: $showRunView)
       self.runViewModel.startRun()
     }, label: {
       Text("NEW RUN")

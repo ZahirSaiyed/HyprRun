@@ -14,6 +14,7 @@ struct ContentView: View {
   @State var root: Route = .homeView
   
   @EnvironmentObject var spotify: Spotify
+  @ObservedObject var playerViewModel: PlayerViewModel = PlayerViewModel()
   @ObservedObject var runViewModel: UIRunViewModel = UIRunViewModel()
   
   @State private var alert: AlertItem? = nil
@@ -28,7 +29,7 @@ struct ContentView: View {
       if !self._isAuthorized.wrappedValue{
         SplashView(isAuthorized: $isAuthorized)
       } else {
-        HomeView(runViewModel: self.runViewModel, isAuthorized: $isAuthorized).environmentObject(self.viewRouter)
+        HomeView(playerViewModel: self.playerViewModel, runViewModel: self.runViewModel, isAuthorized: $isAuthorized).environmentObject(self.viewRouter)
       }
     case Route.splashView:
       SplashView(isAuthorized: $isAuthorized)
