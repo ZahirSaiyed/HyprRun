@@ -66,6 +66,42 @@ struct HomeView: View {
     // Called when a redirect is received from Spotify
     .onOpenURL(perform: handleURL(_:))
   }
+}
+
+extension HomeView {
+  var newRunButton: some View {
+    Button(action: {
+      self.viewRouter.setRoute(.runView)
+//      self.viewModel.startRun()
+    }, label: {
+      Text("NEW RUN")
+        .font(.custom("HelveticaNeue-Bold", fixedSize: 28))
+        .foregroundColor(.white)
+        .padding(7)
+        .frame(width: 250, height: 50)
+        .background(Color(red: 0, green: 0, blue: 290))
+        .cornerRadius(50)
+        .shadow(radius: 10)
+    })
+  }
+
+  /// Removes the authorization information for the user.
+  var logoutButton: some View {
+      // Calling `spotify.api.authorizationManager.deauthorize` will cause
+      // `SpotifyAPI.authorizationManagerDidDeauthorize` to emit a signal,
+      // which will cause `Spotify.authorizationManagerDidDeauthorize()` to be
+      // called.
+      Button(action: spotify.api.authorizationManager.deauthorize, label: {
+          Text("Logout")
+              .foregroundColor(.white)
+              .padding(7)
+              .background(
+                  Color(red: 0.392, green: 0.720, blue: 0.197)
+              )
+              .cornerRadius(10)
+              .shadow(radius: 3)
+      }).frame(alignment: .topLeading)
+  }
   
   /**
    Handle the URL that Spotify redirects to after the user Either authorizes
@@ -144,46 +180,10 @@ struct HomeView: View {
       // MARK: from Spotify was the result of a request made by this app, and
       // MARK: and not an attacker.
       self.spotify.authorizationState = String.randomURLSafe(length: 128)
-      
-  }
-  
-  var newRunButton: some View {
-    Button(action: {
-      self.viewRouter.setRoute(.runView)
-//      self.viewModel.startRun()
-    }, label: {
-      Text("NEW RUN")
-        .font(.custom("HelveticaNeue-Bold", fixedSize: 28))
-        .foregroundColor(.white)
-        .padding(7)
-        .frame(width: 250, height: 50)
-        .background(Color(red: 0, green: 0, blue: 290))
-        .cornerRadius(50)
-        .shadow(radius: 10)
-    })
-  }
-
-  /// Removes the authorization information for the user.
-  var logoutButton: some View {
-      // Calling `spotify.api.authorizationManager.deauthorize` will cause
-      // `SpotifyAPI.authorizationManagerDidDeauthorize` to emit a signal,
-      // which will cause `Spotify.authorizationManagerDidDeauthorize()` to be
-      // called.
-      Button(action: spotify.api.authorizationManager.deauthorize, label: {
-          Text("Logout")
-              .foregroundColor(.white)
-              .padding(7)
-              .background(
-                  Color(red: 0.392, green: 0.720, blue: 0.197)
-              )
-              .cornerRadius(10)
-              .shadow(radius: 3)
-      }).frame(alignment: .topLeading)
   }
 
   func deAuthorize(){
     spotify.api.authorizationManager.deauthorize()
     self.isAuthorized = false
   }
-
 }
