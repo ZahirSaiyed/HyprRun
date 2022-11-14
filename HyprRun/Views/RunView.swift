@@ -52,43 +52,7 @@ struct RunView: View {
   
   
   var body: some View {
-    Text("Hello World")
-    
     VStack{
-      
-      //MusicBar
-      //			HStack(spacing: 20){
-      ////				Image(systemName: "photo.fill")
-      ////					.resizable()
-      ////					.frame(width: 40, height: 40, alignment: .leading)
-      ////
-      ////					.foregroundColor(Color(.white))
-      ////					.padding(.top, 10)
-      //				VStack(alignment: .leading){
-      //
-      //					let trackArray = Array(tracks.enumerated())
-      //					if(trackArray.count > 0){
-      //						let trackZero = trackArray[self.currSong]
-      //						Text("\(trackZero.element.name)").foregroundColor(Color.white)
-      //					//	spotify.api.artis
-      //						Text("ARTIST").foregroundColor(Color.white)
-      //						Text("\(elapsedTimeAsString())")
-      //							.foregroundColor(Color.white)
-      //							.onReceive(timer) { input in
-      //								if isPlaying{
-      //									songDuration = songDuration + 1
-      //								}
-      //							}
-      //					}
-      ////					Text("Song Name").foregroundColor(Color.white)
-      ////					Text("Song Artist").foregroundColor(Color.white)
-      //				}
-      //				.frame(alignment: .center)
-      //				.padding(.bottom, 60)
-      //			}
-      //			.frame(maxWidth: .infinity)
-      //			.background(Color.black)
-      
       //Countdown
       if(secondsLeft >= 1){
         if secondsLeft == 4 {
@@ -222,34 +186,6 @@ struct RunView: View {
       //			.onAppear(perform: retrieveTracks)
       //		}
       //		.frame(maxWidth: .infinity)
-      //	}
-      //
-      //	var endRunButton: some View {
-      //		Button(action: {isRunning = true}, label: {
-      //				Text("END RUN").font(.custom("HelveticaNeue-Bold", fixedSize: 18))
-      //					.foregroundColor(.white)
-      //							.padding(7)
-      //							.frame(width: 150, height: 50)
-      //							.background(
-      //								Color(red: 290, green: 0, blue: 0)
-      //							)
-      //							.cornerRadius(20)
-      //							.shadow(radius: 5)
-      //			})
-      //	}
-      //
-      //	var pauseRunButton: some View {
-      //		Button(action: {isRunning = false}, label: {
-      //				Text("PAUSE RUN").font(.custom("HelveticaNeue-Bold", fixedSize: 18))
-      //					.foregroundColor(.white)
-      //							.padding(7)
-      //							.frame(width: 150, height: 50)
-      //							.background(
-      //								Color.orange
-      //							)
-      //							.cornerRadius(20)
-      //							.shadow(radius: 5)
-      //			})
       //	}
       
       //	func retrieveTracks() {
@@ -386,33 +322,60 @@ struct RunView: View {
       //			})
       //
       //	}
-      //
-      //	func elapsedTimeAsString() -> String {
-      //		// return the formatted string...
-      //		let duration = self.songDuration
-      //		let minutes = (Int)(duration/60)
-      //		var str_minutes = ""
-      //		if(minutes < 10){
-      //			str_minutes = "0" + "\(minutes)"
-      //		}
-      //		else {
-      //			str_minutes = "\(minutes)"
-      //		}
-      //
-      //
-      ////    let seconds_milli = String(format: "%.2f", elapsedTime.truncatingRemainder(dividingBy: 60))
-      //		var str_sec = ""
-      //		let seconds = duration % 60
-      //		if(seconds < 10){
-      //			str_sec = "0" + "\(seconds)"
-      //		}
-      //		else {
-      //			str_sec = "\(seconds)"
-      //		}
-      //
-      //		return str_minutes + ":" + str_sec
-      //	}
+    }
+  }
+}
+
+extension RunView {
+  func elapsedTimeAsString() -> String {
+    let duration = self.songDuration
+    let minutes = (Int)(duration/60)
+    var str_minutes = ""
+    
+    if (minutes < 10) {
+      str_minutes = "0" + "\(minutes)"
+    } else {
+      str_minutes = "\(minutes)"
+    }
+    
+    var str_sec = ""
+    let seconds = duration % 60
+    if (seconds < 10) {
+      str_sec = "0" + "\(seconds)"
+    } else {
+      str_sec = "\(seconds)"
+    }
+    
+    return str_minutes + ":" + str_sec
+  }
+  
+  var musicBar: some View {
+    HStack(spacing: 20) {
+      Image(systemName: "photo.fill")
+        .resizable()
+        .frame(width: 40, height: 40, alignment: .leading)
+        .foregroundColor(Color.white)
+        .padding(.top, 10)
       
+      VStack(alignment: .leading) {
+        let trackArray = Array(self.playerViewModel.tracks.enumerated())
+        if (trackArray.count > 0) {
+          let trackZero = trackArray[self.currSong]
+          Text("\(trackZero.element.name)").foregroundColor(Color.white)
+          Text("ARTIST").foregroundColor(Color.white)
+          Text("\(elapsedTimeAsString())")
+            .foregroundColor(Color.white)
+            .onReceive(timer) { input in
+              if isPlaying {
+                songDuration = songDuration + 1
+              }
+            }
+        }
+        Text("Song Name").foregroundColor(Color.white)
+        Text("Song Artist").foregroundColor(Color.white)
+      }
+      .frame(maxWidth: .infinity)
+      .background(Color.black)
     }
   }
 }
