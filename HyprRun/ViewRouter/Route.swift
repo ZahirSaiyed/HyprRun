@@ -10,7 +10,6 @@ import Foundation
 enum Route: String {
   case splashView
   case homeView
-  case playlistView
   case runView
   case postRunView
 }

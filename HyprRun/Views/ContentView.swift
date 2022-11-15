@@ -39,9 +39,6 @@ struct ContentView: View {
       } else {
         HomeView(playerViewModel: self.playerViewModel, runViewModel: self.runViewModel, isAuthorized: $isAuthorized, selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks, vibe: $vibe, isEditing: $isEditing).environmentObject(self.viewRouter)
       }
-    case Route.playlistView:
-      SplashView(isAuthorized: $isAuthorized)
-      // Need to change this to be PlaylistListView()
     case Route.runView:
       RunView(playerViewModel: self.playerViewModel, runViewModel: self.runViewModel, spotify: self.spotify).environmentObject(self.viewRouter)
     case Route.postRunView:

@@ -28,7 +28,7 @@
 		E021935529180A1500FAF91E /* RunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E021935429180A1500FAF91E /* RunView.swift */; };
 		E025E5C02914598300FF1922 /* VibeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E025E5BF2914598300FF1922 /* VibeButtonView.swift */; };
 		E02D56C02914689A004C955C /* PlaylistPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D56BF2914689A004C955C /* PlaylistPreviewView.swift */; };
-		E02D56C229146908004C955C /* PlaylistsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D56C129146908004C955C /* PlaylistsListView.swift */; };
+		E02D56C229146908004C955C /* PlaylistListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D56C129146908004C955C /* PlaylistListView.swift */; };
 		E02D56C729146ADC004C955C /* PlaylistDeduplicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D56C629146ADC004C955C /* PlaylistDeduplicator.swift */; };
 		E02D56C929146D30004C955C /* PlaylistCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D56C829146D30004C955C /* PlaylistCellView.swift */; };
 		E031EEFE291EB14D002B8164 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031EEFD291EB14D002B8164 /* SplashView.swift */; };
@@ -60,7 +60,7 @@
 		E021935429180A1500FAF91E /* RunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
 		E025E5BF2914598300FF1922 /* VibeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeButtonView.swift; sourceTree = "<group>"; };
 		E02D56BF2914689A004C955C /* PlaylistPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistPreviewView.swift; sourceTree = "<group>"; };
-		E02D56C129146908004C955C /* PlaylistsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsListView.swift; sourceTree = "<group>"; };
+		E02D56C129146908004C955C /* PlaylistListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistListView.swift; sourceTree = "<group>"; };
 		E02D56C629146ADC004C955C /* PlaylistDeduplicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistDeduplicator.swift; sourceTree = "<group>"; };
 		E02D56C829146D30004C955C /* PlaylistCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCellView.swift; sourceTree = "<group>"; };
 		E031EEFD291EB14D002B8164 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
@@ -164,7 +164,7 @@
 		E02D56C32914698B004C955C /* Playlist Views */ = {
 			isa = PBXGroup;
 			children = (
-				E02D56C129146908004C955C /* PlaylistsListView.swift */,
+				E02D56C129146908004C955C /* PlaylistListView.swift */,
 				E02D56C829146D30004C955C /* PlaylistCellView.swift */,
 			);
 			path = "Playlist Views";
@@ -276,7 +276,7 @@
 				7EAD37DF291EC2EE00BCBE02 /* UnitExtensions.swift in Sources */,
 				7EAD37E1291EC34A00BCBE02 /* CoreDataStack.swift in Sources */,
 				E0B7156429104AB60037B331 /* AlertItem.swift in Sources */,
-				E02D56C229146908004C955C /* PlaylistsListView.swift in Sources */,
+				E02D56C229146908004C955C /* PlaylistListView.swift in Sources */,
 				E02D56C02914689A004C955C /* PlaylistPreviewView.swift in Sources */,
 				E0B71562291046BF0037B331 /* ImageName.swift in Sources */,
 				7EAD37E9291EC51F00BCBE02 /* Route.swift in Sources */,

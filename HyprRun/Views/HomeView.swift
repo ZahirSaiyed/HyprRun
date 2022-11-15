@@ -34,8 +34,6 @@ struct HomeView: View {
         Text("Run").font(.custom("HelveticaNeue-Bold", fixedSize: 48))
         Text("Your Running Mix").font(.custom("HelveticaNeue-Bold", fixedSize: 48))
         
-        List {}
-        
         PlaylistPreviewView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
           .disabled(!spotify.isAuthorized)
           .frame(height: 50)

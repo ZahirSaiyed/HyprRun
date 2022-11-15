@@ -18,7 +18,7 @@ struct PlaylistPreviewView: View {
 		var body: some View {
 				List {
 						NavigationLink(
-							"Selected Playlists", destination: PlaylistsListView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
+							"Selected Playlists", destination: PlaylistListView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
 						)
 				}
 				.listStyle(PlainListStyle())
