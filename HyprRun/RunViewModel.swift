@@ -68,7 +68,6 @@ class UIRunViewModel: RunViewModel, ObservableObject {
   }
   
   @Published var secondsLeft = 4
-  
   @Published var distanceLabel: String = ""
   @Published var timeLabel: String = ""
   @Published var paceLabel: String = ""

@@ -78,7 +78,6 @@ extension HomeView {
   var newRunButton: some View {
     Button(action: {
       self.viewRouter.setRoute(.runView)
-      // destination:  RunView(spotify: spotify,playlists: $playlists,selectedPlaylists: $selectedPlaylists, tracks: $tracks), isActive: $showRunView)
       self.runViewModel.startRun()
     }, label: {
       Text("NEW RUN")

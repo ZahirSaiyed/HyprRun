@@ -16,10 +16,9 @@ struct RunView: View {
   
   @ObservedObject var playerViewModel: PlayerViewModel
   @ObservedObject var runViewModel: UIRunViewModel
-//  @ObservedObject var spotify: Spotify
   
-//  let dispatchGroup = DispatchGroup()
-//  let start = Date()
+  @Binding var tracks: [PlaylistItem]
+
   let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
   
   @State var cancellables: Set<AnyCancellable> = []
@@ -28,8 +27,6 @@ struct RunView: View {
   @State private var alert: AlertItem? = nil
   @State private var playTrackCancellable: AnyCancellable? = nil
   
-  @State var playlists: [Playlist<PlaylistItemsReference>] = []
-  @State var tracks: [PlaylistItem] = []
   
   var body: some View {
     VStack {
@@ -55,39 +52,42 @@ struct RunView: View {
       .frame(maxWidth: .infinity)
       .background(Color.black)
       
-      if self.runViewModel.secondsLeft >= 1 {
-        countdownView()
-      } else {
-        progressView()
-      }
+      progressView()
+      
+//      if self.runViewModel.secondsLeft >= 1 {
+//        countdownView()
+//      } else {
+//        progressView()
+//      }
+      
       
       controlsBar
     }
   }
   
-  func countdownView() -> some View {
-    return VStack{
-      if self.runViewModel.secondsLeft == 4 {
-        Text("Ready?")
-          .font(.custom("Avenir-Black", fixedSize: 80))
-          .foregroundColor(Color(red: 0, green: 0, blue: 290))
-          .frame(maxWidth: .infinity)
-          .padding(.top, 175)
-          .onReceive(timer) { input in
-            self.runViewModel.secondsLeft = self.runViewModel.secondsLeft - 1
-          }
-      } else {
-        Text("\(self.runViewModel.secondsLeft)")
-          .font(.custom("Avenir-Black", fixedSize: 90))
-          .foregroundColor(Color(red: 0, green: 0, blue: 290))
-          .frame(maxWidth: .infinity)
-          .padding(.top, 175)
-          .onReceive(timer) { input in
-            self.runViewModel.secondsLeft = self.runViewModel.secondsLeft - 1
-          }
-      }
-    }
-  }
+//  func countdownView() -> some View {
+//    return VStack{
+//      if self.runViewModel.secondsLeft == 4 {
+//        Text("Ready?")
+//          .font(.custom("Avenir-Black", fixedSize: 80))
+//          .foregroundColor(Color(red: 0, green: 0, blue: 290))
+//          .frame(maxWidth: .infinity)
+//          .padding(.top, 175)
+//          .onReceive(timer) { input in
+//            self.runViewModel.secondsLeft = self.runViewModel.secondsLeft - 1
+//          }
+//      } else {
+//        Text("\(self.runViewModel.secondsLeft)")
+//          .font(.custom("Avenir-Black", fixedSize: 90))
+//          .foregroundColor(Color(red: 0, green: 0, blue: 290))
+//          .frame(maxWidth: .infinity)
+//          .padding(.top, 175)
+//          .onReceive(timer) { input in
+//            self.runViewModel.secondsLeft = self.runViewModel.secondsLeft - 1
+//          }
+//      }
+//    }
+//  }
   
   func progressView() -> some View {
     return VStack {
