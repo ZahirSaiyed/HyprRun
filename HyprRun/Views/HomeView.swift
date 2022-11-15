@@ -16,7 +16,6 @@ struct HomeView: View {
   @ObservedObject var playerViewModel: PlayerViewModel
   @ObservedObject var runViewModel: UIRunViewModel
 
-  
   @State private var alert: AlertItem? = nil
   @State private var cancellables: Set<AnyCancellable> = []
   
@@ -24,50 +23,52 @@ struct HomeView: View {
   @Binding var selectedPlaylists: [String]
   @Binding var playlists: [Playlist<PlaylistItemsReference>]
   @Binding var tracks: [PlaylistItem]
-  @Binding var vibe: Double
+  @Binding var vibe: Float
   @Binding var isEditing: Bool
   
   var body: some View {
-    ZStack {
-      VStack(alignment: .leading, spacing: 35) {
-        logoutButton
-        Text("Run").font(.custom("HelveticaNeue-Bold", fixedSize: 48))
-        Text("Your Running Mix").font(.custom("HelveticaNeue-Bold", fixedSize: 48))
-        
-        PlaylistPreviewView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
-          .disabled(!spotify.isAuthorized)
-          .frame(height: 50)
-        
-        Text("\(selectedPlaylists.count) playlists selected")
-        
-        Text("The Vibe")
-          .font(.custom("HelveticaNeue-Bold", fixedSize: 28))
-        
-        HStack {
-          Slider(
-            value: $vibe,
-            in: 0...5,
-            step: 1.0,
-            onEditingChanged: { editing in
-              isEditing = editing
-            })
-          Text("\(vibe)")
-            .foregroundColor(isEditing ? .red : .blue)
-        }.frame(alignment: .center)
-        
-        newRunButton.offset(x: 50, y: 0)
+    NavigationView {
+      ZStack {
+        VStack(alignment: .leading, spacing: 35) {
+          logoutButton
+          Text("Run").font(.custom("HelveticaNeue-Bold", fixedSize: 48))
+          Text("Your Running Mix").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
+          
+          PlaylistPreviewView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
+            .disabled(!spotify.isAuthorized)
+            .frame(height: 50)
+          
+          Text("\(selectedPlaylists.count) playlists selected")
+          
+          Text("The Vibe")
+            .font(.custom("HelveticaNeue-Bold", fixedSize: 28))
+          
+          HStack {
+            Slider(
+              value: $vibe,
+              in: 0...5,
+              step: 1.0,
+              onEditingChanged: { editing in
+                isEditing = editing
+              })
+            Text("\(vibe)")
+              .foregroundColor(isEditing ? .red : .blue)
+          }.frame(alignment: .center)
+          
+          newRunButton.offset(x: 50, y: 0)
 
-      }
-    }.frame(
-        minWidth: 0,
-        maxWidth: .infinity,
-        minHeight: 0,
-        maxHeight: .infinity,
-        alignment: .topLeading)
-    .padding()
-    .modifier(LoginView())
-    // Called when a redirect is received from Spotify
-    .onOpenURL(perform: handleURL(_:))
+        }
+      }.frame(
+          minWidth: 0,
+          maxWidth: .infinity,
+          minHeight: 0,
+          maxHeight: .infinity,
+          alignment: .topLeading)
+      .padding()
+      .modifier(LoginView())
+      // Called when a redirect is received from Spotify
+      .onOpenURL(perform: handleURL(_:))
+    }
   }
 }
 

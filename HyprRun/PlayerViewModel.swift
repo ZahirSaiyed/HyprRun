@@ -11,10 +11,10 @@ import Combine
 
 class PlayerViewModel: ObservableObject {
   @Published var isPlaying: Bool = false
-  @Published var vibe: Double = 0.0
-  
+  @Published var vibe: Float = 0.0
+
   @Published var selectedPlaylists: [String] = []
-  
+
   @Published var songDuration = 0
   @Published var currSong = 0
   

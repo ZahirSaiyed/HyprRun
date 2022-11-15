@@ -20,7 +20,7 @@ struct ContentView: View {
   @State private var selectedPlaylists: [String] = []
   @State private var playlists: [Playlist<PlaylistItemsReference>] = []
   @State private var tracks: [PlaylistItem] = []
-  @State private var vibe = 0.0
+  @State private var vibe: Float = 0.0
   @State private var isEditing = false
   
   @State private var alert: AlertItem? = nil
