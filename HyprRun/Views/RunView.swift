@@ -53,15 +53,15 @@ struct RunView: View {
   
   var body: some View {
     VStack {
-      musicBar()
+      musicBar
       
       if secondsLeft >= 1 {
         countdownView()
       } else {
-        Text("Hello World")
+        progressView()
       }
     }
-    
+  }
     
     
     
@@ -250,8 +250,78 @@ struct RunView: View {
       //			})
       //
       //	}
+    
+  var musicBar: some View {
+    HStack(spacing: 20) {
+      VStack(alignment: .leading) {
+        let trackArray = Array(self.playerViewModel.tracks.enumerated())
+        if (trackArray.count > 0) {
+          let trackZero = trackArray[self.currSong]
+          Text("\(trackZero.element.name)").foregroundColor(Color.white)
+          Text("ARTIST").foregroundColor(Color.white)
+          Text("\(elapsedTimeAsString())")
+            .foregroundColor(Color.white)
+            .onReceive(timer) { input in
+              if isPlaying {
+                songDuration = songDuration + 1
+              }
+            }
+        }
+      }
+      .frame(alignment: .center)
+      .padding(.bottom, 60)
+    }
+    .frame(maxWidth: .infinity)
+    .background(Color.black)
+  }
+  
+  var endRunButton: some View {
+    Button(action: {
+          self.runViewModel.endRun()
+          // Need an if statement or something - should have a binding variable that checks if the user confirms to end run -> if they do confirm, then we redirect route from the view to the post-run view
+          self.viewRouter.setRoute(.postRunView)
+        }, label: {
+          Text("END RUN").font(.custom("HelveticaNeue-Bold", fixedSize: 18))
+            .foregroundColor(.white)
+            .padding(7)
+            .frame(width: 150, height: 50)
+            .background(Color(red: 290, green: 0, blue: 0))
+            .cornerRadius(20)
+            .shadow(radius: 5)
+        })
+  }
+  
+  var pauseRunButton: some View {
+    Button(action: {
+      self.runViewModel.pauseRun()
+    }, label: {
+      Text("PAUSE RUN").font(.custom("HelveticaNeue-Bold", fixedSize: 18))
+        .foregroundColor(.white)
+        .padding(7)
+        .frame(width: 150, height: 50)
+        .background(Color.orange)
+        .cornerRadius(20)
+        .shadow(radius: 5)
+    })
+  }
+  
+  var resumeRunButton: some View {
+    Button(action: {
+      self.runViewModel.resumeRun()
+    }, label: {
+      Text("RESUME RUN").font(.custom("HelveticaNeue-Bold", fixedSize: 18))
+        .foregroundColor(.white)
+        .padding(7)
+        .frame(width: 150, height: 50)
+        .background(Color.green)
+        .cornerRadius(20)
+        .shadow(radius: 5)
+    })
   }
 }
+
+
+
 
 
 extension RunView {
@@ -278,6 +348,25 @@ extension RunView {
       }
     }
   }
+  
+  func progressView() -> some View {
+    return VStack {
+      Text("Time: \(self.runViewModel.timeLabel)").font(.title2)
+      Spacer()
+      Text("Distance: \(self.runViewModel.distanceLabel)").font(.title3)
+      Text("Pace: \(self.runViewModel.paceLabel)").font(.title3)
+      Spacer()
+      HStack(spacing: 40) {
+        endRunButton
+        if self.runViewModel.currentState == .running {
+          pauseRunButton
+        } else {
+          resumeRunButton
+        }
+      }
+      .padding(.bottom, 50)
+    }
+  }
     
   func elapsedTimeAsString() -> String {
     let duration = self.songDuration
@@ -299,29 +388,5 @@ extension RunView {
     }
     
     return str_minutes + ":" + str_sec
-  }
-  
-  func musicBar() -> some View {
-    HStack(spacing: 20) {
-      VStack(alignment: .leading) {
-        let trackArray = Array(self.playerViewModel.tracks.enumerated())
-        if (trackArray.count > 0) {
-          let trackZero = trackArray[self.currSong]
-          Text("\(trackZero.element.name)").foregroundColor(Color.white)
-          Text("ARTIST").foregroundColor(Color.white)
-          Text("\(elapsedTimeAsString())")
-            .foregroundColor(Color.white)
-            .onReceive(timer) { input in
-              if isPlaying {
-                songDuration = songDuration + 1
-              }
-            }
-        }
-      }
-      .frame(alignment: .center)
-      .padding(.bottom, 60)
-    }
-    .frame(maxWidth: .infinity)
-    .background(Color.black)
   }
 }
