@@ -13,7 +13,7 @@ struct HomeView: View {
   @EnvironmentObject var viewRouter: ViewRouter
   @EnvironmentObject var spotify: Spotify
   
-  @ObservedObject var playerViewModel: PlayerViewModel
+//  @ObservedObject var playerViewModel: PlayerViewModel
   @ObservedObject var runViewModel: UIRunViewModel
 
   @State private var alert: AlertItem? = nil

@@ -33,14 +33,17 @@ struct ContentView: View {
     switch viewRouter.root {
     case Route.splashView:
       SplashView(isAuthorized: $isAuthorized)
+      
     case Route.homeView:
       if !self._isAuthorized.wrappedValue {
         SplashView(isAuthorized: $isAuthorized)
       } else {
-        HomeView(playerViewModel: self.playerViewModel, runViewModel: self.runViewModel, isAuthorized: $isAuthorized, selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks, vibe: $vibe, isEditing: $isEditing).environmentObject(self.viewRouter)
+        HomeView(runViewModel: self.runViewModel, isAuthorized: $isAuthorized, selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks, vibe: $vibe, isEditing: $isEditing).environmentObject(self.viewRouter)
       }
+      
     case Route.runView:
       RunView(playerViewModel: self.playerViewModel, runViewModel: self.runViewModel, spotify: self.spotify).environmentObject(self.viewRouter)
+      
     case Route.postRunView:
       SplashView(isAuthorized: $isAuthorized)
       // Need to change this to be the post-run view
