@@ -52,32 +52,19 @@ struct RunView: View {
   
   
   var body: some View {
-    VStack{
-      //Countdown
-      if(secondsLeft >= 1){
-        if secondsLeft == 4 {
-          Text("Ready?")
-            .font(.custom("Avenir-Black", fixedSize: 80))
-            .foregroundColor(Color(red: 0, green: 0, blue: 290))
-            .frame(maxWidth: .infinity)
-            .padding(.top, 175)
-            .onReceive(timer) { input in
-              secondsLeft = secondsLeft - 1
-            }
-        }
-        
-        else {
-          Text("\(secondsLeft)")
-            .font(.custom("Avenir-Black", fixedSize: 90))
-            .foregroundColor(Color(red: 0, green: 0, blue: 290))
-            .frame(maxWidth: .infinity)
-            .padding(.top, 175)
-            .onReceive(timer) { input in
-              secondsLeft = secondsLeft - 1
-            }
-          
-        }
+    VStack {
+      musicBar()
+      
+      if secondsLeft >= 1 {
+        countdownView()
+      } else {
+        Text("Hello World")
       }
+    }
+    
+    
+    
+    
       
       //			Spacer()
       //
@@ -263,11 +250,35 @@ struct RunView: View {
       //			})
       //
       //	}
-    }
   }
 }
 
+
 extension RunView {
+  func countdownView() -> some View {
+    return VStack{
+      if secondsLeft == 4 {
+        Text("Ready?")
+          .font(.custom("Avenir-Black", fixedSize: 80))
+          .foregroundColor(Color(red: 0, green: 0, blue: 290))
+          .frame(maxWidth: .infinity)
+          .padding(.top, 175)
+          .onReceive(timer) { input in
+            secondsLeft = secondsLeft - 1
+          }
+      } else {
+        Text("\(secondsLeft)")
+          .font(.custom("Avenir-Black", fixedSize: 90))
+          .foregroundColor(Color(red: 0, green: 0, blue: 290))
+          .frame(maxWidth: .infinity)
+          .padding(.top, 175)
+          .onReceive(timer) { input in
+            secondsLeft = secondsLeft - 1
+          }
+      }
+    }
+  }
+    
   func elapsedTimeAsString() -> String {
     let duration = self.songDuration
     let minutes = (Int)(duration/60)
@@ -290,8 +301,7 @@ extension RunView {
     return str_minutes + ":" + str_sec
   }
   
-  
-  var musicBar: some View {
+  func musicBar() -> some View {
     HStack(spacing: 20) {
       VStack(alignment: .leading) {
         let trackArray = Array(self.playerViewModel.tracks.enumerated())
