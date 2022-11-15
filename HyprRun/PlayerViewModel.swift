@@ -11,21 +11,37 @@ import SpotifyWebAPI
 import Combine
 
 class PlayerViewModel: ObservableObject {
-  @Published var isPlaying: Bool
-  @Published var vibe: Double
+  @Published var isPlaying: Bool = false
+  @Published var vibe: Double = 0.0
   
-  @Published var selectedPlaylists: [String]
-  @Published var playlists: [Playlist<PlaylistItemsReference>]
-  @Published var tracks: [PlaylistItem]
+  @Published var selectedPlaylists: [String] = []
+  @Published var playlists: [Playlist<PlaylistItemsReference>] = []
+  @Published var tracks: [PlaylistItem] = []
   
-  init() {
-    self.isPlaying = false
-    self.selectedPlaylists = []
-    self.playlists = []
-    self.tracks = []
-    self.vibe = 0.0
+  @Published var songDuration = 0
+  @Published var currSong = 0
+  
+  func retrieveTracks() {
+    
   }
   
+  func playButton() {
+    
+  }
+  
+  func playTrack() {
+    
+  }
+  
+  func pauseTrack() {
+    
+  }
+  
+  func resumeTrack() {
+    
+  }
+}
+
 
 //  @State var isRunning: Bool = false
     // We can reference self.runViewModel.currentState instead (Can we??)
@@ -47,4 +63,3 @@ class PlayerViewModel: ObservableObject {
 //    self._selectedPlaylists = selectedPlaylists
 //    self._tracks = tracks
 //  }
-}

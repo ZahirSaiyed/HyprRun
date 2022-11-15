@@ -21,12 +21,6 @@ struct RunView: View {
   
   @State var cancellables: Set<AnyCancellable> = []
   
-  @State var songDuration = 0
-  @State var isPlaying : Bool = false
-  @State var isRunning : Bool = false
-  @State var currSong = 0
-  
-  
   @State var pTracks : [PlaylistItem] = []
   
   @State private var alert: AlertItem? = nil
@@ -62,49 +56,62 @@ struct RunView: View {
     }
   }
   
+  func countdownView() -> some View {
+    return VStack{
+      if self.runViewModel.secondsLeft == 4 {
+        Text("Ready?")
+          .font(.custom("Avenir-Black", fixedSize: 80))
+          .foregroundColor(Color(red: 0, green: 0, blue: 290))
+          .frame(maxWidth: .infinity)
+          .padding(.top, 175)
+          .onReceive(timer) { input in
+            self.runViewModel.secondsLeft = self.runViewModel.secondsLeft - 1
+          }
+      } else {
+        Text("\(self.runViewModel.secondsLeft)")
+          .font(.custom("Avenir-Black", fixedSize: 90))
+          .foregroundColor(Color(red: 0, green: 0, blue: 290))
+          .frame(maxWidth: .infinity)
+          .padding(.top, 175)
+          .onReceive(timer) { input in
+            self.runViewModel.secondsLeft = self.runViewModel.secondsLeft - 1
+          }
+      }
+    }
+  }
   
-      //	func retrieveTracks() {
-      //		//retrievePlaylists()
-      //		self.tracks = []
-      //		print("\(playlists.count)")
-      //		for playlist in playlists {
-      //			let pURI = playlist.uri
-      //			spotify.api.playlist(pURI, market: "US")
-      //				.sink(
-      //					receiveCompletion: { completion in
-      //						print("completion:", completion, terminator: "\n\n\n")
-      //					},
-      //					receiveValue: { playlist in
-      //
-      //						print("\nReceived Playlist")
-      //						print("------------------------")
-      //						print("name:", playlist.name)
-      //						print("link:", playlist.externalURLs?["spotify"] ?? "nil")
-      //						print("description:", playlist.description ?? "nil")
-      //						print("total tracks:", playlist.items.total)
-      //
-      //						for track in playlist.items.items.compactMap(\.item) {
-      //							self.tracks.append(track)
-      //						}
-      //					}
-      //				)		.store(in: &cancellables)
-      //		}
-      //		}
-      //
+  func progressView() -> some View {
+    return VStack {
+      Text("Time: \(self.runViewModel.timeLabel)").font(.title2)
+      Spacer()
+      Text("Distance: \(self.runViewModel.distanceLabel)").font(.title3)
+      Text("Pace: \(self.runViewModel.paceLabel)").font(.title3)
+      Spacer()
+      HStack(spacing: 40) {
+        endRunButton
+        if self.runViewModel.currentState == .running {
+          pauseRunButton
+        } else {
+          resumeRunButton
+        }
+      }
+      .padding(.bottom, 50)
+    }
+  }
     
   var musicBar: some View {
     HStack(spacing: 20) {
       VStack(alignment: .leading) {
         let trackArray = Array(self.playerViewModel.tracks.enumerated())
         if (trackArray.count > 0) {
-          let trackZero = trackArray[self.currSong]
+          let trackZero = trackArray[self.playerViewModel.currSong]
           Text("\(trackZero.element.name)").foregroundColor(Color.white)
           Text("ARTIST").foregroundColor(Color.white)
           Text("\(elapsedTimeAsString())")
             .foregroundColor(Color.white)
             .onReceive(timer) { input in
-              if isPlaying {
-                songDuration = songDuration + 1
+              if self.playerViewModel.isPlaying {
+                self.playerViewModel.songDuration = self.playerViewModel.songDuration + 1
               }
             }
         }
@@ -178,51 +185,8 @@ struct RunView: View {
 
 
 extension RunView {
-  func countdownView() -> some View {
-    return VStack{
-      if self.runViewModel.secondsLeft == 4 {
-        Text("Ready?")
-          .font(.custom("Avenir-Black", fixedSize: 80))
-          .foregroundColor(Color(red: 0, green: 0, blue: 290))
-          .frame(maxWidth: .infinity)
-          .padding(.top, 175)
-          .onReceive(timer) { input in
-            self.runViewModel.secondsLeft = self.runViewModel.secondsLeft - 1
-          }
-      } else {
-        Text("\(self.runViewModel.secondsLeft)")
-          .font(.custom("Avenir-Black", fixedSize: 90))
-          .foregroundColor(Color(red: 0, green: 0, blue: 290))
-          .frame(maxWidth: .infinity)
-          .padding(.top, 175)
-          .onReceive(timer) { input in
-            self.runViewModel.secondsLeft = self.runViewModel.secondsLeft - 1
-          }
-      }
-    }
-  }
-  
-  func progressView() -> some View {
-    return VStack {
-      Text("Time: \(self.runViewModel.timeLabel)").font(.title2)
-      Spacer()
-      Text("Distance: \(self.runViewModel.distanceLabel)").font(.title3)
-      Text("Pace: \(self.runViewModel.paceLabel)").font(.title3)
-      Spacer()
-      HStack(spacing: 40) {
-        endRunButton
-        if self.runViewModel.currentState == .running {
-          pauseRunButton
-        } else {
-          resumeRunButton
-        }
-      }
-      .padding(.bottom, 50)
-    }
-  }
-    
   func elapsedTimeAsString() -> String {
-    let duration = self.songDuration
+    let duration = self.playerViewModel.songDuration
     let minutes = (Int)(duration/60)
     var str_minutes = ""
     
@@ -244,40 +208,29 @@ extension RunView {
   }
   
   func prevSong() {
-    if (self.currSong > 0) {
-      self.currSong -= 1
+    if (self.playerViewModel.currSong > 0) {
+      self.playerViewModel.currSong -= 1
     }
-    playTrack()
-    self.songDuration = 0
+    self.playerViewModel.playTrack()
+    self.playerViewModel.songDuration = 0
   }
   
   func nextSong() {
-    self.currSong += 1
-    playTrack()
-    self.songDuration = 0
+    self.playerViewModel.currSong += 1
+    self.playerViewModel.playTrack()
+    self.playerViewModel.songDuration = 0
   }
   
   func playButton() {
-    self.isPlaying.toggle()
-    
-    if (self.isPlaying && self.playerViewModel.tracks.count > 0) {
-      if (self.songDuration > 0) {
-        resumeTrack()
+    self.playerViewModel.isPlaying.toggle()
+    if (self.playerViewModel.isPlaying && self.playerViewModel.tracks.count > 0) {
+      if (self.playerViewModel.songDuration > 0) {
+        self.playerViewModel.resumeTrack()
       } else {
-        playTrack()
+        self.playerViewModel.playTrack()
       }
+    } else {
+      self.playerViewModel.pauseTrack()
     }
-  }
-  
-  func playTrack() {
-    
-  }
-  
-  func pauseTrack() {
-    
-  }
-  
-  func resumeTrack() {
-    
   }
 }
