@@ -12,9 +12,11 @@ import Combine
 
 struct RunView: View {
   @EnvironmentObject var viewRouter: ViewRouter
+  @EnvironmentObject var spotify: Spotify
+  
   @ObservedObject var playerViewModel: PlayerViewModel
   @ObservedObject var runViewModel: UIRunViewModel
-  @ObservedObject var spotify: Spotify
+//  @ObservedObject var spotify: Spotify
   
 //  let dispatchGroup = DispatchGroup()
 //  let start = Date()

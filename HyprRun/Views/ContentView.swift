@@ -42,7 +42,7 @@ struct ContentView: View {
       }
       
     case Route.runView:
-      RunView(playerViewModel: self.playerViewModel, runViewModel: self.runViewModel, spotify: self.spotify).environmentObject(self.viewRouter)
+      RunView(playerViewModel: self.playerViewModel, runViewModel: self.runViewModel).environmentObject(self.viewRouter)
       
     case Route.postRunView:
       SplashView(isAuthorized: $isAuthorized)
