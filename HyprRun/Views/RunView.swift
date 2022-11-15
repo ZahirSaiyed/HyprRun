@@ -16,42 +16,47 @@ struct RunView: View {
   @ObservedObject var runViewModel: UIRunViewModel
   @ObservedObject var spotify: Spotify
   
-  let dispatchGroup = DispatchGroup()
-  let start = Date()
+//  let dispatchGroup = DispatchGroup()
+//  let start = Date()
+  let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
   
   @State var cancellables: Set<AnyCancellable> = []
-  
   @State var pTracks : [PlaylistItem] = []
   
   @State private var alert: AlertItem? = nil
-  
   @State private var playTrackCancellable: AnyCancellable? = nil
-  
-  
-  //	@Binding var selectedPlaylists: [String]
-  //	@Binding var playlists: [Playlist<PlaylistItemsReference>]
-  //	@Binding var tracks: [PlaylistItem]
-  
-  //  init(runViewModel: UIRunViewModel, playerViewModel: PlayerViewModel, spotify: Spotify, playlists: Binding<[Playlist<PlaylistItemsReference>]>, selectedPlaylists: Binding<[String]>, tracks: Binding<[PlaylistItem]>){
-  //    self.runViewModel = runViewModel
-  //    self.playerViewModel = playerViewModel
-  //		self.spotify = spotify
-  //		self._playlists = playlists
-  //		self._selectedPlaylists = selectedPlaylists
-  //		self._tracks = tracks
-  //	}
-  
-  let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
   
   
   var body: some View {
     VStack {
-      musicBar
+      HStack(spacing: 20) {
+        VStack(alignment: .leading) {
+          let trackArray = Array(self.playerViewModel.tracks.enumerated())
+          if (trackArray.count > 0) {
+            let trackZero = trackArray[self.playerViewModel.currSong]
+            Text("\(trackZero.element.name)").foregroundColor(Color.white)
+            Text("ARTIST").foregroundColor(Color.white)
+            Text("\(elapsedTimeAsString())")
+              .foregroundColor(Color.white)
+              .onReceive(timer) { input in
+                if self.playerViewModel.isPlaying {
+                  self.playerViewModel.songDuration = self.playerViewModel.songDuration + 1
+                }
+              }
+          }
+        }
+        .frame(alignment: .center)
+        .padding(.bottom, 60)
+      }
+      .frame(maxWidth: .infinity)
+      .background(Color.black)
+      
       if self.runViewModel.secondsLeft >= 1 {
         countdownView()
       } else {
         progressView()
       }
+      
       controlsBar
     }
   }
@@ -97,30 +102,6 @@ struct RunView: View {
       }
       .padding(.bottom, 50)
     }
-  }
-    
-  var musicBar: some View {
-    HStack(spacing: 20) {
-      VStack(alignment: .leading) {
-        let trackArray = Array(self.playerViewModel.tracks.enumerated())
-        if (trackArray.count > 0) {
-          let trackZero = trackArray[self.playerViewModel.currSong]
-          Text("\(trackZero.element.name)").foregroundColor(Color.white)
-          Text("ARTIST").foregroundColor(Color.white)
-          Text("\(elapsedTimeAsString())")
-            .foregroundColor(Color.white)
-            .onReceive(timer) { input in
-              if self.playerViewModel.isPlaying {
-                self.playerViewModel.songDuration = self.playerViewModel.songDuration + 1
-              }
-            }
-        }
-      }
-      .frame(alignment: .center)
-      .padding(.bottom, 60)
-    }
-    .frame(maxWidth: .infinity)
-    .background(Color.black)
   }
   
   var controlsBar: some View {
@@ -182,8 +163,6 @@ struct RunView: View {
 
 
 
-
-
 extension RunView {
   func elapsedTimeAsString() -> String {
     let duration = self.playerViewModel.songDuration
@@ -223,7 +202,7 @@ extension RunView {
   
   func playButton() {
     self.playerViewModel.isPlaying.toggle()
-    if (self.playerViewModel.isPlaying && self.playerViewModel.tracks.count > 0) {
+    if (self.playerViewModel.isPlaying && self.$playerViewModel.tracks.count > 0) {
       if (self.playerViewModel.songDuration > 0) {
         self.playerViewModel.resumeTrack()
       } else {
@@ -233,4 +212,20 @@ extension RunView {
       self.playerViewModel.pauseTrack()
     }
   }
+  
+//  func retrieveTracks() {
+//    var tempTracks: [PlaylistItem] = []
+//
+//    for playlist in self.$playerViewModel.playlists {
+//      let pURI = playlist.uri
+//      spotify.api.playlist(pURI, market: "US")
+//        .sink(receiveValue: { playlist in
+//          for track in playlist.items.items.compactMap(\.item) {
+//            self.tempTracks.append(track)
+//          }
+//        }).store(in: &cancellables)
+//    }
+//
+//    self.$playerViewModel.tracks = tempTracks
+//  }
 }
