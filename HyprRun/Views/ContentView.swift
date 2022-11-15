@@ -42,7 +42,7 @@ struct ContentView: View {
       }
       
     case Route.runView:
-      RunView(playerViewModel: self.playerViewModel, runViewModel: self.runViewModel, tracks: $tracks).environmentObject(self.viewRouter)
+      RunView(playerViewModel: self.playerViewModel, runViewModel: self.runViewModel, tracks: $tracks).environmentObject(self.viewRouter).preferredColorScheme(.dark)
       
     case Route.postRunView:
       PostRunView(runViewModel: self.runViewModel).environmentObject(self.viewRouter)
