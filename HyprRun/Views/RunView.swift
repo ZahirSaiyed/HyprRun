@@ -62,7 +62,7 @@ struct RunView: View {
       
       
       controlsBar
-    }
+    }.frame(maxWidth: .infinity)
   }
   
 //  func countdownView() -> some View {
@@ -110,14 +110,31 @@ struct RunView: View {
   
   var controlsBar: some View {
     HStack(spacing: 70) {
-      Button(action: { prevSong() }) {
+      Button(action: prevSong) {
         Image(systemName: "backward.fill")
           .resizable()
-          .frame(width: 40, height: 40)
+          .frame(width: 24, height: 24)
+          .foregroundColor(Color.white)
+          .padding(.top, 10)
+      }
+      Button(action: playButton) {
+        Image(systemName: self.playerViewModel.isPlaying == true ? "pause.fill" : "play.fill")
+          .resizable()
+          .frame(width: 24, height: 24)
+          .foregroundColor(Color.white)
+          .padding(.top, 10)
+      }
+      Button(action: nextSong) {
+        Image(systemName: "forward.fill")
+          .resizable()
+          .frame(width: 24, height: 24)
           .foregroundColor(Color.white)
           .padding(.top, 10)
       }
     }
+    .frame(maxWidth: .infinity)
+    .background(Color.black)
+//    .onAppear(perform: )
   }
   
   var endRunButton: some View {
