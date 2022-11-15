@@ -21,7 +21,6 @@ struct RunView: View {
   
   @State var cancellables: Set<AnyCancellable> = []
   
-  @State var secondsLeft = 4
   @State var songDuration = 0
   @State var isPlaying : Bool = false
   @State var isRunning : Bool = false
@@ -54,12 +53,12 @@ struct RunView: View {
   var body: some View {
     VStack {
       musicBar
-      
-      if secondsLeft >= 1 {
+      if self.runViewModel.secondsLeft >= 1 {
         countdownView()
       } else {
         progressView()
       }
+      controlsBar
     }
   }
   
@@ -181,23 +180,23 @@ struct RunView: View {
 extension RunView {
   func countdownView() -> some View {
     return VStack{
-      if secondsLeft == 4 {
+      if self.runViewModel.secondsLeft == 4 {
         Text("Ready?")
           .font(.custom("Avenir-Black", fixedSize: 80))
           .foregroundColor(Color(red: 0, green: 0, blue: 290))
           .frame(maxWidth: .infinity)
           .padding(.top, 175)
           .onReceive(timer) { input in
-            secondsLeft = secondsLeft - 1
+            self.runViewModel.secondsLeft = self.runViewModel.secondsLeft - 1
           }
       } else {
-        Text("\(secondsLeft)")
+        Text("\(self.runViewModel.secondsLeft)")
           .font(.custom("Avenir-Black", fixedSize: 90))
           .foregroundColor(Color(red: 0, green: 0, blue: 290))
           .frame(maxWidth: .infinity)
           .padding(.top, 175)
           .onReceive(timer) { input in
-            secondsLeft = secondsLeft - 1
+            self.runViewModel.secondsLeft = self.runViewModel.secondsLeft - 1
           }
       }
     }

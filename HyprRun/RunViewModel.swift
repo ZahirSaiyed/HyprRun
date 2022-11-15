@@ -67,6 +67,8 @@ class UIRunViewModel: RunViewModel, ObservableObject {
     super.init()
   }
   
+  @Published var secondsLeft = 4
+  
   @Published var distanceLabel: String = ""
   @Published var timeLabel: String = ""
   @Published var paceLabel: String = ""
@@ -87,6 +89,7 @@ class UIRunViewModel: RunViewModel, ObservableObject {
   }
   
   func startRun() {
+    secondsLeft = 4
     seconds = 0
     distance = Measurement(value: 0, unit: UnitLength.meters)
     updateDisplay()
