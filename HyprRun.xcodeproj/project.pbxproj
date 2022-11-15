@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7E0625692922C90A001EB66A /* RunViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0625682922C90A001EB66A /* RunViewModel.swift */; };
-		7E06256B2922D49D001EB66A /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E06256A2922D49D001EB66A /* PlayerViewModel.swift */; };
 		7EAD37DD291EC2E400BCBE02 /* FormatDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37DC291EC2E400BCBE02 /* FormatDisplay.swift */; };
 		7EAD37DF291EC2EE00BCBE02 /* UnitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37DE291EC2EE00BCBE02 /* UnitExtensions.swift */; };
 		7EAD37E1291EC34A00BCBE02 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E0291EC34A00BCBE02 /* CoreDataStack.swift */; };
@@ -42,7 +41,6 @@
 
 /* Begin PBXFileReference section */
 		7E0625682922C90A001EB66A /* RunViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewModel.swift; sourceTree = "<group>"; };
-		7E06256A2922D49D001EB66A /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		7EAD37DC291EC2E400BCBE02 /* FormatDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatDisplay.swift; sourceTree = "<group>"; };
 		7EAD37DE291EC2EE00BCBE02 /* UnitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitExtensions.swift; sourceTree = "<group>"; };
 		7EAD37E0291EC34A00BCBE02 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -119,7 +117,6 @@
 				E0B71560291046AA0037B331 /* Project Utilities */,
 				E013DB8629103ED50029093B /* HyprRunApp.swift */,
 				7E0625682922C90A001EB66A /* RunViewModel.swift */,
-				7E06256A2922D49D001EB66A /* PlayerViewModel.swift */,
 				E013DB95291042390029093B /* Views */,
 				7EAD37E7291EC50E00BCBE02 /* ViewRouter */,
 				E013DB94291041F30029093B /* Models */,
@@ -275,7 +272,6 @@
 				E0D1ADD4291B522D007B2893 /* TrackView.swift in Sources */,
 				E025E5C02914598300FF1922 /* VibeButtonView.swift in Sources */,
 				E021935529180A1500FAF91E /* RunView.swift in Sources */,
-				7E06256B2922D49D001EB66A /* PlayerViewModel.swift in Sources */,
 				7EAD37DF291EC2EE00BCBE02 /* UnitExtensions.swift in Sources */,
 				7EAD37E1291EC34A00BCBE02 /* CoreDataStack.swift in Sources */,
 				E0B7156429104AB60037B331 /* AlertItem.swift in Sources */,
