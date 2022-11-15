@@ -62,60 +62,8 @@ struct RunView: View {
       }
     }
   }
-    
-    
-    
-      
-      //			Spacer()
-      //
-      //			HStack(spacing: 40){
-      //				endRunButton
-      //				pauseRunButton
-      //			}
-      //			.padding(.bottom, 50)
-      //
-      //			HStack(spacing: 70){
-      //			Button(action: {prevSong()}) {
-      //
-      //				Image(systemName: "backward.fill")
-      //					.resizable()
-      //					.frame(width: 40, height: 40)
-      //					.foregroundColor(Color(.white))
-      //					.padding(.top, 10)
-      //			}
-      //
-      //				Button(action: playButton) {
-      //					Image(systemName: self.isPlaying == true ? "pause.fill" : "play.fill")
-      //						.resizable()
-      //						.frame(width: 40, height: 40)
-      //						.padding(.top, 10)
-      //						.foregroundColor(Color(.white))
-      //				}
-      //
-      ////				Button(action: playTrack, label: {
-      ////						Text("PLAY BUTTON")
-      ////								.lineLimit(1)
-      ////								.frame(maxWidth: .infinity, alignment: .leading)
-      ////								.padding()
-      ////								.contentShape(Rectangle())
-      ////				})
-      ////				.buttonStyle(PlainButtonStyle())
-      //
-      //				Button(action: nextSong) {
-      //					Image(systemName: "forward.fill")
-      //						.resizable()
-      //						.frame(width: 40, height: 40)
-      //						.padding(.top, 10)
-      //						.foregroundColor(Color(.white))
-      //				}
-      //			}
-      //			.frame(maxWidth: .infinity)
-      //			.background(Color.black)
-      //			.onAppear(perform: retrieveTracks)
-      //		}
-      //		.frame(maxWidth: .infinity)
-      //	}
-      
+  
+  
       //	func retrieveTracks() {
       //		//retrievePlaylists()
       //		self.tracks = []
@@ -144,112 +92,6 @@ struct RunView: View {
       //		}
       //		}
       //
-      //	func prevSong () {
-      //		if(self.currSong > 0){
-      //			self.currSong -= 1
-      //			playTrack()
-      //			self.songDuration = 0
-      //		}
-      //	}
-      //
-      //	func nextSong () {
-      //		self.currSong += 1
-      //		playTrack()
-      //		self.songDuration = 0
-      //	}
-      //
-      //	func playButton () {
-      //		self.isPlaying.toggle()
-      //		if(self.isPlaying && self.tracks.count > 0){
-      //			if(self.songDuration > 0){
-      //				resumeTrack()
-      //			}
-      //			else{
-      //				playTrack()
-      //			}
-      //		}
-      //
-      //		else{
-      //			pauseTrack()
-      //		}
-      //	}
-      //
-      //	func playTrack() {
-      //
-      //			let trackArray = Array(tracks.enumerated())
-      //		let track = trackArray[self.currSong].element
-      //			let alertTitle = "Couldn't play \(track.name)"
-      //
-      //			guard let trackURI = track.uri else {
-      //					self.alert = AlertItem(
-      //							title: alertTitle,
-      //							message: "Missing data"
-      //					)
-      //					return
-      //			}
-      //
-      //			let playbackRequest: PlaybackRequest
-      //
-      ////			if let albumURI = self.album.uri {
-      ////					// Play the track in the context of its album. Always prefer
-      ////					// providing a context; otherwise, the back and forwards buttons may
-      ////					// not work.
-      ////					playbackRequest = PlaybackRequest(
-      ////							context: .contextURI(albumURI),
-      ////							offset: .uri(trackURI)
-      ////					)
-      ////			}
-      ////			else {
-      //			playbackRequest = PlaybackRequest(trackURI)
-      ////			}
-      //
-      //			self.playTrackCancellable = self.spotify.api
-      //					.getAvailableDeviceThenPlay(playbackRequest)
-      //					.receive(on: RunLoop.main)
-      //					.sink(receiveCompletion: { completion in
-      //							if case .failure(let error) = completion {
-      //									self.alert = AlertItem(
-      //											title: alertTitle,
-      //											message: error.localizedDescription
-      //									)
-      //									print("\(alertTitle): \(error)")
-      //							}
-      //					})
-      //
-      //	}
-      //
-      //	func pauseTrack () {
-      //		let alertTitle = "Couldn't Pause Song"
-      //
-      //		self.playTrackCancellable =
-      //		self.spotify.api.pausePlayback()
-      //			.receive(on: RunLoop.main)
-      //			.sink(receiveCompletion: { completion in
-      //				if case .failure(let error) = completion {
-      //					self.alert = AlertItem(
-      //						title: alertTitle,
-      //						message: error.localizedDescription
-      //					)
-      //				}
-      //			})
-      //	}
-      //
-      //	func resumeTrack () {
-      //		let alertTitle = "Couldn't Resume Song"
-      //
-      //		self.playTrackCancellable =
-      //		self.spotify.api.resumePlayback()
-      //			.receive(on: RunLoop.main)
-      //			.sink(receiveCompletion: { completion in
-      //				if case .failure(let error) = completion {
-      //					self.alert = AlertItem(
-      //						title: alertTitle,
-      //						message: error.localizedDescription
-      //					)
-      //				}
-      //			})
-      //
-      //	}
     
   var musicBar: some View {
     HStack(spacing: 20) {
@@ -273,6 +115,18 @@ struct RunView: View {
     }
     .frame(maxWidth: .infinity)
     .background(Color.black)
+  }
+  
+  var controlsBar: some View {
+    HStack(spacing: 70) {
+      Button(action: { prevSong() }) {
+        Image(systemName: "backward.fill")
+          .resizable()
+          .frame(width: 40, height: 40)
+          .foregroundColor(Color.white)
+          .padding(.top, 10)
+      }
+    }
   }
   
   var endRunButton: some View {
@@ -388,5 +242,43 @@ extension RunView {
     }
     
     return str_minutes + ":" + str_sec
+  }
+  
+  func prevSong() {
+    if (self.currSong > 0) {
+      self.currSong -= 1
+    }
+    playTrack()
+    self.songDuration = 0
+  }
+  
+  func nextSong() {
+    self.currSong += 1
+    playTrack()
+    self.songDuration = 0
+  }
+  
+  func playButton() {
+    self.isPlaying.toggle()
+    
+    if (self.isPlaying && self.playerViewModel.tracks.count > 0) {
+      if (self.songDuration > 0) {
+        resumeTrack()
+      } else {
+        playTrack()
+      }
+    }
+  }
+  
+  func playTrack() {
+    
+  }
+  
+  func pauseTrack() {
+    
+  }
+  
+  func resumeTrack() {
+    
   }
 }

@@ -12,10 +12,11 @@ import Combine
 
 class PlayerViewModel: ObservableObject {
   @Published var isPlaying: Bool
+  @Published var vibe: Double
+  
   @Published var selectedPlaylists: [String]
   @Published var playlists: [Playlist<PlaylistItemsReference>]
   @Published var tracks: [PlaylistItem]
-  @Published var vibe: Double
   
   init() {
     self.isPlaying = false
