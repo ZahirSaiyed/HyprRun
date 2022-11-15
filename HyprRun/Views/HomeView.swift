@@ -21,12 +21,11 @@ struct HomeView: View {
   @State private var cancellables: Set<AnyCancellable> = []
   
   @Binding var isAuthorized: Bool
-  
-  @State private var selectedPlaylists: [String] = []
-  @State private var playlists: [Playlist<PlaylistItemsReference>] = []
-  @State private var tracks: [PlaylistItem] = []
-  @State private var vibe = 0.0
-  @State private var isEditing = false
+  @Binding var selectedPlaylists: [String]
+  @Binding var playlists: [Playlist<PlaylistItemsReference>]
+  @Binding var tracks: [PlaylistItem]
+  @Binding var vibe: Double
+  @Binding var isEditing: Bool
   
   var body: some View {
     ZStack {
@@ -34,6 +33,8 @@ struct HomeView: View {
         logoutButton
         Text("Run").font(.custom("HelveticaNeue-Bold", fixedSize: 48))
         Text("Your Running Mix").font(.custom("HelveticaNeue-Bold", fixedSize: 48))
+        
+        List {}
         
         PlaylistPreviewView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
           .disabled(!spotify.isAuthorized)

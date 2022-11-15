@@ -17,6 +17,12 @@ struct ContentView: View {
   @ObservedObject var playerViewModel: PlayerViewModel = PlayerViewModel()
   @ObservedObject var runViewModel: UIRunViewModel = UIRunViewModel()
   
+  @State private var selectedPlaylists: [String] = []
+  @State private var playlists: [Playlist<PlaylistItemsReference>] = []
+  @State private var tracks: [PlaylistItem] = []
+  @State private var vibe = 0.0
+  @State private var isEditing = false
+  
   @State private var alert: AlertItem? = nil
   @State private var cancellables: Set<AnyCancellable> = []
   
@@ -25,14 +31,17 @@ struct ContentView: View {
   
   var body: some View {
     switch viewRouter.root {
+    case Route.splashView:
+      SplashView(isAuthorized: $isAuthorized)
     case Route.homeView:
       if !self._isAuthorized.wrappedValue {
         SplashView(isAuthorized: $isAuthorized)
       } else {
-        HomeView(playerViewModel: self.playerViewModel, runViewModel: self.runViewModel, isAuthorized: $isAuthorized).environmentObject(self.viewRouter)
+        HomeView(playerViewModel: self.playerViewModel, runViewModel: self.runViewModel, isAuthorized: $isAuthorized, selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks, vibe: $vibe, isEditing: $isEditing).environmentObject(self.viewRouter)
       }
-    case Route.splashView:
+    case Route.playlistView:
       SplashView(isAuthorized: $isAuthorized)
+      // Need to change this to be PlaylistListView()
     case Route.runView:
       RunView(playerViewModel: self.playerViewModel, runViewModel: self.runViewModel, spotify: self.spotify).environmentObject(self.viewRouter)
     case Route.postRunView:
