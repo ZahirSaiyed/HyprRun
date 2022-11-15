@@ -78,65 +78,6 @@ struct RunView: View {
           
         }
       }
-      //			Text("You have selected \(selectedPlaylists.count) playlists")
-      //			Text("You have \(playlists.count) total playlists")
-      //
-      //			Text("You have \(tracks.count) total tracks")
-      
-      
-      //			ForEach(
-      //				Array(tracks.enumerated()),
-      //				id: \.offset
-      //			) { track in
-      //					Text("\(track.element.name)")
-      //			}x
-      
-      //			let trackArray = Array(tracks.enumerated())
-      //			if(trackArray.count > 0){
-      //				let trackZero = trackArray[self.currSong]
-      //				Text("\(trackZero.element.name)")
-      //let trackURI = spotify.api.track(trackZero.element.id!)
-      //				Text("\(trackURI)")
-      //			}
-      
-      //			ForEach(
-      //					Array(playlists.enumerated()),
-      //					id: \.offset
-      //			) { playlist in
-      //
-      //				Text("\(playlist.element.uri)")
-      //
-      //
-      //			}
-      //
-      //			var pTracks = getTracks()
-      //
-      //			Text("\(pTracks.count)")
-      //			ForEach(pTracks, id:\.id){ track in
-      //				Text("\(track.name)")
-      //			}
-      
-      
-      //				let tracks = spotify.api.playlistTracks(playlist.element.uri)
-      //Text("\(tracks.total)")
-      
-      //				ForEach(
-      //					tracks,
-      //					id: \.offset
-      //				) { track in
-      //					Text("Hello")
-      //				}
-      //TrackView()
-      //				Button(action: playTrack, label: {
-      //					Text("\(playlist.element.name)")
-      //								.lineLimit(1)
-      //								.frame(maxWidth: .infinity, alignment: .leading)
-      //								.padding()
-      //								.contentShape(Rectangle())
-      //				})
-      //				.buttonStyle(PlainButtonStyle())
-      //					Divider()
-      
       
       //			Spacer()
       //
@@ -349,14 +290,9 @@ extension RunView {
     return str_minutes + ":" + str_sec
   }
   
+  
   var musicBar: some View {
     HStack(spacing: 20) {
-      Image(systemName: "photo.fill")
-        .resizable()
-        .frame(width: 40, height: 40, alignment: .leading)
-        .foregroundColor(Color.white)
-        .padding(.top, 10)
-      
       VStack(alignment: .leading) {
         let trackArray = Array(self.playerViewModel.tracks.enumerated())
         if (trackArray.count > 0) {
@@ -371,11 +307,11 @@ extension RunView {
               }
             }
         }
-        Text("Song Name").foregroundColor(Color.white)
-        Text("Song Artist").foregroundColor(Color.white)
       }
-      .frame(maxWidth: .infinity)
-      .background(Color.black)
+      .frame(alignment: .center)
+      .padding(.bottom, 60)
     }
+    .frame(maxWidth: .infinity)
+    .background(Color.black)
   }
 }
