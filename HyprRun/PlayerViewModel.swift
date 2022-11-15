@@ -14,8 +14,6 @@ class PlayerViewModel: ObservableObject {
   @Published var vibe: Double = 0.0
   
   @Published var selectedPlaylists: [String] = []
-  @Published var playlists: [Playlist<PlaylistItemsReference>] = []
-  @Published var tracks: [PlaylistItem] = []
   
   @Published var songDuration = 0
   @Published var currSong = 0

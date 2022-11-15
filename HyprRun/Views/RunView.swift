@@ -26,12 +26,14 @@ struct RunView: View {
   @State private var alert: AlertItem? = nil
   @State private var playTrackCancellable: AnyCancellable? = nil
   
+  @State var playlists: [Playlist<PlaylistItemsReference>] = []
+  @State var tracks: [PlaylistItem] = []
   
   var body: some View {
     VStack {
       HStack(spacing: 20) {
         VStack(alignment: .leading) {
-          let trackArray = Array(self.playerViewModel.tracks.enumerated())
+          let trackArray = Array(self.tracks.enumerated())
           if (trackArray.count > 0) {
             let trackZero = trackArray[self.playerViewModel.currSong]
             Text("\(trackZero.element.name)").foregroundColor(Color.white)
@@ -202,7 +204,7 @@ extension RunView {
   
   func playButton() {
     self.playerViewModel.isPlaying.toggle()
-    if (self.playerViewModel.isPlaying && self.$playerViewModel.tracks.count > 0) {
+    if (self.playerViewModel.isPlaying && self.tracks.count > 0) {
       if (self.playerViewModel.songDuration > 0) {
         self.playerViewModel.resumeTrack()
       } else {
