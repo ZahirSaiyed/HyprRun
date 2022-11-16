@@ -23,6 +23,7 @@ struct HyprRunApp: App {
     var body: some Scene {
         WindowGroup {
 					ContentView(isAuthorized: $isAuthorized)
+            .environment(\.managedObjectContext, CoreDataStack.context)
 						.environmentObject(spotify)
         }
     }

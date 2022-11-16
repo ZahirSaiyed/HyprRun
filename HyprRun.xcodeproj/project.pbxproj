@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E0625692922C90A001EB66A /* RunViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0625682922C90A001EB66A /* RunViewModel.swift */; };
+		7EAD37DD291EC2E400BCBE02 /* FormatDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37DC291EC2E400BCBE02 /* FormatDisplay.swift */; };
+		7EAD37DF291EC2EE00BCBE02 /* UnitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37DE291EC2EE00BCBE02 /* UnitExtensions.swift */; };
+		7EAD37E1291EC34A00BCBE02 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E0291EC34A00BCBE02 /* CoreDataStack.swift */; };
+		7EAD37E4291EC37F00BCBE02 /* HyprRun.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E2291EC37F00BCBE02 /* HyprRun.xcdatamodeld */; };
+		7EAD37E6291EC43F00BCBE02 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E5291EC43F00BCBE02 /* LocationManager.swift */; };
+		7EAD37E9291EC51F00BCBE02 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E8291EC51F00BCBE02 /* Route.swift */; };
+		7EAD37EB291EC7D300BCBE02 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37EA291EC7D300BCBE02 /* ViewRouter.swift */; };
+		7EAD37ED291ED5E800BCBE02 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37EC291ED5E800BCBE02 /* HomeView.swift */; };
+		7EFD5C1A2924044B006D4061 /* PostRunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD5C192924044B006D4061 /* PostRunView.swift */; };
 		E013DB8729103ED50029093B /* HyprRunApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013DB8629103ED50029093B /* HyprRunApp.swift */; };
 		E013DB8929103ED50029093B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013DB8829103ED50029093B /* ContentView.swift */; };
 		E013DB8B29103ED60029093B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E013DB8A29103ED60029093B /* Assets.xcassets */; };
@@ -18,7 +28,7 @@
 		E021935529180A1500FAF91E /* RunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E021935429180A1500FAF91E /* RunView.swift */; };
 		E025E5C02914598300FF1922 /* VibeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E025E5BF2914598300FF1922 /* VibeButtonView.swift */; };
 		E02D56C02914689A004C955C /* PlaylistPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D56BF2914689A004C955C /* PlaylistPreviewView.swift */; };
-		E02D56C229146908004C955C /* PlaylistsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D56C129146908004C955C /* PlaylistsListView.swift */; };
+		E02D56C229146908004C955C /* PlaylistListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D56C129146908004C955C /* PlaylistListView.swift */; };
 		E02D56C729146ADC004C955C /* PlaylistDeduplicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D56C629146ADC004C955C /* PlaylistDeduplicator.swift */; };
 		E02D56C929146D30004C955C /* PlaylistCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D56C829146D30004C955C /* PlaylistCellView.swift */; };
 		E031EEFE291EB14D002B8164 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031EEFD291EB14D002B8164 /* SplashView.swift */; };
@@ -30,6 +40,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E0625682922C90A001EB66A /* RunViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewModel.swift; sourceTree = "<group>"; };
+		7EAD37DC291EC2E400BCBE02 /* FormatDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatDisplay.swift; sourceTree = "<group>"; };
+		7EAD37DE291EC2EE00BCBE02 /* UnitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitExtensions.swift; sourceTree = "<group>"; };
+		7EAD37E0291EC34A00BCBE02 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		7EAD37E3291EC37F00BCBE02 /* HyprRun.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HyprRun.xcdatamodel; sourceTree = "<group>"; };
+		7EAD37E5291EC43F00BCBE02 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		7EAD37E8291EC51F00BCBE02 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		7EAD37EA291EC7D300BCBE02 /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
+		7EAD37EC291ED5E800BCBE02 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		7EFD5C192924044B006D4061 /* PostRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRunView.swift; sourceTree = "<group>"; };
 		E013DB8329103ED50029093B /* HyprRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HyprRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E013DB8629103ED50029093B /* HyprRunApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyprRunApp.swift; sourceTree = "<group>"; };
 		E013DB8829103ED50029093B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -40,7 +60,7 @@
 		E021935429180A1500FAF91E /* RunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
 		E025E5BF2914598300FF1922 /* VibeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeButtonView.swift; sourceTree = "<group>"; };
 		E02D56BF2914689A004C955C /* PlaylistPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistPreviewView.swift; sourceTree = "<group>"; };
-		E02D56C129146908004C955C /* PlaylistsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsListView.swift; sourceTree = "<group>"; };
+		E02D56C129146908004C955C /* PlaylistListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistListView.swift; sourceTree = "<group>"; };
 		E02D56C629146ADC004C955C /* PlaylistDeduplicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistDeduplicator.swift; sourceTree = "<group>"; };
 		E02D56C829146D30004C955C /* PlaylistCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCellView.swift; sourceTree = "<group>"; };
 		E031EEFD291EB14D002B8164 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
@@ -65,6 +85,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7EAD37E7291EC50E00BCBE02 /* ViewRouter */ = {
+			isa = PBXGroup;
+			children = (
+				7EAD37E8291EC51F00BCBE02 /* Route.swift */,
+				7EAD37EA291EC7D300BCBE02 /* ViewRouter.swift */,
+			);
+			path = ViewRouter;
+			sourceTree = "<group>";
+		};
 		E013DB7A29103ED50029093B = {
 			isa = PBXGroup;
 			children = (
@@ -87,8 +116,9 @@
 				E0D55EBD2910660600EC755E /* Info.plist */,
 				E0B71560291046AA0037B331 /* Project Utilities */,
 				E013DB8629103ED50029093B /* HyprRunApp.swift */,
-				E013DB96291042680029093B /* Controllers */,
+				7E0625682922C90A001EB66A /* RunViewModel.swift */,
 				E013DB95291042390029093B /* Views */,
+				7EAD37E7291EC50E00BCBE02 /* ViewRouter */,
 				E013DB94291041F30029093B /* Models */,
 				E013DB8A29103ED60029093B /* Assets.xcassets */,
 				E013DB8C29103ED60029093B /* Preview Content */,
@@ -118,28 +148,23 @@
 			children = (
 				E013DB8829103ED50029093B /* ContentView.swift */,
 				E0B7155E2910455D0037B331 /* LoginView.swift */,
+				7EAD37EC291ED5E800BCBE02 /* HomeView.swift */,
+				E021935429180A1500FAF91E /* RunView.swift */,
+				E031EEFD291EB14D002B8164 /* SplashView.swift */,
+				E02D56C32914698B004C955C /* Playlist Views */,
 				E025E5BF2914598300FF1922 /* VibeButtonView.swift */,
 				E02D56BF2914689A004C955C /* PlaylistPreviewView.swift */,
 				E02193522918071F00FAF91E /* SelectBoxView.swift */,
-				E02D56C32914698B004C955C /* Playlist Views */,
-				E021935429180A1500FAF91E /* RunView.swift */,
 				E0D1ADD3291B522D007B2893 /* TrackView.swift */,
-				E031EEFD291EB14D002B8164 /* SplashView.swift */,
+				7EFD5C192924044B006D4061 /* PostRunView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		E013DB96291042680029093B /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		E02D56C32914698B004C955C /* Playlist Views */ = {
 			isa = PBXGroup;
 			children = (
-				E02D56C129146908004C955C /* PlaylistsListView.swift */,
+				E02D56C129146908004C955C /* PlaylistListView.swift */,
 				E02D56C829146D30004C955C /* PlaylistCellView.swift */,
 			);
 			path = "Playlist Views";
@@ -151,6 +176,11 @@
 				E0B71561291046BF0037B331 /* ImageName.swift */,
 				E0B7156329104AB60037B331 /* AlertItem.swift */,
 				E06CA5C0291E763B004F0C6D /* SpotifyAPIExtensions.swift */,
+				7EAD37E5291EC43F00BCBE02 /* LocationManager.swift */,
+				7EAD37DC291EC2E400BCBE02 /* FormatDisplay.swift */,
+				7EAD37DE291EC2EE00BCBE02 /* UnitExtensions.swift */,
+				7EAD37E0291EC34A00BCBE02 /* CoreDataStack.swift */,
+				7EAD37E2291EC37F00BCBE02 /* HyprRun.xcdatamodeld */,
 			);
 			path = "Project Utilities";
 			sourceTree = "<group>";
@@ -235,19 +265,29 @@
 			files = (
 				E013DB9B291043BC0029093B /* Spotify.swift in Sources */,
 				E031EEFE291EB14D002B8164 /* SplashView.swift in Sources */,
+				7EAD37EB291EC7D300BCBE02 /* ViewRouter.swift in Sources */,
 				E02D56C929146D30004C955C /* PlaylistCellView.swift in Sources */,
 				E06CA5C1291E763B004F0C6D /* SpotifyAPIExtensions.swift in Sources */,
+				7E0625692922C90A001EB66A /* RunViewModel.swift in Sources */,
 				E0D1ADD4291B522D007B2893 /* TrackView.swift in Sources */,
 				E025E5C02914598300FF1922 /* VibeButtonView.swift in Sources */,
 				E021935529180A1500FAF91E /* RunView.swift in Sources */,
+				7EAD37DF291EC2EE00BCBE02 /* UnitExtensions.swift in Sources */,
+				7EAD37E1291EC34A00BCBE02 /* CoreDataStack.swift in Sources */,
 				E0B7156429104AB60037B331 /* AlertItem.swift in Sources */,
-				E02D56C229146908004C955C /* PlaylistsListView.swift in Sources */,
+				E02D56C229146908004C955C /* PlaylistListView.swift in Sources */,
 				E02D56C02914689A004C955C /* PlaylistPreviewView.swift in Sources */,
 				E0B71562291046BF0037B331 /* ImageName.swift in Sources */,
+				7EAD37E9291EC51F00BCBE02 /* Route.swift in Sources */,
 				E02D56C729146ADC004C955C /* PlaylistDeduplicator.swift in Sources */,
 				E02193532918071F00FAF91E /* SelectBoxView.swift in Sources */,
 				E013DB8929103ED50029093B /* ContentView.swift in Sources */,
+				7EAD37E4291EC37F00BCBE02 /* HyprRun.xcdatamodeld in Sources */,
+				7EAD37E6291EC43F00BCBE02 /* LocationManager.swift in Sources */,
+				7EAD37DD291EC2E400BCBE02 /* FormatDisplay.swift in Sources */,
+				7EAD37ED291ED5E800BCBE02 /* HomeView.swift in Sources */,
 				E0B7155F2910455D0037B331 /* LoginView.swift in Sources */,
+				7EFD5C1A2924044B006D4061 /* PostRunView.swift in Sources */,
 				E013DB8729103ED50029093B /* HyprRunApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,7 +417,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HyprRun/Preview Content\"";
-				DEVELOPMENT_TEAM = PXK4UD2AGP;
+				DEVELOPMENT_TEAM = 5VW88FCKJ3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HyprRun/Info.plist;
@@ -407,7 +447,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HyprRun/Preview Content\"";
-				DEVELOPMENT_TEAM = PXK4UD2AGP;
+				DEVELOPMENT_TEAM = 5VW88FCKJ3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HyprRun/Info.plist;
@@ -483,6 +523,19 @@
 			productName = KeychainAccess;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		7EAD37E2291EC37F00BCBE02 /* HyprRun.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7EAD37E3291EC37F00BCBE02 /* HyprRun.xcdatamodel */,
+			);
+			currentVersion = 7EAD37E3291EC37F00BCBE02 /* HyprRun.xcdatamodel */;
+			path = HyprRun.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E013DB7B29103ED50029093B /* Project object */;
 }
