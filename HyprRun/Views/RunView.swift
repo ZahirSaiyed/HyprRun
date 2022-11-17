@@ -21,8 +21,7 @@ struct RunView: View {
   @State var currSong = 0
   
   @State var cancellables: Set<AnyCancellable> = []
-  @State var pTracks : [PlaylistItem] = []
-  
+
   @State private var alert: AlertItem? = nil
   @State private var playTrackCancellable: AnyCancellable? = nil
   
