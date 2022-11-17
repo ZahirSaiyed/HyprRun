@@ -33,7 +33,7 @@ struct RunView: View {
   
   var body: some View {
     VStack {
-      HStack(alignment: .top, spacing: 24) {
+      HStack(alignment: .top, spacing: 30) {
         VStack(spacing: 8) {
           Image(systemName: "photo.fill")
             .resizable()
@@ -42,28 +42,31 @@ struct RunView: View {
             .onReceive(self.timer) { _ in
               self.adjustTime()
             }
-        }.padding(.leading, 40)
+        }.padding(.leading, 30)
         
         VStack(alignment: .leading) {
-          let trackArray = Array(self.tracks.enumerated())
-          if (trackArray.count > 0) {
-            let currTrack = trackArray[self.currSong]
-            Text("\(currTrack.element.name)")
-              .foregroundColor(.white)
-              .font(.title2)
-              .fontWeight(.bold)
-            Text("<Artist Name>")
-              .foregroundColor(.white)
-              .font(.title3)
-          }
+          Text("Spooky Language")
+            .font(.title2)
+            .fontWeight(.bold)
+          Text("The Palmer Squares")
+            .font(.title3)
+//          let trackArray = Array(self.tracks.enumerated())
+//          if (trackArray.count > 0) {
+//            let currTrack = trackArray[self.currSong]
+//            Text("\(currTrack.element.name)")
+//              .font(.title2)
+//              .fontWeight(.bold)
+//            Text("<Artist Name>")
+//              .font(.title3)
+//          }
         }
-        .padding(.top, 10)
-        .padding(.bottom, 180)
+//        .background(.orange)
+//        .foregroundColor(.white)
         Spacer()
-    }
-    Spacer()
-    progressView()
-    controlsBar
+      }
+        
+      mainView()
+      controlsBar
     }
     .frame(maxWidth: .infinity)
     .background(.black)
@@ -71,18 +74,36 @@ struct RunView: View {
     .onAppear(perform: playButton)
   }
   
-  func progressView() -> some View {
-    return VStack {
+  func mainView() -> some View {
+    return ZStack {
       VStack(alignment: .leading) {
-        Text("Time: \(self.runViewModel.timeLabel)")
-          .padding(.bottom, 40)
-        Text("Distance: \(self.runViewModel.distanceLabel)")
+        Text("Time:")
+          .padding(.bottom, 325)
+        Text("Distance:")
           .padding(.bottom, 2)
-        Text("Pace: \(self.runViewModel.paceLabel)")
+        Text("Pace")
         Spacer()
       }
-      .font(.title)
-      .fontWeight(.medium)
+      .fontWeight(.bold)
+      .padding(.trailing, 160)
+      .padding(.top, 25)
+      
+      VStack(alignment: .trailing) {
+        Text("\(self.runViewModel.timeLabel)")
+          .padding(.bottom, 325)
+        Text("\(self.runViewModel.distanceLabel)")
+          .padding(.bottom, 2)
+        Text("\(self.runViewModel.paceLabel)")
+        Spacer()
+      }
+      .padding(.leading, 160)
+      .padding(.top, 25)
+      
+      Image(systemName: "photo.fill")
+        .resizable()
+        .frame(width: 250, height: 250)
+        .foregroundColor(.gray)
+        .padding(.bottom, 190)
       
       HStack(spacing: 40) {
         endRunButton
@@ -92,8 +113,12 @@ struct RunView: View {
           resumeRunButton
         }
       }
-      .padding(.bottom, 50)
+      .padding(.top, 480)
     }
+    .font(.title)
+    .fontWeight(.medium)
+    .frame(maxWidth: .infinity)
+    .padding(.top, 8)
   }
   
   var controlsBar: some View {
@@ -102,27 +127,23 @@ struct RunView: View {
         Image(systemName: "backward.fill")
           .resizable()
           .frame(width: 24, height: 24)
-          .foregroundColor(Color.white)
           .padding(.top, 10)
       }
       Button(action: playButton) {
         Image(systemName: self.isPlaying == true ? "pause.fill" : "play.fill")
           .resizable()
           .frame(width: 24, height: 24)
-          .foregroundColor(Color.white)
           .padding(.top, 10)
       }
       Button(action: nextSong) {
         Image(systemName: "forward.fill")
           .resizable()
           .frame(width: 24, height: 24)
-          .foregroundColor(Color.white)
           .padding(.top, 10)
       }
     }
     .padding(.bottom, 10)
     .frame(maxWidth: .infinity)
-    .background(Color.black)
     .onAppear(perform: retrieveTracks)
   }
   
@@ -169,30 +190,6 @@ struct RunView: View {
         .shadow(radius: 5)
     })
   }
-  
-  //  func countdownView() -> some View {
-  //    return VStack{
-  //      if self.runViewModel.secondsLeft == 4 {
-  //        Text("Ready?")
-  //          .font(.custom("Avenir-Black", fixedSize: 80))
-  //          .foregroundColor(Color(red: 0, green: 0, blue: 290))
-  //          .frame(maxWidth: .infinity)
-  //          .padding(.top, 175)
-  //          .onReceive(timer) { input in
-  //            self.runViewModel.secondsLeft = self.runViewModel.secondsLeft - 1
-  //          }
-  //      } else {
-  //        Text("\(self.runViewModel.secondsLeft)")
-  //          .font(.custom("Avenir-Black", fixedSize: 90))
-  //          .foregroundColor(Color(red: 0, green: 0, blue: 290))
-  //          .frame(maxWidth: .infinity)
-  //          .padding(.top, 175)
-  //          .onReceive(timer) { input in
-  //            self.runViewModel.secondsLeft = self.runViewModel.secondsLeft - 1
-  //          }
-  //      }
-  //    }
-  //  }
 }
 
 
@@ -273,29 +270,31 @@ extension RunView {
   
   func playTrack() {
     let trackArray = Array(self.tracks.enumerated())
-    let track = trackArray[self.currSong].element
-    let alertTitle = "Couldn't play \(track.name)"
-    
-    guard let trackURI = track.uri else {
-      self.alert = AlertItem(
-        title: alertTitle,
-        message: "Missing data")
-      return
+    if (trackArray.count > 0) {
+      let track = trackArray[self.currSong].element
+      let alertTitle = "Couldn't play \(track.name)"
+      
+      guard let trackURI = track.uri else {
+        self.alert = AlertItem(
+          title: alertTitle,
+          message: "Missing data")
+        return
+      }
+      
+      let playbackRequest: PlaybackRequest = PlaybackRequest(trackURI)
+      
+      self.playTrackCancellable = self.spotify.api
+        .getAvailableDeviceThenPlay(playbackRequest)
+        .receive(on: RunLoop.main)
+        .sink(receiveCompletion: { completion in
+          if case .failure(let error) = completion {
+            self.alert = AlertItem(
+              title: alertTitle,
+              message: error.localizedDescription)
+            print("\(alertTitle): \(error)")
+          }
+        })
     }
-    
-    let playbackRequest: PlaybackRequest = PlaybackRequest(trackURI)
-    
-    self.playTrackCancellable = self.spotify.api
-      .getAvailableDeviceThenPlay(playbackRequest)
-      .receive(on: RunLoop.main)
-      .sink(receiveCompletion: { completion in
-        if case .failure(let error) = completion {
-          self.alert = AlertItem(
-            title: alertTitle,
-            message: error.localizedDescription)
-          print("\(alertTitle): \(error)")
-        }
-      })
   }
   
   func pauseTrack() {
