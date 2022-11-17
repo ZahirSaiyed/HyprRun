@@ -257,14 +257,57 @@ extension RunView {
   }
   
   func playTrack() {
+    let trackArray = Array(self.tracks.enumerated())
+    let track = trackArray[self.currSong].element
+    let alertTitle = "Couldn't play \(track.name)"
     
+    guard let trackURI = track.uri else {
+      self.alert = AlertItem(
+        title: alertTitle,
+        message: "Missing data")
+      return
+    }
+    
+    let playbackRequest: PlaybackRequest = PlaybackRequest(trackURI)
+    
+    self.playTrackCancellable = self.spotify.api
+      .getAvailableDeviceThenPlay(playbackRequest)
+      .receive(on: RunLoop.main)
+      .sink(receiveCompletion: { completion in
+        if case .failure(let error) = completion {
+          self.alert = AlertItem(
+            title: alertTitle,
+            message: error.localizedDescription)
+          print("\(alertTitle): \(error)")
+        }
+      })
   }
   
   func pauseTrack() {
+    let alertTitle = "Couldn't pause song"
     
+    self.playTrackCancellable = self.spotify.api.pausePlayback()
+      .receive(on: RunLoop.main)
+      .sink(receiveCompletion: { completion in
+        if case .failure(let error) = completion {
+          self.alert = AlertItem(
+            title: alertTitle,
+            message: error.localizedDescription)
+        }
+      })
   }
   
   func resumeTrack() {
+    let alertTitle = "Couldn't resume song"
     
+    self.playTrackCancellable = self.spotify.api.resumePlayback()
+      .receive(on: RunLoop.main)
+      .sink(receiveCompletion: { completion in
+        if case .failure(let error) = completion {
+          self.alert = AlertItem(
+            title: alertTitle,
+            message: error.localizedDescription)
+        }
+      })
   }
 }
