@@ -33,48 +33,57 @@ struct RunView: View {
   
   var body: some View {
     VStack {
-      HStack(spacing: 20) {
+      HStack(alignment: .top, spacing: 24) {
+        VStack(spacing: 8) {
+          Image(systemName: "photo.fill")
+            .resizable()
+            .frame(width: 36, height: 36)
+          Text("\(elapsedTimeAsString())")
+            .onReceive(self.timer) { _ in
+              self.adjustTime()
+            }
+        }.padding(.leading, 40)
+        
         VStack(alignment: .leading) {
           let trackArray = Array(self.tracks.enumerated())
           if (trackArray.count > 0) {
-            let trackZero = trackArray[self.currSong]
-            Text("\(trackZero.element.name)").foregroundColor(Color.white)
-            Text("ARTIST").foregroundColor(Color.white)
-            Text("\(elapsedTimeAsString())")
-              .foregroundColor(Color.white)
-              .onReceive(timer) { input in
-                if self.isPlaying {
-                  self.songDuration = self.songDuration + 1
-                }
-              }
+            let currTrack = trackArray[self.currSong]
+            Text("\(currTrack.element.name)")
+              .foregroundColor(.white)
+              .font(.title2)
+              .fontWeight(.bold)
+            Text("<Artist Name>")
+              .foregroundColor(.white)
+              .font(.title3)
           }
         }
-        .frame(alignment: .center)
-        .padding(.bottom, 60)
-      }
-      .frame(maxWidth: .infinity)
-      .background(Color.black)
-      
-      progressView()
-      
-//      if self.runViewModel.secondsLeft >= 1 {
-//        countdownView()
-//      } else {
-//        progressView()
-//      }
-      
-      
-      controlsBar
-    }.frame(maxWidth: .infinity)
+        .padding(.top, 10)
+        .padding(.bottom, 180)
+        Spacer()
+    }
+    Spacer()
+    progressView()
+    controlsBar
+    }
+    .frame(maxWidth: .infinity)
+    .background(.black)
+    .foregroundColor(.white)
+    .onAppear(perform: playButton)
   }
   
   func progressView() -> some View {
     return VStack {
-      Text("Time: \(self.runViewModel.timeLabel)").font(.title2)
-      Spacer()
-      Text("Distance: \(self.runViewModel.distanceLabel)").font(.title3)
-      Text("Pace: \(self.runViewModel.paceLabel)").font(.title3)
-      Spacer()
+      VStack(alignment: .leading) {
+        Text("Time: \(self.runViewModel.timeLabel)")
+          .padding(.bottom, 40)
+        Text("Distance: \(self.runViewModel.distanceLabel)")
+          .padding(.bottom, 2)
+        Text("Pace: \(self.runViewModel.paceLabel)")
+        Spacer()
+      }
+      .font(.title)
+      .fontWeight(.medium)
+      
       HStack(spacing: 40) {
         endRunButton
         if self.runViewModel.currentState == .running {
@@ -88,7 +97,7 @@ struct RunView: View {
   }
   
   var controlsBar: some View {
-    HStack(spacing: 70) {
+    HStack(spacing: 80) {
       Button(action: prevSong) {
         Image(systemName: "backward.fill")
           .resizable()
@@ -111,6 +120,7 @@ struct RunView: View {
           .padding(.top, 10)
       }
     }
+    .padding(.bottom, 10)
     .frame(maxWidth: .infinity)
     .background(Color.black)
     .onAppear(perform: retrieveTracks)
@@ -208,6 +218,12 @@ extension RunView {
     }
     
     return str_minutes + ":" + str_sec
+  }
+  
+  func adjustTime() {
+    if self.isPlaying {
+      self.songDuration += 1
+    }
   }
   
   func prevSong() {
