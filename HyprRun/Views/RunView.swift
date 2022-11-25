@@ -26,7 +26,9 @@ struct RunView: View {
   @State private var alert: AlertItem? = nil
   @State private var playTrackCancellable: AnyCancellable? = nil
   
-  let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+  let timerSong = Timer.publish(every: 1, on: .main, in: .common)
+//	var timer: Timer?
+
   
   @Binding var selectedPlaylists: [String]
   @Binding var playlists: [Playlist<PlaylistItemsReference>]
@@ -40,16 +42,24 @@ struct RunView: View {
           if (trackArray.count > 0) {
             let trackZero = trackArray[self.currSong]
             Text("\(trackZero.element.name)").foregroundColor(Color.white)
-            Text("ARTIST").foregroundColor(Color.white)
-            Text("\(elapsedTimeAsString())")
-              .foregroundColor(Color.white)
-              .onReceive(timer) { input in
-                if self.isPlaying {
-                  self.songDuration = self.songDuration + 1
-                }
-              }
+						Text("\(trackZero.element.uri ?? "No URI")").foregroundColor(Color.white)
+						
+						//Text("\(id)").foregroundColor(Color.white).onAppear(perform: getTrack(uri: trackZero.element.uri ?? ""))
+//						Text("\(songDuration)")
+//              .foregroundColor(Color.white)
+//							.onReceive(timerSong){ _ in
+//								if self.isPlaying {
+//									songDuration += 1
+//								}
+//							}
           }
         }
+				.onReceive(timerSong, perform: { input in
+					print("updating")
+//					if self.isPlaying {
+						self.songDuration = self.songDuration + 1
+//					}
+				})
         .frame(alignment: .center)
         .padding(.bottom, 60)
       }
@@ -63,8 +73,6 @@ struct RunView: View {
 //      } else {
 //        progressView()
 //      }
-      
-      
       controlsBar
     }.frame(maxWidth: .infinity)
   }
@@ -159,7 +167,7 @@ struct RunView: View {
         .cornerRadius(20)
         .shadow(radius: 5)
     })
-  }
+ // }
   
   //  func countdownView() -> some View {
   //    return VStack{
@@ -188,7 +196,7 @@ struct RunView: View {
 
 
 
-extension RunView {
+//extension RunView {
   func elapsedTimeAsString() -> String {
     let duration = self.songDuration
     let minutes = (Int)(duration/60)
@@ -227,6 +235,9 @@ extension RunView {
   
   func playButton() {
     self.isPlaying.toggle()
+		retrievePlaybackState()
+		print(self.isPlaying)
+		print(self.songDuration)
     if (self.isPlaying && self.tracks.count > 0) {
       if (self.songDuration > 0) {
         resumeTrack()
@@ -237,6 +248,25 @@ extension RunView {
       pauseTrack()
     }
   }
+	
+	func retrievePlaybackState() {
+		spotify.api.currentPlayback()
+			.sink(
+				receiveCompletion: { completion in
+			print("completion: ", completion, terminator: "\n\n\n")
+		},
+		receiveValue: { playBack in
+			let milliseconds = playBack?.progressMS ?? -1
+			if(milliseconds != -1){
+				let seconds = milliseconds/1000
+				self.songDuration = seconds
+			}
+			else{
+				self.songDuration = 0
+			}
+		}
+	).store(in: &cancellables)
+	}
   
   func retrieveTracks() {
     self.tracks = []
@@ -310,4 +340,15 @@ extension RunView {
         }
       })
   }
+	
+	func getTrack(uri: String) {
+		spotify.api.track(uri).sink(
+			receiveCompletion: { completion in
+		 print("completion: ", completion, terminator: "\n\n\n")
+	 },
+	 receiveValue: { track in
+		 print(track.artists)
+	 }
+ ).store(in: &cancellables)
+	}
 }
