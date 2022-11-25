@@ -17,8 +17,12 @@ struct RunView: View {
   @ObservedObject var runViewModel: UIRunViewModel
   
   @State var songDuration = 0
+	@State var counter = 0
   @State var isPlaying: Bool = false
   @State var currSong = 0
+	@State var currArtist = ""
+	@State var currURI = ""
+	@State var currSongName = ""
   
   @State var cancellables: Set<AnyCancellable> = []
   @State var pTracks : [PlaylistItem] = []
@@ -26,40 +30,48 @@ struct RunView: View {
   @State private var alert: AlertItem? = nil
   @State private var playTrackCancellable: AnyCancellable? = nil
   
-  let timerSong = Timer.publish(every: 1, on: .main, in: .common)
-//	var timer: Timer?
+	let timerSong = Timer.publish(every: 1, on: .main, in: .default)
 
   
   @Binding var selectedPlaylists: [String]
   @Binding var playlists: [Playlist<PlaylistItemsReference>]
   @Binding var tracks: [PlaylistItem]
-  
+	
+//	init(playlists: Binding<[Playlist<PlaylistItemsReference>]> , selectedPlaylists: Binding<[String]>, tracks: Binding<[PlaylistItem]>, runViewModel: UIRunViewModel) {
+//
+//		_ = timerSong.connect()
+//		self._playlists = playlists
+//		self._tracks = tracks
+//		self._selectedPlaylists = selectedPlaylists
+//		self.runViewModel = runViewModel
+//	}
+	
   var body: some View {
     VStack {
       HStack(spacing: 20) {
         VStack(alignment: .leading) {
-          let trackArray = Array(self.tracks.enumerated())
-          if (trackArray.count > 0) {
-            let trackZero = trackArray[self.currSong]
-            Text("\(trackZero.element.name)").foregroundColor(Color.white)
-						Text("\(trackZero.element.uri ?? "No URI")").foregroundColor(Color.white)
-						
-						//Text("\(id)").foregroundColor(Color.white).onAppear(perform: getTrack(uri: trackZero.element.uri ?? ""))
-//						Text("\(songDuration)")
-//              .foregroundColor(Color.white)
-//							.onReceive(timerSong){ _ in
-//								if self.isPlaying {
-//									songDuration += 1
-//								}
+//          let trackArray = Array(self.tracks.enumerated())
+//          if (trackArray.count > 0) {
+//            let trackZero = trackArray[self.currSong]
+//            Text("\(trackZero.element.name)").foregroundColor(Color.white)
+//					Text("\(trackZero.element.uri ?? "No URI")").foregroundColor(Color.white)
+//					let info = getTrack(uri: trackZero.element.uri ?? "NO URI")
+					  Text("\(self.currSongName)").foregroundColor(Color.white)
+						Text("\(self.currArtist)").foregroundColor(Color.white)
+//							.onChange(of: self.currSong) { newValue in
+//								getTrack(uri: trackZero.element.uri ?? "NO URI")
+//								print("Song changed to \(self.currSong)!")
 //							}
-          }
+//						Text("\(counter)")
+//              .foregroundColor(Color.white)
+//          }
         }
-				.onReceive(timerSong, perform: { input in
-					print("updating")
+//				.onReceive(timerSong, perform: { input in
+//					print("updating")
 //					if self.isPlaying {
-						self.songDuration = self.songDuration + 1
+//						self.songDuration = self.songDuration + 1
 //					}
-				})
+//				})
         .frame(alignment: .center)
         .padding(.bottom, 60)
       }
@@ -224,16 +236,19 @@ struct RunView: View {
       self.currSong -= 1
     }
     playTrack()
+		updateValues()
     self.songDuration = 0
   }
   
   func nextSong() {
     self.currSong += 1
     playTrack()
+		updateValues()
     self.songDuration = 0
   }
   
   func playButton() {
+		updateValues()
     self.isPlaying.toggle()
 		retrievePlaybackState()
 		print(self.isPlaying)
@@ -347,8 +362,22 @@ struct RunView: View {
 		 print("completion: ", completion, terminator: "\n\n\n")
 	 },
 	 receiveValue: { track in
-		 print(track.artists)
+		 if let artists = track.artists {
+			 //print(track.artists?[0].name ?? "NULL")
+			 self.currArtist = track.artists?[0].name ?? "NULL"
+		 }
 	 }
  ).store(in: &cancellables)
+	}
+	
+	func updateValues(){
+		let trackArray = Array(self.tracks.enumerated())
+		if (trackArray.count > 0) {
+			let trackZero = trackArray[self.currSong]
+			self.currSongName = trackZero.element.name
+			self.currURI = trackZero.element.uri ?? "No URI"
+			getTrack(uri: self.currURI)
+//			Text("\(trackZero.element.name)").foregroundColor(Color.white)
+		}
 	}
 }

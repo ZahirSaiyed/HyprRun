@@ -100,7 +100,7 @@ class UIRunViewModel: RunViewModel, ObservableObject {
   }
   
   func pauseRun() {
-    timer?.invalidate()
+    //timer?.invalidate()
     self.currentState = .paused
   }
   
