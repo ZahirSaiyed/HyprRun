@@ -72,7 +72,7 @@ struct RunView: View {
       .background(Color.black)
 			
 			Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(.follow))
-									.frame(width: 400, height: 400)
+									.frame(width: 500, height: 400)
       
       progressView()
       
@@ -204,6 +204,7 @@ struct RunView: View {
     playTrack()
 		updateValues()
     self.songDuration = 0
+		self.counter = 0
   }
   
   func nextSong() {
@@ -212,6 +213,7 @@ struct RunView: View {
     playTrack()
 		updateValues()
     self.songDuration = 0
+		self.counter = 0
   }
   
   func playButton() {
