@@ -18,7 +18,7 @@ struct RunView: View {
   
   @ObservedObject var runViewModel: UIRunViewModel
 	
-	@State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
+	@State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 40.4432, longitude: 79.9428), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
 
   
   @State var songDuration = 0
