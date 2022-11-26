@@ -9,12 +9,17 @@ import SwiftUI
 import SpotifyWebAPI
 import Foundation
 import Combine
+import MapKit
+
 
 struct RunView: View {
   @EnvironmentObject var viewRouter: ViewRouter
   @EnvironmentObject var spotify: Spotify
   
   @ObservedObject var runViewModel: UIRunViewModel
+	
+	@State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
+
   
   @State var songDuration = 0
 	@State var counter = 0
@@ -43,11 +48,14 @@ struct RunView: View {
   var body: some View {
     VStack {
       HStack(spacing: 20) {
+				VStack(alignment: .leading){
+					AsyncImage(url: self.currImageURL)
+				}
         VStack(alignment: .leading) {
 					  Text("\(self.currSongName)").foregroundColor(Color.white)
 						Text("\(self.currArtist)").foregroundColor(Color.white)
 						Text("\(elapsedTimeAsString())").foregroundColor(Color.white)
-						AsyncImage(url: self.currImageURL)
+						//AsyncImage(url: self.currImageURL)
         }
 				.onReceive(timerSong) { input in
 					if self.isPlaying {
@@ -59,10 +67,12 @@ struct RunView: View {
 					}
 				}
         .frame(alignment: .center)
-        .padding(.bottom, 60)
       }
       .frame(maxWidth: .infinity)
       .background(Color.black)
+			
+			Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(.follow))
+									.frame(width: 400, height: 400)
       
       progressView()
       
@@ -328,7 +338,7 @@ struct RunView: View {
 		 self.currTrackLength /= 1000
 		 
 		 if let imageURL = track.album {
-			 self.currImageURL = track.album?.images?[1].url ?? URL(string: "https://i.scdn.co/image/ab67616d000048517359994525d219f64872d3b1")!
+			 self.currImageURL = track.album?.images?[2].url ?? URL(string: "https://i.scdn.co/image/ab67616d000048517359994525d219f64872d3b1")!
 		 }
 	 }
  ).store(in: &cancellables)
