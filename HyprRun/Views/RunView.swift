@@ -23,6 +23,7 @@ struct RunView: View {
 	@State var currArtist = ""
 	@State var currURI = ""
 	@State var currSongName = ""
+	@State var currTrackLength = 0
 	@State var currImageURL = URL(string: "https://i.scdn.co/image/ab67616d000048517359994525d219f64872d3b1")
   
   @State var cancellables: Set<AnyCancellable> = []
@@ -31,8 +32,7 @@ struct RunView: View {
   @State private var alert: AlertItem? = nil
   @State private var playTrackCancellable: AnyCancellable? = nil
   
-	let timerSong = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
-	//let timer2 = Timer.publish(every: 1, on: .main, in: .default).autoconnect()
+	let timerSong = Timer.publish(every: 0.99, on: .main, in: .default).autoconnect()
 
   
   //@Binding var selectedPlaylists: [String]
@@ -71,10 +71,14 @@ struct RunView: View {
 //              .foregroundColor(Color.white)
 //          }
         }
-				.onReceive(self.timerSong) { input in
+				.onReceive(timerSong) { input in
 					print("updating")
 					if self.isPlaying {
 						self.counter = self.counter + 1
+						if(self.counter >= self.currTrackLength){
+							self.counter = 0
+							nextSong()
+						}
 					}
 				}
         .frame(alignment: .center)
@@ -85,11 +89,6 @@ struct RunView: View {
       
       progressView()
       
-//      if self.runViewModel.secondsLeft >= 1 {
-//        countdownView()
-//      } else {
-//        progressView()
-//      }
       controlsBar
     }.frame(maxWidth: .infinity)
   }
@@ -370,14 +369,15 @@ struct RunView: View {
 	 },
 	 receiveValue: { track in
 		 if let artists = track.artists {
-			 //print(track.artists?[0].name ?? "NULL")
 			 self.currArtist = track.artists?[0].name ?? "NULL"
 		 }
+		 
+		 self.currTrackLength = track.durationMS ?? 0
+		 self.currTrackLength /= 1000
 		 
 		 if let imageURL = track.album {
 			 self.currImageURL = track.album?.images?[1].url ?? URL(string: "https://i.scdn.co/image/ab67616d000048517359994525d219f64872d3b1")!
 		 }
-	//	 print(track.album?.images?[0].url)
 	 }
  ).store(in: &cancellables)
 	}

@@ -20,7 +20,6 @@ class RunViewModel: NSObject {
   var run: Run?
   var seconds = 0
   var timer: Timer?
-	//var timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
 
   var distance = Measurement(value: 0, unit: UnitLength.meters)
   var locationList: [CLLocation] = []
