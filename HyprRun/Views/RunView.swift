@@ -61,7 +61,7 @@ struct RunView: View {
 //					let info = getTrack(uri: trackZero.element.uri ?? "NO URI")
 					  Text("\(self.currSongName)").foregroundColor(Color.white)
 						Text("\(self.currArtist)").foregroundColor(Color.white)
-						Text("\(self.counter)").foregroundColor(Color.white)
+						Text("\(elapsedTimeAsString())").foregroundColor(Color.white)
 						AsyncImage(url: self.currImageURL)
 //							.onChange(of: self.currSong) { newValue in
 //								getTrack(uri: trackZero.element.uri ?? "NO URI")
@@ -214,7 +214,7 @@ struct RunView: View {
 
 //extension RunView {
   func elapsedTimeAsString() -> String {
-    let duration = self.songDuration
+    let duration = self.counter
     let minutes = (Int)(duration/60)
     var str_minutes = ""
     
