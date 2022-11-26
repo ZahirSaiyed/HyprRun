@@ -40,36 +40,14 @@ struct RunView: View {
   @Binding var playlists: [Playlist<PlaylistItemsReference>]
   @Binding var tracks: [PlaylistItem]
 	
-//	init(playlists: Binding<[Playlist<PlaylistItemsReference>]> , selectedPlaylists: Binding<[String]>, tracks: Binding<[PlaylistItem]>, runViewModel: UIRunViewModel) {
-//
-//		_ = timerSong.connect()
-//		self._playlists = playlists
-//		self._tracks = tracks
-//		self._selectedPlaylists = selectedPlaylists
-//		self.runViewModel = runViewModel
-//	}
-	
   var body: some View {
     VStack {
       HStack(spacing: 20) {
         VStack(alignment: .leading) {
-//          let trackArray = Array(self.tracks.enumerated())
-//          if (trackArray.count > 0) {
-//            let trackZero = trackArray[self.currSong]
-//            Text("\(trackZero.element.name)").foregroundColor(Color.white)
-//					Text("\(trackZero.element.uri ?? "No URI")").foregroundColor(Color.white)
-//					let info = getTrack(uri: trackZero.element.uri ?? "NO URI")
 					  Text("\(self.currSongName)").foregroundColor(Color.white)
 						Text("\(self.currArtist)").foregroundColor(Color.white)
 						Text("\(elapsedTimeAsString())").foregroundColor(Color.white)
 						AsyncImage(url: self.currImageURL)
-//							.onChange(of: self.currSong) { newValue in
-//								getTrack(uri: trackZero.element.uri ?? "NO URI")
-//								print("Song changed to \(self.currSong)!")
-//							}
-//						Text("\(counter)")
-//              .foregroundColor(Color.white)
-//          }
         }
 				.onReceive(timerSong) { input in
 					print("updating")
@@ -183,31 +161,6 @@ struct RunView: View {
         .cornerRadius(20)
         .shadow(radius: 5)
     })
- // }
-  
-  //  func countdownView() -> some View {
-  //    return VStack{
-  //      if self.runViewModel.secondsLeft == 4 {
-  //        Text("Ready?")
-  //          .font(.custom("Avenir-Black", fixedSize: 80))
-  //          .foregroundColor(Color(red: 0, green: 0, blue: 290))
-  //          .frame(maxWidth: .infinity)
-  //          .padding(.top, 175)
-  //          .onReceive(timer) { input in
-  //            self.runViewModel.secondsLeft = self.runViewModel.secondsLeft - 1
-  //          }
-  //      } else {
-  //        Text("\(self.runViewModel.secondsLeft)")
-  //          .font(.custom("Avenir-Black", fixedSize: 90))
-  //          .foregroundColor(Color(red: 0, green: 0, blue: 290))
-  //          .frame(maxWidth: .infinity)
-  //          .padding(.top, 175)
-  //          .onReceive(timer) { input in
-  //            self.runViewModel.secondsLeft = self.runViewModel.secondsLeft - 1
-  //          }
-  //      }
-  //    }
-  //  }
 }
 
 
@@ -389,7 +342,6 @@ struct RunView: View {
 			self.currSongName = trackZero.element.name
 			self.currURI = trackZero.element.uri ?? "No URI"
 			getTrack(uri: self.currURI)
-//			Text("\(trackZero.element.name)").foregroundColor(Color.white)
 		}
 	}
 }
