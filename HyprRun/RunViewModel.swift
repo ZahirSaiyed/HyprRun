@@ -20,6 +20,8 @@ class RunViewModel: NSObject {
   var run: Run?
   var seconds = 0
   var timer: Timer?
+	//var timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
+
   var distance = Measurement(value: 0, unit: UnitLength.meters)
   var locationList: [CLLocation] = []
   
@@ -95,6 +97,7 @@ class UIRunViewModel: RunViewModel, ObservableObject {
     timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
       self.eachSecond()
     }
+		self.eachSecond()
     self.currentState = .running
     startLocationUpdates()
   }

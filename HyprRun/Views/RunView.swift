@@ -31,7 +31,8 @@ struct RunView: View {
   @State private var alert: AlertItem? = nil
   @State private var playTrackCancellable: AnyCancellable? = nil
   
-	let timerSong = Timer.publish(every: 1, on: .main, in: .default)
+	let timerSong = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
+	//let timer2 = Timer.publish(every: 1, on: .main, in: .default).autoconnect()
 
   
   //@Binding var selectedPlaylists: [String]
@@ -60,6 +61,7 @@ struct RunView: View {
 //					let info = getTrack(uri: trackZero.element.uri ?? "NO URI")
 					  Text("\(self.currSongName)").foregroundColor(Color.white)
 						Text("\(self.currArtist)").foregroundColor(Color.white)
+						Text("\(self.counter)").foregroundColor(Color.white)
 						AsyncImage(url: self.currImageURL)
 //							.onChange(of: self.currSong) { newValue in
 //								getTrack(uri: trackZero.element.uri ?? "NO URI")
@@ -69,12 +71,12 @@ struct RunView: View {
 //              .foregroundColor(Color.white)
 //          }
         }
-//				.onReceive(timerSong, perform: { input in
-//					print("updating")
-//					if self.isPlaying {
-//						self.songDuration = self.songDuration + 1
-//					}
-//				})
+				.onReceive(self.timerSong) { input in
+					print("updating")
+					if self.isPlaying {
+						self.counter = self.counter + 1
+					}
+				}
         .frame(alignment: .center)
         .padding(.bottom, 60)
       }
@@ -245,6 +247,7 @@ struct RunView: View {
   
   func nextSong() {
     self.currSong += 1
+		self.currSong = self.currSong % self.tracks.count
     playTrack()
 		updateValues()
     self.songDuration = 0
@@ -306,7 +309,8 @@ struct RunView: View {
   
   func playTrack() {
     let trackArray = Array(self.tracks.enumerated())
-    let track = trackArray[self.currSong].element
+		let currSongIndex = self.currSong % trackArray.count
+    let track = trackArray[currSongIndex].element
     let alertTitle = "Couldn't play \(track.name)"
     
     guard let trackURI = track.uri else {
