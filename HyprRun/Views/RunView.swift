@@ -194,6 +194,7 @@ struct RunView: View {
     playTrack()
 		updateValues()
     self.songDuration = 0
+		self.counter = 0
   }
   
   func nextSong() {
@@ -202,6 +203,7 @@ struct RunView: View {
     playTrack()
 		updateValues()
     self.songDuration = 0
+		self.counter = 0
   }
   
   func playButton() {
