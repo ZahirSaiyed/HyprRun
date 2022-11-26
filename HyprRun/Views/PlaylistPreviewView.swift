@@ -20,12 +20,10 @@ struct PlaylistPreviewView: View {
 	@State private var cancellables: Set<AnyCancellable> = []
 
 
-	@Binding var selectedPlaylists: [String]
+	//@Binding var selectedPlaylists: [String]
+	@Binding var selectedPlaylists: [Playlist<PlaylistItemsReference>]
 	@Binding var playlists: [Playlist<PlaylistItemsReference>]
 	@Binding var tracks: [PlaylistItem]
-	
-	
-
 		
 		var body: some View {
 				List {
@@ -72,7 +70,8 @@ struct PlaylistPreviewView: View {
 		//retrievePlaylists()
 		self.tracks = []
 		print("\(playlists.count)")
-		for playlist in playlists {
+		//for playlist in playlists {
+		for playlist in selectedPlaylists{
 			let pURI = playlist.uri
 			spotify.api.playlist(pURI, market: "US")
 				.sink(receiveCompletion: { completion in

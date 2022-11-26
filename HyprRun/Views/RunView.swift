@@ -23,6 +23,7 @@ struct RunView: View {
 	@State var currArtist = ""
 	@State var currURI = ""
 	@State var currSongName = ""
+	@State var currImageURL = URL(string: "https://i.scdn.co/image/ab67616d000048517359994525d219f64872d3b1")
   
   @State var cancellables: Set<AnyCancellable> = []
   @State var pTracks : [PlaylistItem] = []
@@ -33,7 +34,8 @@ struct RunView: View {
 	let timerSong = Timer.publish(every: 1, on: .main, in: .default)
 
   
-  @Binding var selectedPlaylists: [String]
+  //@Binding var selectedPlaylists: [String]
+	@Binding var selectedPlaylists: [Playlist<PlaylistItemsReference>]
   @Binding var playlists: [Playlist<PlaylistItemsReference>]
   @Binding var tracks: [PlaylistItem]
 	
@@ -58,6 +60,7 @@ struct RunView: View {
 //					let info = getTrack(uri: trackZero.element.uri ?? "NO URI")
 					  Text("\(self.currSongName)").foregroundColor(Color.white)
 						Text("\(self.currArtist)").foregroundColor(Color.white)
+						AsyncImage(url: self.currImageURL)
 //							.onChange(of: self.currSong) { newValue in
 //								getTrack(uri: trackZero.element.uri ?? "NO URI")
 //								print("Song changed to \(self.currSong)!")
@@ -285,7 +288,7 @@ struct RunView: View {
   
   func retrieveTracks() {
     self.tracks = []
-    for playlist in playlists {
+    for playlist in selectedPlaylists {
       let pURI = playlist.uri
       spotify.api.playlist(pURI, market: "US")
         .sink(
@@ -366,6 +369,11 @@ struct RunView: View {
 			 //print(track.artists?[0].name ?? "NULL")
 			 self.currArtist = track.artists?[0].name ?? "NULL"
 		 }
+		 
+		 if let imageURL = track.album {
+			 self.currImageURL = track.album?.images?[1].url ?? URL(string: "https://i.scdn.co/image/ab67616d000048517359994525d219f64872d3b1")!
+		 }
+	//	 print(track.album?.images?[0].url)
 	 }
  ).store(in: &cancellables)
 	}

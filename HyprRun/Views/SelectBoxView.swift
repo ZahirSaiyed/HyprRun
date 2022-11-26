@@ -6,17 +6,21 @@
 //
 
 import SwiftUI
+import SpotifyWebAPI
 
 struct SelectBoxView: View {
   @Binding var selected: Bool
-  @Binding var selectedPlaylists: [String]
+  //@Binding var selectedPlaylists: [String]
+	@Binding var selectedPlaylists: [Playlist<PlaylistItemsReference>]
 
-  @State var name: String
+  //@State var name: String
+	@State var playlist: [Playlist<PlaylistItemsReference>] 
 	
-	init(selected: Binding<Bool> , selectedPlaylists: Binding<[String]>, name: String) {
+	init(selected: Binding<Bool> , selectedPlaylists: Binding<[Playlist<PlaylistItemsReference>]>, name: [Playlist<PlaylistItemsReference>]) {
 		self._selected = selected
 		self._selectedPlaylists = selectedPlaylists
-		self.name = name
+		self.playlist = name
+		//self.name = name
 	}
 
 	
@@ -26,11 +30,20 @@ struct SelectBoxView: View {
       .onTapGesture {
         self.selected.toggle()
         if(self.selected){
-          self.selectedPlaylists.append(self.name)
+				//	if self.playlist != nil{
+			//		self.selectedPlaylists.append(self.playlist ?? [])
+				//		self.selectedPlaylists = self.selectedPlaylists + self.playlist
+		//			}
+					print("Before \(self.selectedPlaylists.count)")
+					print("Before \(self.playlist.count)")
+					self.selectedPlaylists = Array(self.selectedPlaylists + self.playlist)
+					print("After \(self.selectedPlaylists.count)")
+					print("After \(self.playlist.count)")
+
           self.selectedPlaylists = self.selectedPlaylists.removingDuplicates()
         } else {
           self.selectedPlaylists.removeAll { playList in
-            playList == self.name
+            playList == self.playlist[0]
           }
         }
       }
