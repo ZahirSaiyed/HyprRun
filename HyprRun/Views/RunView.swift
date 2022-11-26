@@ -50,7 +50,6 @@ struct RunView: View {
 						AsyncImage(url: self.currImageURL)
         }
 				.onReceive(timerSong) { input in
-					print("updating")
 					if self.isPlaying {
 						self.counter = self.counter + 1
 						if(self.counter >= self.currTrackLength){
