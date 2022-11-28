@@ -16,7 +16,8 @@ struct ContentView: View {
   @EnvironmentObject var spotify: Spotify
   @ObservedObject var runViewModel: UIRunViewModel = UIRunViewModel()
   
-  @State private var selectedPlaylists: [String] = []
+  //@State private var selectedPlaylists: [String] = []
+	@State private var selectedPlaylists: [Playlist<PlaylistItemsReference>] = []
   @State private var playlists: [Playlist<PlaylistItemsReference>] = []
   @State private var tracks: [PlaylistItem] = []
   @State private var vibe: Float = 0.0

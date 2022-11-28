@@ -17,8 +17,14 @@ struct RunView: View {
   @ObservedObject var runViewModel: UIRunViewModel
   
   @State var songDuration = 0
+	@State var counter = 0
   @State var isPlaying: Bool = false
   @State var currSong = 0
+	@State var currArtist = ""
+	@State var currURI = ""
+	@State var currSongName = ""
+	@State var currTrackLength = 0
+	@State var currImageURL = URL(string: "https://i.scdn.co/image/ab67616d000048517359994525d219f64872d3b1")
   
   @State var cancellables: Set<AnyCancellable> = []
   @State var pTracks : [PlaylistItem] = []
@@ -26,30 +32,32 @@ struct RunView: View {
   @State private var alert: AlertItem? = nil
   @State private var playTrackCancellable: AnyCancellable? = nil
   
-  let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+	let timerSong = Timer.publish(every: 0.99, on: .main, in: .default).autoconnect()
+
   
-  @Binding var selectedPlaylists: [String]
+  //@Binding var selectedPlaylists: [String]
+	@Binding var selectedPlaylists: [Playlist<PlaylistItemsReference>]
   @Binding var playlists: [Playlist<PlaylistItemsReference>]
   @Binding var tracks: [PlaylistItem]
-  
+	
   var body: some View {
     VStack {
       HStack(spacing: 20) {
         VStack(alignment: .leading) {
-          let trackArray = Array(self.tracks.enumerated())
-          if (trackArray.count > 0) {
-            let trackZero = trackArray[self.currSong]
-            Text("\(trackZero.element.name)").foregroundColor(Color.white)
-            Text("ARTIST").foregroundColor(Color.white)
-            Text("\(elapsedTimeAsString())")
-              .foregroundColor(Color.white)
-              .onReceive(timer) { input in
-                if self.isPlaying {
-                  self.songDuration = self.songDuration + 1
-                }
-              }
-          }
+					  Text("\(self.currSongName)").foregroundColor(Color.white)
+						Text("\(self.currArtist)").foregroundColor(Color.white)
+						Text("\(elapsedTimeAsString())").foregroundColor(Color.white)
+						AsyncImage(url: self.currImageURL)
         }
+				.onReceive(timerSong) { input in
+					if self.isPlaying {
+						self.counter = self.counter + 1
+						if(self.counter >= self.currTrackLength){
+							self.counter = 0
+							nextSong()
+						}
+					}
+				}
         .frame(alignment: .center)
         .padding(.bottom, 60)
       }
@@ -57,13 +65,6 @@ struct RunView: View {
       .background(Color.black)
       
       progressView()
-      
-//      if self.runViewModel.secondsLeft >= 1 {
-//        countdownView()
-//      } else {
-//        progressView()
-//      }
-      
       
       controlsBar
     }.frame(maxWidth: .infinity)
@@ -159,38 +160,13 @@ struct RunView: View {
         .cornerRadius(20)
         .shadow(radius: 5)
     })
-  }
-  
-  //  func countdownView() -> some View {
-  //    return VStack{
-  //      if self.runViewModel.secondsLeft == 4 {
-  //        Text("Ready?")
-  //          .font(.custom("Avenir-Black", fixedSize: 80))
-  //          .foregroundColor(Color(red: 0, green: 0, blue: 290))
-  //          .frame(maxWidth: .infinity)
-  //          .padding(.top, 175)
-  //          .onReceive(timer) { input in
-  //            self.runViewModel.secondsLeft = self.runViewModel.secondsLeft - 1
-  //          }
-  //      } else {
-  //        Text("\(self.runViewModel.secondsLeft)")
-  //          .font(.custom("Avenir-Black", fixedSize: 90))
-  //          .foregroundColor(Color(red: 0, green: 0, blue: 290))
-  //          .frame(maxWidth: .infinity)
-  //          .padding(.top, 175)
-  //          .onReceive(timer) { input in
-  //            self.runViewModel.secondsLeft = self.runViewModel.secondsLeft - 1
-  //          }
-  //      }
-  //    }
-  //  }
 }
 
 
 
-extension RunView {
+//extension RunView {
   func elapsedTimeAsString() -> String {
-    let duration = self.songDuration
+    let duration = self.counter
     let minutes = (Int)(duration/60)
     var str_minutes = ""
     
@@ -216,17 +192,26 @@ extension RunView {
       self.currSong -= 1
     }
     playTrack()
+		updateValues()
     self.songDuration = 0
+		self.counter = 0
   }
   
   func nextSong() {
     self.currSong += 1
+		self.currSong = self.currSong % self.tracks.count
     playTrack()
+		updateValues()
     self.songDuration = 0
+		self.counter = 0
   }
   
   func playButton() {
+		updateValues()
     self.isPlaying.toggle()
+		retrievePlaybackState()
+		print(self.isPlaying)
+		print(self.songDuration)
     if (self.isPlaying && self.tracks.count > 0) {
       if (self.songDuration > 0) {
         resumeTrack()
@@ -237,10 +222,29 @@ extension RunView {
       pauseTrack()
     }
   }
+	
+	func retrievePlaybackState() {
+		spotify.api.currentPlayback()
+			.sink(
+				receiveCompletion: { completion in
+			print("completion: ", completion, terminator: "\n\n\n")
+		},
+		receiveValue: { playBack in
+			let milliseconds = playBack?.progressMS ?? -1
+			if(milliseconds != -1){
+				let seconds = milliseconds/1000
+				self.songDuration = seconds
+			}
+			else{
+				self.songDuration = 0
+			}
+		}
+	).store(in: &cancellables)
+	}
   
   func retrieveTracks() {
     self.tracks = []
-    for playlist in playlists {
+    for playlist in selectedPlaylists {
       let pURI = playlist.uri
       spotify.api.playlist(pURI, market: "US")
         .sink(
@@ -258,7 +262,8 @@ extension RunView {
   
   func playTrack() {
     let trackArray = Array(self.tracks.enumerated())
-    let track = trackArray[self.currSong].element
+		let currSongIndex = self.currSong % trackArray.count
+    let track = trackArray[currSongIndex].element
     let alertTitle = "Couldn't play \(track.name)"
     
     guard let trackURI = track.uri else {
@@ -310,4 +315,34 @@ extension RunView {
         }
       })
   }
+	
+	func getTrack(uri: String) {
+		spotify.api.track(uri).sink(
+			receiveCompletion: { completion in
+		 print("completion: ", completion, terminator: "\n\n\n")
+	 },
+	 receiveValue: { track in
+		 if let artists = track.artists {
+			 self.currArtist = track.artists?[0].name ?? "NULL"
+		 }
+		 
+		 self.currTrackLength = track.durationMS ?? 0
+		 self.currTrackLength /= 1000
+		 
+		 if let imageURL = track.album {
+			 self.currImageURL = track.album?.images?[1].url ?? URL(string: "https://i.scdn.co/image/ab67616d000048517359994525d219f64872d3b1")!
+		 }
+	 }
+ ).store(in: &cancellables)
+	}
+	
+	func updateValues(){
+		let trackArray = Array(self.tracks.enumerated())
+		if (trackArray.count > 0) {
+			let trackZero = trackArray[self.currSong]
+			self.currSongName = trackZero.element.name
+			self.currURI = trackZero.element.uri ?? "No URI"
+			getTrack(uri: self.currURI)
+		}
+	}
 }

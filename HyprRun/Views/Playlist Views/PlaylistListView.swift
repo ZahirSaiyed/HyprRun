@@ -14,7 +14,8 @@ struct PlaylistListView: View {
 		
   @EnvironmentObject var spotify: Spotify
 
-  @Binding var selectedPlaylists: [String]
+  //@Binding var selectedPlaylists: [String]
+	@Binding var selectedPlaylists: [Playlist<PlaylistItemsReference>]
   @Binding var playlists: [Playlist<PlaylistItemsReference>]
   @Binding var tracks: [PlaylistItem]
 		
@@ -25,7 +26,7 @@ struct PlaylistListView: View {
   @State private var couldntLoadPlaylists = false
   
   
-	init(selectedPlaylists: Binding<[String]>, playlists: Binding<[Playlist<PlaylistItemsReference>]>,
+	init(selectedPlaylists: Binding<[Playlist<PlaylistItemsReference>]>, playlists: Binding<[Playlist<PlaylistItemsReference>]>,
 			 tracks: Binding<[PlaylistItem]>) {
     self._selectedPlaylists = selectedPlaylists
     self._playlists = playlists

@@ -20,7 +20,8 @@ struct HomeView: View {
   @State private var cancellables: Set<AnyCancellable> = []
   
   @Binding var isAuthorized: Bool
-  @Binding var selectedPlaylists: [String]
+  //@Binding var selectedPlaylists: [String]
+	@Binding var selectedPlaylists: [Playlist<PlaylistItemsReference>]
   @Binding var playlists: [Playlist<PlaylistItemsReference>]
   @Binding var tracks: [PlaylistItem]
   @Binding var vibe: Float

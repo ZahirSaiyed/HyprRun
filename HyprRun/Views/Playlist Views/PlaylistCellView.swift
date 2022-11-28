@@ -28,10 +28,11 @@ struct PlaylistCellView: View {
   @State private var selected = false
 	
   //Binding for selected playlists
-  @Binding var selectedPlaylists: [String]
+  //@Binding var selectedPlaylists: [String]
+	@Binding var selectedPlaylists: [Playlist<PlaylistItemsReference>]
 
 		
-	init(spotify: Spotify, playlist: Playlist<PlaylistItemsReference>, selectedPlaylists: Binding<[String]>) {
+	init(spotify: Spotify, playlist: Playlist<PlaylistItemsReference>, selectedPlaylists: Binding<[Playlist<PlaylistItemsReference>]>) {
     self.spotify = spotify
     self.playlist = playlist
     self._selectedPlaylists = selectedPlaylists
@@ -50,7 +51,7 @@ struct PlaylistCellView: View {
           .padding(.trailing, 5)
         Text("\(playlist.name) - \(playlistDeduplicator.totalItems) items")
         Spacer()
-        SelectBoxView(selected: $selected, selectedPlaylists: $selectedPlaylists, name: playlist.name)
+        SelectBoxView(selected: $selected, selectedPlaylists: $selectedPlaylists, name: [playlist])
 						
 //						if playlistDeduplicator.isDeduplicating {
 //							ProgressView()
