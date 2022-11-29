@@ -11,6 +11,7 @@ import Foundation
 import Combine
 
 struct RunView: View {
+  // MARK: - Properties
   @EnvironmentObject var viewRouter: ViewRouter
   @EnvironmentObject var spotify: Spotify
   
@@ -34,12 +35,12 @@ struct RunView: View {
   
 	let timerSong = Timer.publish(every: 0.99, on: .main, in: .default).autoconnect()
 
-  
-  //@Binding var selectedPlaylists: [String]
 	@Binding var selectedPlaylists: [Playlist<PlaylistItemsReference>]
   @Binding var playlists: [Playlist<PlaylistItemsReference>]
   @Binding var tracks: [PlaylistItem]
 	
+  
+  // MARK: - Main view
   var body: some View {
     VStack {
       HStack(spacing: 20) {
@@ -70,6 +71,8 @@ struct RunView: View {
     }.frame(maxWidth: .infinity)
   }
   
+  
+  // MARK: - Sub views
   func progressView() -> some View {
     return VStack {
       Text("Time: \(self.runViewModel.timeLabel)").font(.title2)
@@ -118,6 +121,8 @@ struct RunView: View {
     .onAppear(perform: retrieveTracks)
   }
   
+  
+  // MARK: - Button components
   var endRunButton: some View {
     Button(action: {
           self.runViewModel.endRun()
@@ -160,11 +165,10 @@ struct RunView: View {
         .cornerRadius(20)
         .shadow(radius: 5)
     })
-}
+  }
 
 
-
-//extension RunView {
+  // MARK: - Helper functions
   func elapsedTimeAsString() -> String {
     let duration = self.counter
     let minutes = (Int)(duration/60)
@@ -187,6 +191,18 @@ struct RunView: View {
     return str_minutes + ":" + str_sec
   }
   
+  func updateValues(){
+    let trackArray = Array(self.tracks.enumerated())
+    if (trackArray.count > 0) {
+      let trackZero = trackArray[self.currSong]
+      self.currSongName = trackZero.element.name
+      self.currURI = trackZero.element.uri ?? "No URI"
+      getTrack(uri: self.currURI)
+    }
+  }
+  
+  
+  // MARK: - Player methods
   func prevSong() {
     if (self.currSong > 0) {
       self.currSong -= 1
@@ -223,6 +239,8 @@ struct RunView: View {
     }
   }
 	
+  
+  // MARK: - API calls
 	func retrievePlaybackState() {
 		spotify.api.currentPlayback()
 			.sink(
@@ -317,32 +335,22 @@ struct RunView: View {
   }
 	
 	func getTrack(uri: String) {
-		spotify.api.track(uri).sink(
+    spotify.api.track(uri).sink(
 			receiveCompletion: { completion in
-		 print("completion: ", completion, terminator: "\n\n\n")
-	 },
-	 receiveValue: { track in
-		 if let artists = track.artists {
-			 self.currArtist = track.artists?[0].name ?? "NULL"
-		 }
+        print("completion: ", completion, terminator: "\n\n\n")
+      },
+      receiveValue: { track in
+        if track.artists != nil {
+          self.currArtist = track.artists?[0].name ?? "NULL"
+        }
 		 
-		 self.currTrackLength = track.durationMS ?? 0
-		 self.currTrackLength /= 1000
+        self.currTrackLength = track.durationMS ?? 0
+        self.currTrackLength /= 1000
 		 
-		 if let imageURL = track.album {
-			 self.currImageURL = track.album?.images?[1].url ?? URL(string: "https://i.scdn.co/image/ab67616d000048517359994525d219f64872d3b1")!
-		 }
-	 }
- ).store(in: &cancellables)
-	}
-	
-	func updateValues(){
-		let trackArray = Array(self.tracks.enumerated())
-		if (trackArray.count > 0) {
-			let trackZero = trackArray[self.currSong]
-			self.currSongName = trackZero.element.name
-			self.currURI = trackZero.element.uri ?? "No URI"
-			getTrack(uri: self.currURI)
-		}
+        if track.album != nil {
+          self.currImageURL = track.album?.images?[1].url ?? URL(string: "https://i.scdn.co/image/ab67616d000048517359994525d219f64872d3b1")!
+        }
+      }
+    ).store(in: &cancellables)
 	}
 }
