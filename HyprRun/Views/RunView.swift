@@ -43,28 +43,7 @@ struct RunView: View {
   // MARK: - Main view
   var body: some View {
     VStack {
-      HStack(spacing: 20) {
-        VStack(alignment: .leading) {
-					  Text("\(self.currSongName)").foregroundColor(Color.white)
-						Text("\(self.currArtist)").foregroundColor(Color.white)
-						Text("\(elapsedTimeAsString())").foregroundColor(Color.white)
-						AsyncImage(url: self.currImageURL)
-        }
-				.onReceive(timerSong) { input in
-					if self.isPlaying {
-						self.counter = self.counter + 1
-						if(self.counter >= self.currTrackLength){
-							self.counter = 0
-							nextSong()
-						}
-					}
-				}
-        .frame(alignment: .center)
-        .padding(.bottom, 60)
-      }
-      .frame(maxWidth: .infinity)
-      .background(Color.black)
-      
+      playerView
       progressView
       controlsBar
     }.frame(maxWidth: .infinity)
@@ -72,6 +51,30 @@ struct RunView: View {
   
   
   // MARK: - Sub views
+  var playerView: some View {
+    HStack(spacing: 20) {
+      VStack(alignment: .leading) {
+          Text("\(self.currSongName)").foregroundColor(Color.white)
+          Text("\(self.currArtist)").foregroundColor(Color.white)
+          Text("\(elapsedTimeAsString())").foregroundColor(Color.white)
+          AsyncImage(url: self.currImageURL)
+      }
+      .onReceive(timerSong) { input in
+        if self.isPlaying {
+          self.counter = self.counter + 1
+          if(self.counter >= self.currTrackLength){
+            self.counter = 0
+            nextSong()
+          }
+        }
+      }
+      .frame(alignment: .center)
+      .padding(.bottom, 60)
+    }
+    .frame(maxWidth: .infinity)
+    .background(Color.black)
+  }
+  
   var progressView: some View {
     return VStack {
       Text("Time: \(self.runViewModel.timeLabel)").font(.title2)
