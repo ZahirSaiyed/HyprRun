@@ -65,15 +65,14 @@ struct RunView: View {
       .frame(maxWidth: .infinity)
       .background(Color.black)
       
-      progressView()
-      
+      progressView
       controlsBar
     }.frame(maxWidth: .infinity)
   }
   
   
   // MARK: - Sub views
-  func progressView() -> some View {
+  var progressView: some View {
     return VStack {
       Text("Time: \(self.runViewModel.timeLabel)").font(.title2)
       Spacer()
