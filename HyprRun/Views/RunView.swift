@@ -264,6 +264,9 @@ struct RunView: View {
   
   func retrieveTracks() {
     self.tracks = []
+		if(selectedPlaylists.count == 0){
+			selectedPlaylists = playlists
+		}
     for playlist in selectedPlaylists {
       let pURI = playlist.uri
       spotify.api.playlist(pURI, market: "US")
