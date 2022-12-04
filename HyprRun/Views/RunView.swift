@@ -55,7 +55,6 @@ struct RunView: View {
 					  Text("\(self.currSongName)").foregroundColor(Color.white)
 						Text("\(self.currArtist)").foregroundColor(Color.white)
 						Text("\(elapsedTimeAsString())").foregroundColor(Color.white)
-						//AsyncImage(url: self.currImageURL)
         }
 				.onReceive(timerSong) { input in
 					if self.isPlaying {
@@ -254,6 +253,9 @@ struct RunView: View {
   
   func retrieveTracks() {
     self.tracks = []
+		if(selectedPlaylists.count == 0){
+			selectedPlaylists = playlists
+		}
     for playlist in selectedPlaylists {
       let pURI = playlist.uri
       spotify.api.playlist(pURI, market: "US")
