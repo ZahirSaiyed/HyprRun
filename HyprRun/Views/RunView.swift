@@ -19,7 +19,7 @@ struct RunView: View {
   
   @State var songDuration = 0
 	@State var counter = 0
-  @State var isPlaying: Bool = false
+  @State var isPlaying: Bool = true
   @State var currSong = 0
 	@State var currArtist = ""
 	@State var currURI = ""
@@ -264,6 +264,9 @@ struct RunView: View {
   
   func retrieveTracks() {
     self.tracks = []
+		if(selectedPlaylists.count == 0){
+			selectedPlaylists = playlists
+		}
     for playlist in selectedPlaylists {
       let pURI = playlist.uri
       spotify.api.playlist(pURI, market: "US")
