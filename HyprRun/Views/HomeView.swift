@@ -12,6 +12,7 @@ import SpotifyWebAPI
 struct HomeView: View {
   @EnvironmentObject var viewRouter: ViewRouter
   @EnvironmentObject var spotify: Spotify
+  @Environment(\.colorScheme) var currentMode
   
   @ObservedObject var runViewModel: UIRunViewModel
   
@@ -41,7 +42,7 @@ struct HomeView: View {
             }, label: {
               Text("Run")
                 .font(.custom("HelveticaNeue-Medium", fixedSize: 24))
-                .foregroundColor(runStateToggled == false ? .gray : .white)
+                .foregroundColor(runStateToggled == false ? .gray : ((currentMode == .dark) ? .white : .black))
             })
             Spacer()
               .frame(width: 40)
@@ -50,15 +51,15 @@ struct HomeView: View {
             }, label: {
               Text("Rewind")
                 .font(.custom("HelveticaNeue-Medium", fixedSize: 24))
-                .foregroundColor(runStateToggled == true ? .gray : .white)
+                .foregroundColor(runStateToggled == true ? .gray : ((currentMode == .dark) ? .white : .black))
             })
             Spacer()
           }
           Spacer()
           displayToggledView()
         }
-        .background(.black)
-        .foregroundColor(.white)
+        .background(currentMode == .dark ? .black : .white)
+        .foregroundColor(currentMode == .dark ? .white : .black)
         .frame(maxWidth: .infinity)
       }
       .modifier(LoginView())
@@ -117,12 +118,19 @@ struct HomeView: View {
         rewind
       }
     }
-    .background(.black)
-    .foregroundColor(.white)
+    .background(currentMode == .dark ? .black : .white)
+    .foregroundColor(currentMode == .dark ? .white : .black)
   }
   
+  @State private var isDarkMode = true
+  
   var run: some View {
-    Text("Run")
+    VStack {
+      Text("Your Running Mix").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
+      Spacer()
+      Toggle("Dark Mode", isOn: $isDarkMode)
+      Spacer()
+    }.preferredColorScheme(isDarkMode ? .dark : .light)
   }
   
   var rewind: some View {
