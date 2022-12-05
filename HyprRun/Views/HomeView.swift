@@ -13,14 +13,12 @@ struct HomeView: View {
   @EnvironmentObject var viewRouter: ViewRouter
   @EnvironmentObject var spotify: Spotify
   
-//  @ObservedObject var playerViewModel: PlayerViewModel
   @ObservedObject var runViewModel: UIRunViewModel
 
   @State private var alert: AlertItem? = nil
   @State private var cancellables: Set<AnyCancellable> = []
   
   @Binding var isAuthorized: Bool
-  //@Binding var selectedPlaylists: [String]
 	@Binding var selectedPlaylists: [Playlist<PlaylistItemsReference>]
   @Binding var playlists: [Playlist<PlaylistItemsReference>]
   @Binding var tracks: [PlaylistItem]
