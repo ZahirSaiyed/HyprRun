@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E00F8DB2937ABB400B10EC0 /* SpotifyAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 7E00F8DA2937ABB400B10EC0 /* SpotifyAPI */; };
+		7E00F8DE2937ABE200B10EC0 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 7E00F8DD2937ABE200B10EC0 /* KeychainAccess */; };
 		7E0625692922C90A001EB66A /* RunViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0625682922C90A001EB66A /* RunViewModel.swift */; };
 		7EAD37DD291EC2E400BCBE02 /* FormatDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37DC291EC2E400BCBE02 /* FormatDisplay.swift */; };
 		7EAD37DF291EC2EE00BCBE02 /* UnitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37DE291EC2EE00BCBE02 /* UnitExtensions.swift */; };
@@ -21,9 +23,7 @@
 		E013DB8929103ED50029093B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013DB8829103ED50029093B /* ContentView.swift */; };
 		E013DB8B29103ED60029093B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E013DB8A29103ED60029093B /* Assets.xcassets */; };
 		E013DB8E29103ED60029093B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E013DB8D29103ED60029093B /* Preview Assets.xcassets */; };
-		E013DB99291043440029093B /* SpotifyAPI in Frameworks */ = {isa = PBXBuildFile; productRef = E013DB98291043440029093B /* SpotifyAPI */; };
 		E013DB9B291043BC0029093B /* Spotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013DB9A291043BC0029093B /* Spotify.swift */; };
-		E013DB9E291044820029093B /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = E013DB9D291044820029093B /* KeychainAccess */; };
 		E02193532918071F00FAF91E /* SelectBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02193522918071F00FAF91E /* SelectBoxView.swift */; };
 		E021935529180A1500FAF91E /* RunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E021935429180A1500FAF91E /* RunView.swift */; };
 		E025E5C02914598300FF1922 /* VibeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E025E5BF2914598300FF1922 /* VibeButtonView.swift */; };
@@ -77,8 +77,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E013DB9E291044820029093B /* KeychainAccess in Frameworks */,
-				E013DB99291043440029093B /* SpotifyAPI in Frameworks */,
+				7E00F8DE2937ABE200B10EC0 /* KeychainAccess in Frameworks */,
+				7E00F8DB2937ABB400B10EC0 /* SpotifyAPI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,8 +202,8 @@
 			);
 			name = HyprRun;
 			packageProductDependencies = (
-				E013DB98291043440029093B /* SpotifyAPI */,
-				E013DB9D291044820029093B /* KeychainAccess */,
+				7E00F8DA2937ABB400B10EC0 /* SpotifyAPI */,
+				7E00F8DD2937ABE200B10EC0 /* KeychainAccess */,
 			);
 			productName = HyprRun;
 			productReference = E013DB8329103ED50029093B /* HyprRun.app */;
@@ -234,8 +234,8 @@
 			);
 			mainGroup = E013DB7A29103ED50029093B;
 			packageReferences = (
-				E013DB97291043440029093B /* XCRemoteSwiftPackageReference "SpotifyAPI" */,
-				E013DB9C291044820029093B /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				7E00F8D92937ABB400B10EC0 /* XCRemoteSwiftPackageReference "SpotifyAPI" */,
+				7E00F8DC2937ABE200B10EC0 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = E013DB8429103ED50029093B /* Products */;
 			projectDirPath = "";
@@ -493,15 +493,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E013DB97291043440029093B /* XCRemoteSwiftPackageReference "SpotifyAPI" */ = {
+		7E00F8D92937ABB400B10EC0 /* XCRemoteSwiftPackageReference "SpotifyAPI" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Peter-Schorn/SpotifyAPI.git";
+			repositoryURL = "https://github.com/Peter-Schorn/SpotifyAPI";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				branch = master;
+				kind = branch;
 			};
 		};
-		E013DB9C291044820029093B /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+		7E00F8DC2937ABE200B10EC0 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
 			requirement = {
@@ -512,14 +512,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E013DB98291043440029093B /* SpotifyAPI */ = {
+		7E00F8DA2937ABB400B10EC0 /* SpotifyAPI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E013DB97291043440029093B /* XCRemoteSwiftPackageReference "SpotifyAPI" */;
+			package = 7E00F8D92937ABB400B10EC0 /* XCRemoteSwiftPackageReference "SpotifyAPI" */;
 			productName = SpotifyAPI;
 		};
-		E013DB9D291044820029093B /* KeychainAccess */ = {
+		7E00F8DD2937ABE200B10EC0 /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E013DB9C291044820029093B /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			package = 7E00F8DC2937ABE200B10EC0 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
 		};
 /* End XCSwiftPackageProductDependency section */

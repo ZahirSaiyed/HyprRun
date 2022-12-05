@@ -62,9 +62,13 @@ extension RunViewModel: CLLocationManagerDelegate {
 
 class UIRunViewModel: RunViewModel, ObservableObject {
   @Published var currentState: RunState
+  @Published var isStarting: Bool
+  @Published var isPlaying: Bool
   
   override init() {
     self.currentState = .notRunning
+    self.isStarting = false
+    self.isPlaying = false
     super.init()
   }
   
@@ -88,8 +92,13 @@ class UIRunViewModel: RunViewModel, ObservableObject {
     paceLabel = "\(formattedPace)"
   }
   
-  func startRun() {
+  func newRun() {
+    self.isStarting = true
     secondsLeft = 4
+  }
+  
+  func startRun() {
+    self.isPlaying = true
     seconds = 0
     distance = Measurement(value: 0, unit: UnitLength.meters)
     updateDisplay()
@@ -111,6 +120,10 @@ class UIRunViewModel: RunViewModel, ObservableObject {
       self.eachSecond()
     }
     self.currentState = .running
+  }
+  
+  func playToggle() {
+    self.isPlaying.toggle()
   }
   
   func endRun() {

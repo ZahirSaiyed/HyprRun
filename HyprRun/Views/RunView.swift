@@ -20,6 +20,7 @@ struct RunView: View {
   @State var songDuration = 0
 	@State var counter = 0
   @State var isPlaying: Bool = false
+  
   @State var currSong = 0
 	@State var currArtist = ""
 	@State var currURI = ""
@@ -42,10 +43,15 @@ struct RunView: View {
   
   // MARK: - Main view
   var body: some View {
-    VStack {
-      playerView
-      progressView
-      controlsBar
+    ZStack {
+      VStack {
+        Text("Ready?")
+      }.opacity(self.runViewModel.isStarting ? 1 : 0)
+      VStack {
+        playerView
+        progressView
+        controlsBar
+      }
     }.frame(maxWidth: .infinity)
   }
   
