@@ -56,12 +56,14 @@ struct HomeView: View {
             Spacer()
           }
           Spacer()
+            .frame(height: 24)
           displayToggledView()
         }
         .background(currentMode == .dark ? .black : .white)
         .foregroundColor(currentMode == .dark ? .white : .black)
         .frame(maxWidth: .infinity)
       }
+      .preferredColorScheme(isDarkMode ? .dark : .light)
       .modifier(LoginView())
       // Called when a redirect is received from Spotify
       .onOpenURL(perform: handleURL(_:))
@@ -70,43 +72,7 @@ struct HomeView: View {
 //      ZStack {
 //        VStack(alignment: .leading, spacing: 35) {
 //          logoutButton
-//          Text("Run").font(.custom("HelveticaNeue-Bold", fixedSize: 48))
-//          Text("Your Running Mix").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
-//
-//          PlaylistPreviewView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
-//            .disabled(!spotify.isAuthorized)
-//            .frame(height: 50)
-//
-//          Text("\(selectedPlaylists.count) playlists selected")
-//
-//          Text("The Vibe")
-//            .font(.custom("HelveticaNeue-Bold", fixedSize: 28))
-//
-//          HStack {
-//            Slider(
-//              value: $vibe,
-//              in: 0...5,
-//              step: 1.0,
-//              onEditingChanged: { editing in
-//                isEditing = editing
-//              })
-//            Text("\(vibe)")
-//              .foregroundColor(isEditing ? .red : .blue)
-//          }.frame(alignment: .center)
-//
-//          newRunButton.offset(x: 50, y: 0)
-//
-//        }
-//      }.frame(
-//          minWidth: 0,
-//          maxWidth: .infinity,
-//          minHeight: 0,
-//          maxHeight: .infinity,
-//          alignment: .topLeading)
-//      .padding()
-//      .modifier(LoginView())
-//      // Called when a redirect is received from Spotify
-//      .onOpenURL(perform: handleURL(_:))
+      
     }
   }
   
@@ -122,19 +88,50 @@ struct HomeView: View {
     .foregroundColor(currentMode == .dark ? .white : .black)
   }
   
-  @State private var isDarkMode = true
-  
   var run: some View {
-    VStack {
+    VStack(alignment: .leading, spacing: 35) {
       Text("Your Running Mix").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
-      Spacer()
-      Toggle("Dark Mode", isOn: $isDarkMode)
-      Spacer()
-    }.preferredColorScheme(isDarkMode ? .dark : .light)
+      
+      PlaylistPreviewView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
+        .disabled(!spotify.isAuthorized)
+        .frame(height: 50)
+      
+      Text("\(selectedPlaylists.count) playlists selected")
+      
+      Text("The Vibe")
+        .font(.custom("HelveticaNeue-Bold", fixedSize: 28))
+      
+      HStack {
+        Slider(
+          value: $vibe,
+          in: 0...5,
+          step: 1.0,
+          onEditingChanged: { editing in
+            isEditing = editing
+          })
+        Text("\(vibe)")
+          .foregroundColor(isEditing ? .red : .blue)
+      }
+      .frame(alignment: .center)
+      
+      newRunButton.offset(x: 50, y: 0)
+    }
+    .frame(
+      maxWidth: .infinity,
+      maxHeight: .infinity,
+      alignment: .topLeading)
+    .padding()
   }
   
+  @State private var isDarkMode = true
+  
   var rewind: some View {
-    Text("Rewind")
+    VStack {
+      Text("Rewind")
+      Spacer()
+//      Toggle("Dark Mode", isOn: $isDarkMode)
+//      Spacer()
+    }
   }
 }
 
