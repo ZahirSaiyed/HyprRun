@@ -30,10 +30,10 @@
     {
       "identity" : "spotifyapi",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Peter-Schorn/SpotifyAPI.git",
+      "location" : "https://github.com/Peter-Schorn/SpotifyAPI",
       "state" : {
-        "revision" : "7c04f15fa4eec06a85548a7071246608f26f813e",
-        "version" : "2.2.0"
+        "revision" : "b8ba886dcee86e675ff51fa6e19a5443c947d2cf",
+        "version" : "2.2.1"
       }
     },
     {
