@@ -14,6 +14,8 @@ struct HomeView: View {
   @EnvironmentObject var spotify: Spotify
   
   @ObservedObject var runViewModel: UIRunViewModel
+  
+  @State var runStateToggled: Bool = true
 
   @State private var alert: AlertItem? = nil
   @State private var cancellables: Set<AnyCancellable> = []
@@ -26,48 +28,105 @@ struct HomeView: View {
   @Binding var isEditing: Bool
   
   var body: some View {
-    NavigationView {
+    NavigationStack {
       ZStack {
-        VStack(alignment: .leading, spacing: 35) {
-          logoutButton
-          Text("Run").font(.custom("HelveticaNeue-Bold", fixedSize: 48))
-          Text("Your Running Mix").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
-          
-          PlaylistPreviewView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
-            .disabled(!spotify.isAuthorized)
-            .frame(height: 50)
-          
-          Text("\(selectedPlaylists.count) playlists selected")
-          
-          Text("The Vibe")
-            .font(.custom("HelveticaNeue-Bold", fixedSize: 28))
-          
+        VStack {
+          Text("HYPRRUN")
+            .font(.custom("HelveticaNeue-Bold", fixedSize: 18))
+            .padding(.bottom, 8)
           HStack {
-            Slider(
-              value: $vibe,
-              in: 0...5,
-              step: 1.0,
-              onEditingChanged: { editing in
-                isEditing = editing
-              })
-            Text("\(vibe)")
-              .foregroundColor(isEditing ? .red : .blue)
-          }.frame(alignment: .center)
-          
-          newRunButton.offset(x: 50, y: 0)
-
+            Spacer()
+            Button(action: {
+              runStateToggled = true
+            }, label: {
+              Text("Run")
+                .font(.custom("HelveticaNeue-Medium", fixedSize: 24))
+                .foregroundColor(runStateToggled == false ? .gray : .white)
+            })
+            Spacer()
+              .frame(width: 40)
+            Button(action: {
+              runStateToggled = false
+            }, label: {
+              Text("Rewind")
+                .font(.custom("HelveticaNeue-Medium", fixedSize: 24))
+                .foregroundColor(runStateToggled == true ? .gray : .white)
+            })
+            Spacer()
+          }
+          Spacer()
+          displayToggledView()
         }
-      }.frame(
-          minWidth: 0,
-          maxWidth: .infinity,
-          minHeight: 0,
-          maxHeight: .infinity,
-          alignment: .topLeading)
-      .padding()
+        .background(.black)
+        .foregroundColor(.white)
+        .frame(maxWidth: .infinity)
+      }
       .modifier(LoginView())
       // Called when a redirect is received from Spotify
       .onOpenURL(perform: handleURL(_:))
+      
+      
+//      ZStack {
+//        VStack(alignment: .leading, spacing: 35) {
+//          logoutButton
+//          Text("Run").font(.custom("HelveticaNeue-Bold", fixedSize: 48))
+//          Text("Your Running Mix").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
+//
+//          PlaylistPreviewView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
+//            .disabled(!spotify.isAuthorized)
+//            .frame(height: 50)
+//
+//          Text("\(selectedPlaylists.count) playlists selected")
+//
+//          Text("The Vibe")
+//            .font(.custom("HelveticaNeue-Bold", fixedSize: 28))
+//
+//          HStack {
+//            Slider(
+//              value: $vibe,
+//              in: 0...5,
+//              step: 1.0,
+//              onEditingChanged: { editing in
+//                isEditing = editing
+//              })
+//            Text("\(vibe)")
+//              .foregroundColor(isEditing ? .red : .blue)
+//          }.frame(alignment: .center)
+//
+//          newRunButton.offset(x: 50, y: 0)
+//
+//        }
+//      }.frame(
+//          minWidth: 0,
+//          maxWidth: .infinity,
+//          minHeight: 0,
+//          maxHeight: .infinity,
+//          alignment: .topLeading)
+//      .padding()
+//      .modifier(LoginView())
+//      // Called when a redirect is received from Spotify
+//      .onOpenURL(perform: handleURL(_:))
     }
+  }
+  
+  func displayToggledView() -> some View {
+    return ZStack {
+      if runStateToggled {
+        run
+      } else {
+        rewind
+      }
+    }
+    .background(.black)
+    .foregroundColor(.white)
+  }
+  
+  var run: some View {
+    Text("Run")
+  }
+  
+  var rewind: some View {
+    Text("Rewind")
   }
 }
 
