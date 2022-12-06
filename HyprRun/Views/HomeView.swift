@@ -31,6 +31,8 @@ struct HomeView: View {
   var body: some View {
     NavigationStack {
       ZStack {
+        // TODO: Add settings button/page
+          // TODO: Reintegrate login button, inside of settings page
         VStack {
           Text("HYPRRUN")
             .font(.custom("HelveticaNeue-Bold", fixedSize: 18))
@@ -63,16 +65,9 @@ struct HomeView: View {
         .foregroundColor(currentMode == .dark ? .white : .black)
         .frame(maxWidth: .infinity)
       }
-      .preferredColorScheme(isDarkMode ? .dark : .light)
-      .modifier(LoginView())
+//      .preferredColorScheme(isDarkMode ? .dark : .light)
       // Called when a redirect is received from Spotify
       .onOpenURL(perform: handleURL(_:))
-      
-      
-//      ZStack {
-//        VStack(alignment: .leading, spacing: 35) {
-//          logoutButton
-      
     }
   }
   
@@ -81,79 +76,22 @@ struct HomeView: View {
       if runStateToggled {
         homeRunView()
       } else {
-        rewindState
+        homeRewindView()
       }
     }
     .background(currentMode == .dark ? .black : .white)
     .foregroundColor(currentMode == .dark ? .white : .black)
   }
   
-  @State private var isDarkMode = true
-  
-  var rewindState: some View {
-    // TODO: Add an EmptyState view to show "no runs - go for a run!" or something
-    VStack {
-      ScrollView {
-        HStack {
-          let miles = round(self.runViewModel.runs.map({ $0.distance}).reduce(0, +) * 100)/100.0
-          let count = self.runViewModel.runs.count
-          let avgDist: Double = round((miles / (Double(count))) * 100)/100.0
-          VStack {
-            Text("\(miles)").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
-            Text("mi. ran").font(.custom("HelveticaNeue", fixedSize: 16))
-          }
-          Spacer()
-            .frame(width: 40)
-          VStack(alignment: .leading, spacing: 4) {
-            Text("Runs completed: \(count)")
-            Text("Avg. distance: \(avgDist)")
-          }
-        }
-      }
-//      Toggle("Dark Mode", isOn: $isDarkMode)
-//      Spacer()
-    }
-    .onAppear(perform: self.runViewModel.retrieveRuns)
-  }
+//  @State private var isDarkMode = true
+//  // Need to nest the toggle inside of a View
+//  //      Toggle("Dark Mode", isOn: $isDarkMode)
+//  //      Spacer()
 }
 
 
 
 extension HomeView {
-  var newRunButton: some View {
-    Button(action: {
-      self.viewRouter.setRoute(.runView)
-      self.runViewModel.startRun()
-    }, label: {
-      Text("NEW RUN")
-        .font(.custom("HelveticaNeue-Bold", fixedSize: 28))
-        .foregroundColor(.white)
-        .padding(7)
-        .frame(width: 250, height: 50)
-        .background(Color(red: 0, green: 0, blue: 290))
-        .cornerRadius(50)
-        .shadow(radius: 10)
-    })
-  }
-
-  /// Removes the authorization information for the user.
-  var logoutButton: some View {
-      // Calling `spotify.api.authorizationManager.deauthorize` will cause
-      // `SpotifyAPI.authorizationManagerDidDeauthorize` to emit a signal,
-      // which will cause `Spotify.authorizationManagerDidDeauthorize()` to be
-      // called.
-      Button(action: spotify.api.authorizationManager.deauthorize, label: {
-          Text("Logout")
-              .foregroundColor(.white)
-              .padding(7)
-              .background(
-                  Color(red: 0.392, green: 0.720, blue: 0.197)
-              )
-              .cornerRadius(10)
-              .shadow(radius: 3)
-      }).frame(alignment: .topLeading)
-  }
-  
   /**
    Handle the URL that Spotify redirects to after the user Either authorizes
    or denies authorization for the application.
