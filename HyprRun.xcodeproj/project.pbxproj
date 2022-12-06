@@ -10,12 +10,21 @@
 		7E0625692922C90A001EB66A /* RunViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0625682922C90A001EB66A /* RunViewModel.swift */; };
 		7EAD37DD291EC2E400BCBE02 /* FormatDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37DC291EC2E400BCBE02 /* FormatDisplay.swift */; };
 		7EAD37DF291EC2EE00BCBE02 /* UnitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37DE291EC2EE00BCBE02 /* UnitExtensions.swift */; };
-		7EAD37E1291EC34A00BCBE02 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E0291EC34A00BCBE02 /* CoreDataStack.swift */; };
+		7EAD37E1291EC34A00BCBE02 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E0291EC34A00BCBE02 /* DataManager.swift */; };
 		7EAD37E4291EC37F00BCBE02 /* HyprRun.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E2291EC37F00BCBE02 /* HyprRun.xcdatamodeld */; };
 		7EAD37E6291EC43F00BCBE02 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E5291EC43F00BCBE02 /* LocationManager.swift */; };
 		7EAD37E9291EC51F00BCBE02 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E8291EC51F00BCBE02 /* Route.swift */; };
 		7EAD37EB291EC7D300BCBE02 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37EA291EC7D300BCBE02 /* ViewRouter.swift */; };
 		7EAD37ED291ED5E800BCBE02 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37EC291ED5E800BCBE02 /* HomeView.swift */; };
+		7ECFF1FF293FE30B006326FB /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF1FB293FE30B006326FB /* Location+CoreDataClass.swift */; };
+		7ECFF200293FE30B006326FB /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF1FC293FE30B006326FB /* Location+CoreDataProperties.swift */; };
+		7ECFF201293FE30B006326FB /* Run+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF1FD293FE30B006326FB /* Run+CoreDataClass.swift */; };
+		7ECFF202293FE30B006326FB /* Run+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF1FE293FE30B006326FB /* Run+CoreDataProperties.swift */; };
+		7ECFF205293FE411006326FB /* UIRunViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF204293FE411006326FB /* UIRunViewModel.swift */; };
+		7ECFF20A293FEF13006326FB /* NestedHomeViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF209293FEF13006326FB /* NestedHomeViews.swift */; };
+		7ECFF20E293FF27B006326FB /* NestedRunViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF20D293FF27B006326FB /* NestedRunViews.swift */; };
+		7ECFF211293FF40A006326FB /* HomeViewButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF210293FF40A006326FB /* HomeViewButtons.swift */; };
+		7ECFF217293FFB25006326FB /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF216293FFB25006326FB /* LoginView.swift */; };
 		7EFD5C1A2924044B006D4061 /* PostRunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD5C192924044B006D4061 /* PostRunView.swift */; };
 		E013DB8729103ED50029093B /* HyprRunApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013DB8629103ED50029093B /* HyprRunApp.swift */; };
 		E013DB8929103ED50029093B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013DB8829103ED50029093B /* ContentView.swift */; };
@@ -33,22 +42,29 @@
 		E02D56C929146D30004C955C /* PlaylistCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D56C829146D30004C955C /* PlaylistCellView.swift */; };
 		E031EEFE291EB14D002B8164 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031EEFD291EB14D002B8164 /* SplashView.swift */; };
 		E06CA5C1291E763B004F0C6D /* SpotifyAPIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06CA5C0291E763B004F0C6D /* SpotifyAPIExtensions.swift */; };
-		E0B7155F2910455D0037B331 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B7155E2910455D0037B331 /* LoginView.swift */; };
 		E0B71562291046BF0037B331 /* ImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B71561291046BF0037B331 /* ImageName.swift */; };
 		E0B7156429104AB60037B331 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B7156329104AB60037B331 /* AlertItem.swift */; };
-		E0D1ADD4291B522D007B2893 /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D1ADD3291B522D007B2893 /* TrackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7E0625682922C90A001EB66A /* RunViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewModel.swift; sourceTree = "<group>"; };
 		7EAD37DC291EC2E400BCBE02 /* FormatDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatDisplay.swift; sourceTree = "<group>"; };
 		7EAD37DE291EC2EE00BCBE02 /* UnitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitExtensions.swift; sourceTree = "<group>"; };
-		7EAD37E0291EC34A00BCBE02 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		7EAD37E0291EC34A00BCBE02 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		7EAD37E3291EC37F00BCBE02 /* HyprRun.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HyprRun.xcdatamodel; sourceTree = "<group>"; };
 		7EAD37E5291EC43F00BCBE02 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7EAD37E8291EC51F00BCBE02 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		7EAD37EA291EC7D300BCBE02 /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
 		7EAD37EC291ED5E800BCBE02 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		7ECFF1FB293FE30B006326FB /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7ECFF1FC293FE30B006326FB /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7ECFF1FD293FE30B006326FB /* Run+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Run+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7ECFF1FE293FE30B006326FB /* Run+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Run+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7ECFF204293FE411006326FB /* UIRunViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRunViewModel.swift; sourceTree = "<group>"; };
+		7ECFF209293FEF13006326FB /* NestedHomeViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedHomeViews.swift; sourceTree = "<group>"; };
+		7ECFF20D293FF27B006326FB /* NestedRunViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedRunViews.swift; sourceTree = "<group>"; };
+		7ECFF210293FF40A006326FB /* HomeViewButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewButtons.swift; sourceTree = "<group>"; };
+		7ECFF216293FFB25006326FB /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7EFD5C192924044B006D4061 /* PostRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRunView.swift; sourceTree = "<group>"; };
 		E013DB8329103ED50029093B /* HyprRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HyprRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E013DB8629103ED50029093B /* HyprRunApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyprRunApp.swift; sourceTree = "<group>"; };
@@ -65,10 +81,8 @@
 		E02D56C829146D30004C955C /* PlaylistCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCellView.swift; sourceTree = "<group>"; };
 		E031EEFD291EB14D002B8164 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		E06CA5C0291E763B004F0C6D /* SpotifyAPIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyAPIExtensions.swift; sourceTree = "<group>"; };
-		E0B7155E2910455D0037B331 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E0B71561291046BF0037B331 /* ImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageName.swift; sourceTree = "<group>"; };
 		E0B7156329104AB60037B331 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
-		E0D1ADD3291B522D007B2893 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
 		E0D55EBD2910660600EC755E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +108,49 @@
 			path = ViewRouter;
 			sourceTree = "<group>";
 		};
+		7ECFF1FA293FE109006326FB /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				7ECFF1FB293FE30B006326FB /* Location+CoreDataClass.swift */,
+				7ECFF1FC293FE30B006326FB /* Location+CoreDataProperties.swift */,
+				7ECFF1FD293FE30B006326FB /* Run+CoreDataClass.swift */,
+				7ECFF1FE293FE30B006326FB /* Run+CoreDataProperties.swift */,
+				7EAD37E2291EC37F00BCBE02 /* HyprRun.xcdatamodeld */,
+				7EAD37E0291EC34A00BCBE02 /* DataManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		7ECFF203293FE3FD006326FB /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				7E0625682922C90A001EB66A /* RunViewModel.swift */,
+				7ECFF204293FE411006326FB /* UIRunViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		7ECFF207293FED61006326FB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E02D56BF2914689A004C955C /* PlaylistPreviewView.swift */,
+				E02D56C829146D30004C955C /* PlaylistCellView.swift */,
+				E025E5BF2914598300FF1922 /* VibeButtonView.swift */,
+				E02193522918071F00FAF91E /* SelectBoxView.swift */,
+				7ECFF210293FF40A006326FB /* HomeViewButtons.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		7ECFF208293FEDDA006326FB /* Sub-views */ = {
+			isa = PBXGroup;
+			children = (
+				7ECFF209293FEF13006326FB /* NestedHomeViews.swift */,
+				7ECFF20D293FF27B006326FB /* NestedRunViews.swift */,
+			);
+			path = "Sub-views";
+			sourceTree = "<group>";
+		};
 		E013DB7A29103ED50029093B = {
 			isa = PBXGroup;
 			children = (
@@ -113,13 +170,14 @@
 		E013DB8529103ED50029093B /* HyprRun */ = {
 			isa = PBXGroup;
 			children = (
-				E0D55EBD2910660600EC755E /* Info.plist */,
+				7ECFF1FA293FE109006326FB /* CoreData */,
 				E0B71560291046AA0037B331 /* Project Utilities */,
 				E013DB8629103ED50029093B /* HyprRunApp.swift */,
-				7E0625682922C90A001EB66A /* RunViewModel.swift */,
+				7ECFF203293FE3FD006326FB /* ViewModels */,
 				E013DB95291042390029093B /* Views */,
 				7EAD37E7291EC50E00BCBE02 /* ViewRouter */,
 				E013DB94291041F30029093B /* Models */,
+				E0D55EBD2910660600EC755E /* Info.plist */,
 				E013DB8A29103ED60029093B /* Assets.xcassets */,
 				E013DB8C29103ED60029093B /* Preview Content */,
 			);
@@ -147,27 +205,16 @@
 			isa = PBXGroup;
 			children = (
 				E013DB8829103ED50029093B /* ContentView.swift */,
-				E0B7155E2910455D0037B331 /* LoginView.swift */,
-				7EAD37EC291ED5E800BCBE02 /* HomeView.swift */,
-				E021935429180A1500FAF91E /* RunView.swift */,
 				E031EEFD291EB14D002B8164 /* SplashView.swift */,
-				E02D56C32914698B004C955C /* Playlist Views */,
-				E025E5BF2914598300FF1922 /* VibeButtonView.swift */,
-				E02D56BF2914689A004C955C /* PlaylistPreviewView.swift */,
-				E02193522918071F00FAF91E /* SelectBoxView.swift */,
-				E0D1ADD3291B522D007B2893 /* TrackView.swift */,
+				7EAD37EC291ED5E800BCBE02 /* HomeView.swift */,
+				E02D56C129146908004C955C /* PlaylistListView.swift */,
+				E021935429180A1500FAF91E /* RunView.swift */,
 				7EFD5C192924044B006D4061 /* PostRunView.swift */,
+				7ECFF208293FEDDA006326FB /* Sub-views */,
+				7ECFF207293FED61006326FB /* Components */,
+				7ECFF216293FFB25006326FB /* LoginView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		E02D56C32914698B004C955C /* Playlist Views */ = {
-			isa = PBXGroup;
-			children = (
-				E02D56C129146908004C955C /* PlaylistListView.swift */,
-				E02D56C829146D30004C955C /* PlaylistCellView.swift */,
-			);
-			path = "Playlist Views";
 			sourceTree = "<group>";
 		};
 		E0B71560291046AA0037B331 /* Project Utilities */ = {
@@ -179,8 +226,6 @@
 				7EAD37E5291EC43F00BCBE02 /* LocationManager.swift */,
 				7EAD37DC291EC2E400BCBE02 /* FormatDisplay.swift */,
 				7EAD37DE291EC2EE00BCBE02 /* UnitExtensions.swift */,
-				7EAD37E0291EC34A00BCBE02 /* CoreDataStack.swift */,
-				7EAD37E2291EC37F00BCBE02 /* HyprRun.xcdatamodeld */,
 			);
 			path = "Project Utilities";
 			sourceTree = "<group>";
@@ -269,13 +314,18 @@
 				E02D56C929146D30004C955C /* PlaylistCellView.swift in Sources */,
 				E06CA5C1291E763B004F0C6D /* SpotifyAPIExtensions.swift in Sources */,
 				7E0625692922C90A001EB66A /* RunViewModel.swift in Sources */,
-				E0D1ADD4291B522D007B2893 /* TrackView.swift in Sources */,
+				7ECFF1FF293FE30B006326FB /* Location+CoreDataClass.swift in Sources */,
+				7ECFF211293FF40A006326FB /* HomeViewButtons.swift in Sources */,
+				7ECFF200293FE30B006326FB /* Location+CoreDataProperties.swift in Sources */,
 				E025E5C02914598300FF1922 /* VibeButtonView.swift in Sources */,
 				E021935529180A1500FAF91E /* RunView.swift in Sources */,
+				7ECFF201293FE30B006326FB /* Run+CoreDataClass.swift in Sources */,
 				7EAD37DF291EC2EE00BCBE02 /* UnitExtensions.swift in Sources */,
-				7EAD37E1291EC34A00BCBE02 /* CoreDataStack.swift in Sources */,
+				7EAD37E1291EC34A00BCBE02 /* DataManager.swift in Sources */,
 				E0B7156429104AB60037B331 /* AlertItem.swift in Sources */,
+				7ECFF20A293FEF13006326FB /* NestedHomeViews.swift in Sources */,
 				E02D56C229146908004C955C /* PlaylistListView.swift in Sources */,
+				7ECFF205293FE411006326FB /* UIRunViewModel.swift in Sources */,
 				E02D56C02914689A004C955C /* PlaylistPreviewView.swift in Sources */,
 				E0B71562291046BF0037B331 /* ImageName.swift in Sources */,
 				7EAD37E9291EC51F00BCBE02 /* Route.swift in Sources */,
@@ -285,8 +335,10 @@
 				7EAD37E4291EC37F00BCBE02 /* HyprRun.xcdatamodeld in Sources */,
 				7EAD37E6291EC43F00BCBE02 /* LocationManager.swift in Sources */,
 				7EAD37DD291EC2E400BCBE02 /* FormatDisplay.swift in Sources */,
+				7ECFF20E293FF27B006326FB /* NestedRunViews.swift in Sources */,
 				7EAD37ED291ED5E800BCBE02 /* HomeView.swift in Sources */,
-				E0B7155F2910455D0037B331 /* LoginView.swift in Sources */,
+				7ECFF202293FE30B006326FB /* Run+CoreDataProperties.swift in Sources */,
+				7ECFF217293FFB25006326FB /* LoginView.swift in Sources */,
 				7EFD5C1A2924044B006D4061 /* PostRunView.swift in Sources */,
 				E013DB8729103ED50029093B /* HyprRunApp.swift in Sources */,
 			);

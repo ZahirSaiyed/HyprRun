@@ -12,104 +12,90 @@ import SpotifyWebAPI
 struct HomeView: View {
   @EnvironmentObject var viewRouter: ViewRouter
   @EnvironmentObject var spotify: Spotify
+  @Environment(\.colorScheme) var currentMode
   
-//  @ObservedObject var playerViewModel: PlayerViewModel
   @ObservedObject var runViewModel: UIRunViewModel
 
   @State private var alert: AlertItem? = nil
   @State private var cancellables: Set<AnyCancellable> = []
   
+  @Binding var runViewToggled: Bool
   @Binding var isAuthorized: Bool
-  //@Binding var selectedPlaylists: [String]
+  
 	@Binding var selectedPlaylists: [Playlist<PlaylistItemsReference>]
   @Binding var playlists: [Playlist<PlaylistItemsReference>]
   @Binding var tracks: [PlaylistItem]
+  
   @Binding var vibe: Float
   @Binding var isEditing: Bool
   
   var body: some View {
-    NavigationView {
+    NavigationStack {
       ZStack {
-        VStack(alignment: .leading, spacing: 35) {
-          logoutButton
-          Text("Run").font(.custom("HelveticaNeue-Bold", fixedSize: 48))
-          Text("Your Running Mix").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
-          
-          PlaylistPreviewView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
-            .disabled(!spotify.isAuthorized)
-            .frame(height: 50)
-          
-          Text("\(selectedPlaylists.count) playlists selected")
-          
-          Text("The Vibe")
-            .font(.custom("HelveticaNeue-Bold", fixedSize: 28))
-          
+        // TODO: Add settings button/page
+          // TODO: Reintegrate login button, inside of settings page
+        VStack {
+          Text("HYPRRUN")
+            .font(.custom("HelveticaNeue-Bold", fixedSize: 18))
+            .padding(.bottom, 8)
           HStack {
-            Slider(
-              value: $vibe,
-              in: 0...5,
-              step: 1.0,
-              onEditingChanged: { editing in
-                isEditing = editing
-              })
-            Text("\(vibe)")
-              .foregroundColor(isEditing ? .red : .blue)
-          }.frame(alignment: .center)
-          
-          newRunButton.offset(x: 50, y: 0)
-
+            Spacer()
+            Button(action: {
+              self.viewRouter.runView()
+//              runViewToggled = true
+            }, label: {
+              Text("Run")
+                .font(.custom("HelveticaNeue-Medium", fixedSize: 24))
+                .foregroundColor(runViewToggled == false ? .gray : ((currentMode == .dark) ? .white : .black))
+            })
+            Spacer()
+              .frame(width: 40)
+            Button(action: {
+              self.viewRouter.rewindView()
+//              runViewToggled = false
+            }, label: {
+              Text("Rewind")
+                .font(.custom("HelveticaNeue-Medium", fixedSize: 24))
+                .foregroundColor(runViewToggled == true ? .gray : ((currentMode == .dark) ? .white : .black))
+            })
+            Spacer()
+          }
+          Spacer()
+            .frame(height: 24)
+          displayToggledView()
         }
-      }.frame(
-          minWidth: 0,
-          maxWidth: .infinity,
-          minHeight: 0,
-          maxHeight: .infinity,
-          alignment: .topLeading)
-      .padding()
+        .background(currentMode == .dark ? .black : .white)
+        .foregroundColor(currentMode == .dark ? .white : .black)
+        .frame(maxWidth: .infinity)
+      }
+//      .preferredColorScheme(isDarkMode ? .dark : .light)
       .modifier(LoginView())
       // Called when a redirect is received from Spotify
       .onOpenURL(perform: handleURL(_:))
     }
   }
+  
+  func displayToggledView() -> some View {
+    return ZStack {
+      if runViewToggled {
+        homeRunView()
+      } else {
+        homeRewindView()
+      }
+    }
+    .background(currentMode == .dark ? .black : .white)
+    .foregroundColor(currentMode == .dark ? .white : .black)
+  }
+  
+//  @State private var isDarkMode = true
+//  // Need to nest the toggle inside of a View
+//  //      Toggle("Dark Mode", isOn: $isDarkMode)
+//  //      Spacer()
 }
 
 
 
 extension HomeView {
-  var newRunButton: some View {
-    Button(action: {
-      self.viewRouter.setRoute(.runView)
-      self.runViewModel.startRun()
-    }, label: {
-      Text("NEW RUN")
-        .font(.custom("HelveticaNeue-Bold", fixedSize: 28))
-        .foregroundColor(.white)
-        .padding(7)
-        .frame(width: 250, height: 50)
-        .background(Color(red: 0, green: 0, blue: 290))
-        .cornerRadius(50)
-        .shadow(radius: 10)
-    })
-  }
-
-  /// Removes the authorization information for the user.
-  var logoutButton: some View {
-      // Calling `spotify.api.authorizationManager.deauthorize` will cause
-      // `SpotifyAPI.authorizationManagerDidDeauthorize` to emit a signal,
-      // which will cause `Spotify.authorizationManagerDidDeauthorize()` to be
-      // called.
-      Button(action: spotify.api.authorizationManager.deauthorize, label: {
-          Text("Logout")
-              .foregroundColor(.white)
-              .padding(7)
-              .background(
-                  Color(red: 0.392, green: 0.720, blue: 0.197)
-              )
-              .cornerRadius(10)
-              .shadow(radius: 3)
-      }).frame(alignment: .topLeading)
-  }
-  
   /**
    Handle the URL that Spotify redirects to after the user Either authorizes
    or denies authorization for the application.

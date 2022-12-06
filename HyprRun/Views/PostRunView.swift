@@ -20,9 +20,10 @@ struct PostRunView: View {
       Text("Average Pace: \(self.runViewModel.paceLabel)")
       Spacer()
       Button(action: {
+        self.viewRouter.rewindView()
         self.viewRouter.setRoute(.homeView)
       }, label: {
-        Text("Return home").font(.custom("HelveticaNeue-Bold", fixedSize: 18))
+        Text("Finish").font(.custom("HelveticaNeue-Bold", fixedSize: 18))
           .foregroundColor(.white)
           .padding(7)
           .frame(width: 150, height: 50)

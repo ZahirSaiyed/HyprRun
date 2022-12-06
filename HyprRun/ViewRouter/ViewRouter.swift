@@ -10,6 +10,7 @@ import Combine
 
 class ViewRouter: ObservableObject {
   @Published var root: Route = .homeView
+  @Published var runViewToggled: Bool = true
   
   private let routeSubject = PassthroughSubject<Route, Never>()
   private var cancellable: AnyCancellable?
@@ -22,5 +23,13 @@ class ViewRouter: ObservableObject {
   
   func setRoute(_ route: Route) {
     routeSubject.send(route)
+  }
+  
+  func runView() {
+    runViewToggled = true
+  }
+  
+  func rewindView() {
+    runViewToggled = false
   }
 }
