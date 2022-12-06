@@ -22,7 +22,7 @@ struct PostRunView: View {
       Button(action: {
         self.viewRouter.setRoute(.homeView)
       }, label: {
-        Text("Return home").font(.custom("HelveticaNeue-Bold", fixedSize: 18))
+        Text("Finish").font(.custom("HelveticaNeue-Bold", fixedSize: 18))
           .foregroundColor(.white)
           .padding(7)
           .frame(width: 150, height: 50)

@@ -126,12 +126,29 @@ struct HomeView: View {
   @State private var isDarkMode = true
   
   var rewind: some View {
+    // TODO: Add an EmptyState view to show "no runs - go for a run!" or something
     VStack {
-      Text("Rewind")
-      Spacer()
+      ScrollView {
+        HStack {
+          let miles = round(self.runViewModel.runs.map({ $0.distance}).reduce(0, +) * 100)/100.0
+          let count = self.runViewModel.runs.count
+          let avgDist: Double = round((miles / (Double(count))) * 100)/100.0
+          VStack {
+            Text("\(miles)").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
+            Text("mi. ran").font(.custom("HelveticaNeue", fixedSize: 16))
+          }
+          Spacer()
+            .frame(width: 40)
+          VStack(alignment: .leading, spacing: 4) {
+            Text("Runs completed: \(count)")
+            Text("Avg. distance: \(avgDist)")
+          }
+        }
+      }
 //      Toggle("Dark Mode", isOn: $isDarkMode)
 //      Spacer()
     }
+    .onAppear(perform: self.runViewModel.fetchRuns)
   }
 }
 
