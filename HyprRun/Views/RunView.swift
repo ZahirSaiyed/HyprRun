@@ -128,6 +128,7 @@ struct RunView: View {
   var endRunButton: some View {
     Button(action: {
           self.runViewModel.endRun()
+          self.runViewModel.saveRun()
           // Need an if statement or something - should have a binding variable that checks if the user confirms to end run -> if they do confirm, then we redirect route from the view to the post-run view
           self.viewRouter.setRoute(.postRunView)
         }, label: {

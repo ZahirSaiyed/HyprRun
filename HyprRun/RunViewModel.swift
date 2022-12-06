@@ -18,7 +18,7 @@ import UIKit
 class RunViewModel: NSObject {
   let locationManager = LocationManager.shared
   
-  var run: Run?
+//  var run: Run?
   var seconds = 0
   var timer: Timer?
 
@@ -65,7 +65,7 @@ extension RunViewModel: CLLocationManagerDelegate {
 
 class UIRunViewModel: RunViewModel, ObservableObject {
   @Published var currentState: RunState
-  @Published var runs = [Run]()
+//  @Published var runs = [Run]
   
   override init() {
     self.currentState = .notRunning
@@ -126,37 +126,41 @@ class UIRunViewModel: RunViewModel, ObservableObject {
   }
   
   func saveRun() {
-    let newRun = Run(context: CoreDataStack.context)
-    newRun.distance = distance.value
-    newRun.duration = Int16(seconds)
-    newRun.timestamp = Date()
+//    let entity = NSEntityDescription.entity(forEntityName: "Run", in: CoreDataStack.context)
+//    let newRun = NSManagedObject(entity: entity!, insertInto: CoreDataStack.context)
+//    newRun.setValue(distance.value, forKey: "distance")
+//    newRun.setValue(Int16(seconds), forKey: "duration")
+//    newRun.setValue(Date(), forKey: "timestamp")
 //    newRun.pace = pace.value
     
-    for location in locationList {
-      let locationObject = Location(context: CoreDataStack.context)
-      locationObject.timestamp = location.timestamp
-      locationObject.latitude = location.coordinate.latitude
-      locationObject.longitude = location.coordinate.longitude
-      newRun.addToLocations(locationObject)
-    }
+//    for location in locationList {
+//      let locationObject = Location(context: CoreDataStack.context)
+//      locationObject.timestamp = location.timestamp
+//      locationObject.latitude = location.coordinate.latitude
+//      locationObject.longitude = location.coordinate.longitude
+////      newRun.addToLocations(locationObject)
+//    }
+//
+//    CoreDataStack.saveContext()
+////    run = newRun
   }
   
   func fetchRuns() {
-    let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Run")
-    request.returnsObjectsAsFaults = false
-
-    do {
-      let result = try CoreDataStack.context.fetch(request)
-      for data in result as! [NSManagedObject] {
-        let newRun = Run()
-        newRun.distance = data.value(forKey: "distance") as? Double ?? 0.0
-        newRun.duration = data.value(forKey: "duration") as? Int16 ?? 0
-        newRun.timestamp = data.value(forKey: "timestamp") as? Date
-        runs.append(newRun)
-        NSLog("[Runs] loaded Run with date: \(data.value(forKey: "timestamp") as! Date) from CoreData")
-      }
-    } catch {
-      NSLog("[Runs] ERROR: was unable to load Runs from CoreData")
-    }
+//    let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Run")
+//    request.returnsObjectsAsFaults = false
+//
+//    do {
+//      let result = try CoreDataStack.context.fetch(request)
+//      for data in result as! [NSManagedObject] {
+//        let newRun = Run()
+//        newRun.distance = data.value(forKey: "distance") as? Double ?? 0.0
+//        newRun.duration = data.value(forKey: "duration") as? Int16 ?? 0
+//        newRun.timestamp = data.value(forKey: "timestamp") as? Date
+//        runs.append(newRun)
+//        NSLog("[Runs] loaded Run with date: \(data.value(forKey: "timestamp") as! Date) from CoreData")
+//      }
+//    } catch {
+//      NSLog("[Runs] ERROR: was unable to load Runs from CoreData")
+//    }
   }
 }

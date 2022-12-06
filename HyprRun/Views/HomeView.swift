@@ -79,16 +79,16 @@ struct HomeView: View {
   func displayToggledView() -> some View {
     return ZStack {
       if runStateToggled {
-        run
+        runState
       } else {
-        rewind
+        rewindState
       }
     }
     .background(currentMode == .dark ? .black : .white)
     .foregroundColor(currentMode == .dark ? .white : .black)
   }
   
-  var run: some View {
+  var runState: some View {
     VStack(alignment: .leading, spacing: 35) {
       Text("Your Running Mix").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
       
@@ -125,7 +125,7 @@ struct HomeView: View {
   
   @State private var isDarkMode = true
   
-  var rewind: some View {
+  var rewindState: some View {
     // TODO: Add an EmptyState view to show "no runs - go for a run!" or something
     VStack {
       ScrollView {
