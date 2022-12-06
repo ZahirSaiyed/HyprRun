@@ -79,48 +79,13 @@ struct HomeView: View {
   func displayToggledView() -> some View {
     return ZStack {
       if runStateToggled {
-        runState
+        homeRunView()
       } else {
         rewindState
       }
     }
     .background(currentMode == .dark ? .black : .white)
     .foregroundColor(currentMode == .dark ? .white : .black)
-  }
-  
-  var runState: some View {
-    VStack(alignment: .leading, spacing: 35) {
-      Text("Your Running Mix").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
-      
-      PlaylistPreviewView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
-        .disabled(!spotify.isAuthorized)
-        .frame(height: 50)
-      
-      Text("\(selectedPlaylists.count) playlists selected")
-      
-      Text("The Vibe")
-        .font(.custom("HelveticaNeue-Bold", fixedSize: 28))
-      
-      HStack {
-        Slider(
-          value: $vibe,
-          in: 0...5,
-          step: 1.0,
-          onEditingChanged: { editing in
-            isEditing = editing
-          })
-        Text("\(vibe)")
-          .foregroundColor(isEditing ? .red : .blue)
-      }
-      .frame(alignment: .center)
-      
-      newRunButton.offset(x: 50, y: 0)
-    }
-    .frame(
-      maxWidth: .infinity,
-      maxHeight: .infinity,
-      alignment: .topLeading)
-    .padding()
   }
   
   @State private var isDarkMode = true

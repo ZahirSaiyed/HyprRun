@@ -21,6 +21,7 @@
 		7ECFF201293FE30B006326FB /* Run+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF1FD293FE30B006326FB /* Run+CoreDataClass.swift */; };
 		7ECFF202293FE30B006326FB /* Run+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF1FE293FE30B006326FB /* Run+CoreDataProperties.swift */; };
 		7ECFF205293FE411006326FB /* UIRunViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF204293FE411006326FB /* UIRunViewModel.swift */; };
+		7ECFF20A293FEF13006326FB /* HomeRunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF209293FEF13006326FB /* HomeRunView.swift */; };
 		7EFD5C1A2924044B006D4061 /* PostRunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD5C192924044B006D4061 /* PostRunView.swift */; };
 		E013DB8729103ED50029093B /* HyprRunApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013DB8629103ED50029093B /* HyprRunApp.swift */; };
 		E013DB8929103ED50029093B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013DB8829103ED50029093B /* ContentView.swift */; };
@@ -58,6 +59,7 @@
 		7ECFF1FD293FE30B006326FB /* Run+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Run+CoreDataClass.swift"; sourceTree = "<group>"; };
 		7ECFF1FE293FE30B006326FB /* Run+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Run+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7ECFF204293FE411006326FB /* UIRunViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRunViewModel.swift; sourceTree = "<group>"; };
+		7ECFF209293FEF13006326FB /* HomeRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRunView.swift; sourceTree = "<group>"; };
 		7EFD5C192924044B006D4061 /* PostRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRunView.swift; sourceTree = "<group>"; };
 		E013DB8329103ED50029093B /* HyprRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HyprRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E013DB8629103ED50029093B /* HyprRunApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyprRunApp.swift; sourceTree = "<group>"; };
@@ -124,18 +126,6 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		7ECFF206293FED33006326FB /* Core Views */ = {
-			isa = PBXGroup;
-			children = (
-				7EAD37EC291ED5E800BCBE02 /* HomeView.swift */,
-				E021935429180A1500FAF91E /* RunView.swift */,
-				E031EEFD291EB14D002B8164 /* SplashView.swift */,
-				E02D56C129146908004C955C /* PlaylistListView.swift */,
-				7EFD5C192924044B006D4061 /* PostRunView.swift */,
-			);
-			path = "Core Views";
-			sourceTree = "<group>";
-		};
 		7ECFF207293FED61006326FB /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +140,7 @@
 		7ECFF208293FEDDA006326FB /* Sub-views */ = {
 			isa = PBXGroup;
 			children = (
+				7ECFF209293FEF13006326FB /* HomeRunView.swift */,
 			);
 			path = "Sub-views";
 			sourceTree = "<group>";
@@ -208,7 +199,11 @@
 			isa = PBXGroup;
 			children = (
 				E013DB8829103ED50029093B /* ContentView.swift */,
-				7ECFF206293FED33006326FB /* Core Views */,
+				E031EEFD291EB14D002B8164 /* SplashView.swift */,
+				7EAD37EC291ED5E800BCBE02 /* HomeView.swift */,
+				E02D56C129146908004C955C /* PlaylistListView.swift */,
+				E021935429180A1500FAF91E /* RunView.swift */,
+				7EFD5C192924044B006D4061 /* PostRunView.swift */,
 				7ECFF208293FEDDA006326FB /* Sub-views */,
 				7ECFF207293FED61006326FB /* Components */,
 				E0B7155E2910455D0037B331 /* LoginView.swift */,
@@ -321,6 +316,7 @@
 				7EAD37DF291EC2EE00BCBE02 /* UnitExtensions.swift in Sources */,
 				7EAD37E1291EC34A00BCBE02 /* DataManager.swift in Sources */,
 				E0B7156429104AB60037B331 /* AlertItem.swift in Sources */,
+				7ECFF20A293FEF13006326FB /* HomeRunView.swift in Sources */,
 				E02D56C229146908004C955C /* PlaylistListView.swift in Sources */,
 				7ECFF205293FE411006326FB /* UIRunViewModel.swift in Sources */,
 				E02D56C02914689A004C955C /* PlaylistPreviewView.swift in Sources */,
