@@ -24,6 +24,7 @@
 		7ECFF20A293FEF13006326FB /* NestedHomeViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF209293FEF13006326FB /* NestedHomeViews.swift */; };
 		7ECFF20E293FF27B006326FB /* NestedRunViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF20D293FF27B006326FB /* NestedRunViews.swift */; };
 		7ECFF211293FF40A006326FB /* HomeViewButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF210293FF40A006326FB /* HomeViewButtons.swift */; };
+		7ECFF217293FFB25006326FB /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF216293FFB25006326FB /* LoginView.swift */; };
 		7EFD5C1A2924044B006D4061 /* PostRunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD5C192924044B006D4061 /* PostRunView.swift */; };
 		E013DB8729103ED50029093B /* HyprRunApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013DB8629103ED50029093B /* HyprRunApp.swift */; };
 		E013DB8929103ED50029093B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013DB8829103ED50029093B /* ContentView.swift */; };
@@ -63,6 +64,7 @@
 		7ECFF209293FEF13006326FB /* NestedHomeViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedHomeViews.swift; sourceTree = "<group>"; };
 		7ECFF20D293FF27B006326FB /* NestedRunViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedRunViews.swift; sourceTree = "<group>"; };
 		7ECFF210293FF40A006326FB /* HomeViewButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewButtons.swift; sourceTree = "<group>"; };
+		7ECFF216293FFB25006326FB /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7EFD5C192924044B006D4061 /* PostRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRunView.swift; sourceTree = "<group>"; };
 		E013DB8329103ED50029093B /* HyprRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HyprRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E013DB8629103ED50029093B /* HyprRunApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyprRunApp.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				7EFD5C192924044B006D4061 /* PostRunView.swift */,
 				7ECFF208293FEDDA006326FB /* Sub-views */,
 				7ECFF207293FED61006326FB /* Components */,
+				7ECFF216293FFB25006326FB /* LoginView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				7ECFF20E293FF27B006326FB /* NestedRunViews.swift in Sources */,
 				7EAD37ED291ED5E800BCBE02 /* HomeView.swift in Sources */,
 				7ECFF202293FE30B006326FB /* Run+CoreDataProperties.swift in Sources */,
+				7ECFF217293FFB25006326FB /* LoginView.swift in Sources */,
 				7EFD5C1A2924044B006D4061 /* PostRunView.swift in Sources */,
 				E013DB8729103ED50029093B /* HyprRunApp.swift in Sources */,
 			);

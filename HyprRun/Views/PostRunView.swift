@@ -20,7 +20,7 @@ struct PostRunView: View {
       Text("Average Pace: \(self.runViewModel.paceLabel)")
       Spacer()
       Button(action: {
-        // TODO: Send this to home view, with the Rewind page selected
+        self.viewRouter.rewindView()
         self.viewRouter.setRoute(.homeView)
       }, label: {
         Text("Finish").font(.custom("HelveticaNeue-Bold", fixedSize: 18))

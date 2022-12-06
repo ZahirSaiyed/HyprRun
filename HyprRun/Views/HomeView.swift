@@ -15,16 +15,17 @@ struct HomeView: View {
   @Environment(\.colorScheme) var currentMode
   
   @ObservedObject var runViewModel: UIRunViewModel
-  
-  @State var runStateToggled: Bool = true
 
   @State private var alert: AlertItem? = nil
   @State private var cancellables: Set<AnyCancellable> = []
   
+  @Binding var runViewToggled: Bool
   @Binding var isAuthorized: Bool
+  
 	@Binding var selectedPlaylists: [Playlist<PlaylistItemsReference>]
   @Binding var playlists: [Playlist<PlaylistItemsReference>]
   @Binding var tracks: [PlaylistItem]
+  
   @Binding var vibe: Float
   @Binding var isEditing: Bool
   
@@ -40,20 +41,22 @@ struct HomeView: View {
           HStack {
             Spacer()
             Button(action: {
-              runStateToggled = true
+              self.viewRouter.runView()
+//              runViewToggled = true
             }, label: {
               Text("Run")
                 .font(.custom("HelveticaNeue-Medium", fixedSize: 24))
-                .foregroundColor(runStateToggled == false ? .gray : ((currentMode == .dark) ? .white : .black))
+                .foregroundColor(runViewToggled == false ? .gray : ((currentMode == .dark) ? .white : .black))
             })
             Spacer()
               .frame(width: 40)
             Button(action: {
-              runStateToggled = false
+              self.viewRouter.rewindView()
+//              runViewToggled = false
             }, label: {
               Text("Rewind")
                 .font(.custom("HelveticaNeue-Medium", fixedSize: 24))
-                .foregroundColor(runStateToggled == true ? .gray : ((currentMode == .dark) ? .white : .black))
+                .foregroundColor(runViewToggled == true ? .gray : ((currentMode == .dark) ? .white : .black))
             })
             Spacer()
           }
@@ -66,6 +69,7 @@ struct HomeView: View {
         .frame(maxWidth: .infinity)
       }
 //      .preferredColorScheme(isDarkMode ? .dark : .light)
+      .modifier(LoginView())
       // Called when a redirect is received from Spotify
       .onOpenURL(perform: handleURL(_:))
     }
@@ -73,7 +77,7 @@ struct HomeView: View {
   
   func displayToggledView() -> some View {
     return ZStack {
-      if runStateToggled {
+      if runViewToggled {
         homeRunView()
       } else {
         homeRewindView()
