@@ -148,7 +148,7 @@ struct HomeView: View {
 //      Toggle("Dark Mode", isOn: $isDarkMode)
 //      Spacer()
     }
-    .onAppear(perform: self.runViewModel.fetchRuns)
+    .onAppear(perform: self.runViewModel.retrieveRuns)
   }
 }
 

@@ -10,7 +10,7 @@
 		7E0625692922C90A001EB66A /* RunViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0625682922C90A001EB66A /* RunViewModel.swift */; };
 		7EAD37DD291EC2E400BCBE02 /* FormatDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37DC291EC2E400BCBE02 /* FormatDisplay.swift */; };
 		7EAD37DF291EC2EE00BCBE02 /* UnitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37DE291EC2EE00BCBE02 /* UnitExtensions.swift */; };
-		7EAD37E1291EC34A00BCBE02 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E0291EC34A00BCBE02 /* CoreDataStack.swift */; };
+		7EAD37E1291EC34A00BCBE02 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E0291EC34A00BCBE02 /* DataManager.swift */; };
 		7EAD37E4291EC37F00BCBE02 /* HyprRun.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E2291EC37F00BCBE02 /* HyprRun.xcdatamodeld */; };
 		7EAD37E6291EC43F00BCBE02 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E5291EC43F00BCBE02 /* LocationManager.swift */; };
 		7EAD37E9291EC51F00BCBE02 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E8291EC51F00BCBE02 /* Route.swift */; };
@@ -20,6 +20,7 @@
 		7ECFF200293FE30B006326FB /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF1FC293FE30B006326FB /* Location+CoreDataProperties.swift */; };
 		7ECFF201293FE30B006326FB /* Run+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF1FD293FE30B006326FB /* Run+CoreDataClass.swift */; };
 		7ECFF202293FE30B006326FB /* Run+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF1FE293FE30B006326FB /* Run+CoreDataProperties.swift */; };
+		7ECFF205293FE411006326FB /* UIRunViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF204293FE411006326FB /* UIRunViewModel.swift */; };
 		7EFD5C1A2924044B006D4061 /* PostRunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD5C192924044B006D4061 /* PostRunView.swift */; };
 		E013DB8729103ED50029093B /* HyprRunApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013DB8629103ED50029093B /* HyprRunApp.swift */; };
 		E013DB8929103ED50029093B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013DB8829103ED50029093B /* ContentView.swift */; };
@@ -47,7 +48,7 @@
 		7E0625682922C90A001EB66A /* RunViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewModel.swift; sourceTree = "<group>"; };
 		7EAD37DC291EC2E400BCBE02 /* FormatDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatDisplay.swift; sourceTree = "<group>"; };
 		7EAD37DE291EC2EE00BCBE02 /* UnitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitExtensions.swift; sourceTree = "<group>"; };
-		7EAD37E0291EC34A00BCBE02 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		7EAD37E0291EC34A00BCBE02 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		7EAD37E3291EC37F00BCBE02 /* HyprRun.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HyprRun.xcdatamodel; sourceTree = "<group>"; };
 		7EAD37E5291EC43F00BCBE02 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7EAD37E8291EC51F00BCBE02 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
@@ -57,6 +58,7 @@
 		7ECFF1FC293FE30B006326FB /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7ECFF1FD293FE30B006326FB /* Run+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Run+CoreDataClass.swift"; sourceTree = "<group>"; };
 		7ECFF1FE293FE30B006326FB /* Run+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Run+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7ECFF204293FE411006326FB /* UIRunViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRunViewModel.swift; sourceTree = "<group>"; };
 		7EFD5C192924044B006D4061 /* PostRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRunView.swift; sourceTree = "<group>"; };
 		E013DB8329103ED50029093B /* HyprRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HyprRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E013DB8629103ED50029093B /* HyprRunApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyprRunApp.swift; sourceTree = "<group>"; };
@@ -110,9 +112,18 @@
 				7ECFF1FD293FE30B006326FB /* Run+CoreDataClass.swift */,
 				7ECFF1FE293FE30B006326FB /* Run+CoreDataProperties.swift */,
 				7EAD37E2291EC37F00BCBE02 /* HyprRun.xcdatamodeld */,
-				7EAD37E0291EC34A00BCBE02 /* CoreDataStack.swift */,
+				7EAD37E0291EC34A00BCBE02 /* DataManager.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		7ECFF203293FE3FD006326FB /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				7E0625682922C90A001EB66A /* RunViewModel.swift */,
+				7ECFF204293FE411006326FB /* UIRunViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		E013DB7A29103ED50029093B = {
@@ -137,7 +148,7 @@
 				7ECFF1FA293FE109006326FB /* CoreData */,
 				E0B71560291046AA0037B331 /* Project Utilities */,
 				E013DB8629103ED50029093B /* HyprRunApp.swift */,
-				7E0625682922C90A001EB66A /* RunViewModel.swift */,
+				7ECFF203293FE3FD006326FB /* ViewModels */,
 				E013DB95291042390029093B /* Views */,
 				7EAD37E7291EC50E00BCBE02 /* ViewRouter */,
 				E013DB94291041F30029093B /* Models */,
@@ -296,9 +307,10 @@
 				E021935529180A1500FAF91E /* RunView.swift in Sources */,
 				7ECFF201293FE30B006326FB /* Run+CoreDataClass.swift in Sources */,
 				7EAD37DF291EC2EE00BCBE02 /* UnitExtensions.swift in Sources */,
-				7EAD37E1291EC34A00BCBE02 /* CoreDataStack.swift in Sources */,
+				7EAD37E1291EC34A00BCBE02 /* DataManager.swift in Sources */,
 				E0B7156429104AB60037B331 /* AlertItem.swift in Sources */,
 				E02D56C229146908004C955C /* PlaylistListView.swift in Sources */,
+				7ECFF205293FE411006326FB /* UIRunViewModel.swift in Sources */,
 				E02D56C02914689A004C955C /* PlaylistPreviewView.swift in Sources */,
 				E0B71562291046BF0037B331 /* ImageName.swift in Sources */,
 				7EAD37E9291EC51F00BCBE02 /* Route.swift in Sources */,
