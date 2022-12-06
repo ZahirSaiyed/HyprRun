@@ -41,7 +41,6 @@
 		E0B7155F2910455D0037B331 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B7155E2910455D0037B331 /* LoginView.swift */; };
 		E0B71562291046BF0037B331 /* ImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B71561291046BF0037B331 /* ImageName.swift */; };
 		E0B7156429104AB60037B331 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B7156329104AB60037B331 /* AlertItem.swift */; };
-		E0D1ADD4291B522D007B2893 /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D1ADD3291B522D007B2893 /* TrackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,7 +77,6 @@
 		E0B7155E2910455D0037B331 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E0B71561291046BF0037B331 /* ImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageName.swift; sourceTree = "<group>"; };
 		E0B7156329104AB60037B331 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
-		E0D1ADD3291B522D007B2893 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
 		E0D55EBD2910660600EC755E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,6 +122,36 @@
 				7ECFF204293FE411006326FB /* UIRunViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		7ECFF206293FED33006326FB /* Core Views */ = {
+			isa = PBXGroup;
+			children = (
+				7EAD37EC291ED5E800BCBE02 /* HomeView.swift */,
+				E021935429180A1500FAF91E /* RunView.swift */,
+				E031EEFD291EB14D002B8164 /* SplashView.swift */,
+				E02D56C129146908004C955C /* PlaylistListView.swift */,
+				7EFD5C192924044B006D4061 /* PostRunView.swift */,
+			);
+			path = "Core Views";
+			sourceTree = "<group>";
+		};
+		7ECFF207293FED61006326FB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E02D56BF2914689A004C955C /* PlaylistPreviewView.swift */,
+				E02D56C829146D30004C955C /* PlaylistCellView.swift */,
+				E025E5BF2914598300FF1922 /* VibeButtonView.swift */,
+				E02193522918071F00FAF91E /* SelectBoxView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		7ECFF208293FEDDA006326FB /* Sub-views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Sub-views";
 			sourceTree = "<group>";
 		};
 		E013DB7A29103ED50029093B = {
@@ -179,28 +207,13 @@
 		E013DB95291042390029093B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E02D56C32914698B004C955C /* Playlist Views */,
 				E013DB8829103ED50029093B /* ContentView.swift */,
+				7ECFF206293FED33006326FB /* Core Views */,
+				7ECFF208293FEDDA006326FB /* Sub-views */,
+				7ECFF207293FED61006326FB /* Components */,
 				E0B7155E2910455D0037B331 /* LoginView.swift */,
-				7EAD37EC291ED5E800BCBE02 /* HomeView.swift */,
-				E021935429180A1500FAF91E /* RunView.swift */,
-				E031EEFD291EB14D002B8164 /* SplashView.swift */,
-				E025E5BF2914598300FF1922 /* VibeButtonView.swift */,
-				E02D56BF2914689A004C955C /* PlaylistPreviewView.swift */,
-				E02193522918071F00FAF91E /* SelectBoxView.swift */,
-				E0D1ADD3291B522D007B2893 /* TrackView.swift */,
-				7EFD5C192924044B006D4061 /* PostRunView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		E02D56C32914698B004C955C /* Playlist Views */ = {
-			isa = PBXGroup;
-			children = (
-				E02D56C129146908004C955C /* PlaylistListView.swift */,
-				E02D56C829146D30004C955C /* PlaylistCellView.swift */,
-			);
-			path = "Playlist Views";
 			sourceTree = "<group>";
 		};
 		E0B71560291046AA0037B331 /* Project Utilities */ = {
@@ -301,7 +314,6 @@
 				E06CA5C1291E763B004F0C6D /* SpotifyAPIExtensions.swift in Sources */,
 				7E0625692922C90A001EB66A /* RunViewModel.swift in Sources */,
 				7ECFF1FF293FE30B006326FB /* Location+CoreDataClass.swift in Sources */,
-				E0D1ADD4291B522D007B2893 /* TrackView.swift in Sources */,
 				7ECFF200293FE30B006326FB /* Location+CoreDataProperties.swift in Sources */,
 				E025E5C02914598300FF1922 /* VibeButtonView.swift in Sources */,
 				E021935529180A1500FAF91E /* RunView.swift in Sources */,
