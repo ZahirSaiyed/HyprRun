@@ -16,7 +16,6 @@ struct ContentView: View {
   @EnvironmentObject var spotify: Spotify
   @ObservedObject var runViewModel: UIRunViewModel = UIRunViewModel()
   
-  //@State private var selectedPlaylists: [String] = []
 	@State private var selectedPlaylists: [Playlist<PlaylistItemsReference>] = []
   @State private var playlists: [Playlist<PlaylistItemsReference>] = []
   @State private var tracks: [PlaylistItem] = []
@@ -38,7 +37,7 @@ struct ContentView: View {
       if !self._isAuthorized.wrappedValue {
         SplashView(isAuthorized: $isAuthorized)
       } else {
-        HomeView(runViewModel: self.runViewModel, isAuthorized: $isAuthorized, selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks, vibe: $vibe, isEditing: $isEditing).environmentObject(self.viewRouter)
+        HomeView(runViewModel: self.runViewModel, runViewToggled: $viewRouter.runViewToggled, isAuthorized: $isAuthorized, selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks, vibe: $vibe, isEditing: $isEditing).environmentObject(self.viewRouter)
       }
       
     case Route.runView:
