@@ -15,7 +15,8 @@ extension RunView {
           Text("\(self.currSongName)").foregroundColor(Color.white)
           Text("\(self.currArtist)").foregroundColor(Color.white)
           Text("\(elapsedTimeAsString())").foregroundColor(Color.white)
-					Text("\(getPrediction())").foregroundColor(Color.white)
+					//Text("\(getPrediction())").foregroundColor(Color.white)
+				Text("\(getFeature(trackNum:self.currSong))").foregroundColor(Color.white)
           AsyncImage(url: self.currImageURL)
       }
       .onReceive(timerSong) { input in
@@ -79,7 +80,8 @@ extension RunView {
     }
     .frame(maxWidth: .infinity)
     .background(Color.black)
-    .onAppear(perform: retrieveTracks)
+		.onAppear(perform: retrieveTracks)
+		.onChange(of: self.tracks, perform: retrieveFeatures)
   }
   
   // MARK: - Button components

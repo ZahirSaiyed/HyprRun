@@ -41,6 +41,7 @@ struct RunView: View {
 	@Binding var selectedPlaylists: [Playlist<PlaylistItemsReference>]
   @Binding var playlists: [Playlist<PlaylistItemsReference>]
   @Binding var tracks: [PlaylistItem]
+	@Binding var features: [MusicRunningInput]
   
   // MARK: - Main view
   var body: some View {
@@ -254,5 +255,32 @@ struct RunView: View {
 		} else {
 			return("None")
 		}
+	}
+	
+	func retrieveFeatures(items : [PlaylistItem]) {
+		self.features = []
+		if(self.tracks.count > 0){
+			for track in self.tracks{
+//				let currTrack = self.tracks[self.currSong]
+				var trackID =  track.uri ?? "None"
+				if trackID != "None"{
+					spotify.api.trackAudioFeatures(trackID).sink(
+						receiveCompletion: { completion in
+							print("completion: ", completion, terminator: "\n\n\n")
+						},
+						receiveValue: { feature in
+							self.features.append(MusicRunningInput(danceability: feature.danceability, energy: feature.energy, key: Double(feature.key), loudness: feature.loudness, mode: Double(feature.mode), acousticness: feature.acousticness, instrumentalness: feature.instrumentalness, liveness: feature.liveness, valence: feature.valence, tempo: feature.tempo))
+						}
+					).store(in: &cancellables)
+				}
+			}
+		}
+	}
+	
+	func getFeature(trackNum:Int) -> Double{
+		if(self.features.count > 0) {
+			return self.features[trackNum].tempo
+		}
+		return -1.0
 	}
 }
