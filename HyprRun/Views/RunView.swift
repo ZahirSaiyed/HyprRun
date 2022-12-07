@@ -241,7 +241,7 @@ struct RunView: View {
     ).store(in: &cancellables)
 	}
 	
-	func getPrediction() -> String{
+	func getPrediction(featureSet: MusicRunningInput) -> String{
 		//let input = [0.537, 0.558, 11.0, -8.678, 1.0, 0.2630, 0.910000, 0.1020, 0.505, 131.037]
 //		let input = MusicRunningInput(danceability: 0.537, energy: 0.558, key: 11.0, loudness: -8.678, mode: 1.0, acousticness: 0.2630, instrumentalness: 0.910000, liveness: 0.1020, valence: 0.505, tempo: 131.037)
 //		let prediction = try? MLModel.predict(input)
@@ -250,7 +250,7 @@ struct RunView: View {
 		//let prediction = MLModel.predict(MusicRunningInput(danceability: 0.537, energy: 0.558, key: 11.0, loudness: -8.678, mode: 1.0, acousticness: 0.2630, instrumentalness: 0.910000, liveness: 0.1020, valence: 0.505, tempo: 131.037))
 		//return prediction.label
 		
-		if let prediction = try? MLModel.prediction(danceability: 0.537, energy: 0.558, key: 11.0, loudness: -8.678, mode: 1.0, acousticness: 0.2630, instrumentalness: 0.910000, liveness: 0.1020, valence: 0.505, tempo: 131.037) {
+		if let prediction = try? MLModel.prediction(input: featureSet) {
 			return(prediction.label)
 		} else {
 			return("None")
@@ -277,10 +277,11 @@ struct RunView: View {
 		}
 	}
 	
-	func getFeature(trackNum:Int) -> Double{
+	func getFeature(trackNum:Int) -> MusicRunningInput{
 		if(self.features.count > 0) {
-			return self.features[trackNum].tempo
+			return self.features[trackNum]
 		}
-		return -1.0
+		//random default MusicRunningInput
+		return MusicRunningInput(danceability: 0.537, energy: 0.558, key: 11.0, loudness: -8.678, mode: 1.0, acousticness: 0.2630, instrumentalness: 0.910000, liveness: 0.1020, valence: 0.505, tempo: 131.037)
 	}
 }

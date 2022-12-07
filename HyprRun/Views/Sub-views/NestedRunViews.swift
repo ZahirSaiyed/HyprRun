@@ -16,7 +16,9 @@ extension RunView {
           Text("\(self.currArtist)").foregroundColor(Color.white)
           Text("\(elapsedTimeAsString())").foregroundColor(Color.white)
 					//Text("\(getPrediction())").foregroundColor(Color.white)
-				Text("\(getFeature(trackNum:self.currSong))").foregroundColor(Color.white)
+					//Text("\(getFeature(trackNum:self.currSong))").foregroundColor(Color.white)
+					let featureSet = getFeature(trackNum:self.currSong)
+				  Text("\(getPrediction(featureSet: featureSet))").foregroundColor(Color.white)
           AsyncImage(url: self.currImageURL)
       }
       .onReceive(timerSong) { input in
