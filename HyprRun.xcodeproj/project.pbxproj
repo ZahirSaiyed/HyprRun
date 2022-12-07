@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7E0625692922C90A001EB66A /* RunViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0625682922C90A001EB66A /* RunViewModel.swift */; };
+		7E2184B329400F7D00A701CE /* HyprRunTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2184B229400F7D00A701CE /* HyprRunTests.swift */; };
 		7EAD37DD291EC2E400BCBE02 /* FormatDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37DC291EC2E400BCBE02 /* FormatDisplay.swift */; };
 		7EAD37DF291EC2EE00BCBE02 /* UnitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37DE291EC2EE00BCBE02 /* UnitExtensions.swift */; };
 		7EAD37E1291EC34A00BCBE02 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E0291EC34A00BCBE02 /* DataManager.swift */; };
@@ -46,8 +47,20 @@
 		E0B7156429104AB60037B331 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B7156329104AB60037B331 /* AlertItem.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7E2184B429400F7D00A701CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E013DB7B29103ED50029093B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E013DB8229103ED50029093B;
+			remoteInfo = HyprRun;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		7E0625682922C90A001EB66A /* RunViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewModel.swift; sourceTree = "<group>"; };
+		7E2184B029400F7D00A701CE /* HyprRunTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HyprRunTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E2184B229400F7D00A701CE /* HyprRunTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyprRunTests.swift; sourceTree = "<group>"; };
 		7EAD37DC291EC2E400BCBE02 /* FormatDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatDisplay.swift; sourceTree = "<group>"; };
 		7EAD37DE291EC2EE00BCBE02 /* UnitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitExtensions.swift; sourceTree = "<group>"; };
 		7EAD37E0291EC34A00BCBE02 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -87,6 +100,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7E2184AD29400F7D00A701CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E013DB8029103ED50029093B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -99,6 +119,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E2184B129400F7D00A701CE /* HyprRunTests */ = {
+			isa = PBXGroup;
+			children = (
+				7E2184B229400F7D00A701CE /* HyprRunTests.swift */,
+			);
+			path = HyprRunTests;
+			sourceTree = "<group>";
+		};
 		7EAD37E7291EC50E00BCBE02 /* ViewRouter */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				E013DB8529103ED50029093B /* HyprRun */,
+				7E2184B129400F7D00A701CE /* HyprRunTests */,
 				E013DB8429103ED50029093B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -163,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				E013DB8329103ED50029093B /* HyprRun.app */,
+				7E2184B029400F7D00A701CE /* HyprRunTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -233,6 +263,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		7E2184AF29400F7D00A701CE /* HyprRunTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E2184B829400F7D00A701CE /* Build configuration list for PBXNativeTarget "HyprRunTests" */;
+			buildPhases = (
+				7E2184AC29400F7D00A701CE /* Sources */,
+				7E2184AD29400F7D00A701CE /* Frameworks */,
+				7E2184AE29400F7D00A701CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7E2184B529400F7D00A701CE /* PBXTargetDependency */,
+			);
+			name = HyprRunTests;
+			productName = HyprRunTests;
+			productReference = 7E2184B029400F7D00A701CE /* HyprRunTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		E013DB8229103ED50029093B /* HyprRun */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E013DB9129103ED60029093B /* Build configuration list for PBXNativeTarget "HyprRun" */;
@@ -261,9 +309,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1400;
+				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
+					7E2184AF29400F7D00A701CE = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = E013DB8229103ED50029093B;
+					};
 					E013DB8229103ED50029093B = {
 						CreatedOnToolsVersion = 14.0.1;
 					};
@@ -287,11 +339,19 @@
 			projectRoot = "";
 			targets = (
 				E013DB8229103ED50029093B /* HyprRun */,
+				7E2184AF29400F7D00A701CE /* HyprRunTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7E2184AE29400F7D00A701CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E013DB8129103ED50029093B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -304,6 +364,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7E2184AC29400F7D00A701CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E2184B329400F7D00A701CE /* HyprRunTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E013DB7F29103ED50029093B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -346,7 +414,53 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		7E2184B529400F7D00A701CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E013DB8229103ED50029093B /* HyprRun */;
+			targetProxy = 7E2184B429400F7D00A701CE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		7E2184B629400F7D00A701CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5VW88FCKJ3;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "loose-milk.HyprRunTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HyprRun.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HyprRun";
+			};
+			name = Debug;
+		};
+		7E2184B729400F7D00A701CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5VW88FCKJ3;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "loose-milk.HyprRunTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HyprRun.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HyprRun";
+			};
+			name = Release;
+		};
 		E013DB8F29103ED60029093B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -524,6 +638,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7E2184B829400F7D00A701CE /* Build configuration list for PBXNativeTarget "HyprRunTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E2184B629400F7D00A701CE /* Debug */,
+				7E2184B729400F7D00A701CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E013DB7E29103ED50029093B /* Build configuration list for PBXProject "HyprRun" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
