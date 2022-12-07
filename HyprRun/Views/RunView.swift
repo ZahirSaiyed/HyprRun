@@ -9,14 +9,16 @@ import SwiftUI
 import SpotifyWebAPI
 import Foundation
 import Combine
+import CoreML
 
 struct RunView: View {
+	
   // MARK: - Properties
   @EnvironmentObject var viewRouter: ViewRouter
   @EnvironmentObject var spotify: Spotify
   
   @ObservedObject var runViewModel: UIRunViewModel
-  
+	
   @State var songDuration = 0
 	@State var counter = 0
   @State var isPlaying: Bool = true
@@ -34,11 +36,11 @@ struct RunView: View {
   @State private var playTrackCancellable: AnyCancellable? = nil
   
 	let timerSong = Timer.publish(every: 0.99, on: .main, in: .default).autoconnect()
-
+	let MLModel = MusicRunning()
+	
 	@Binding var selectedPlaylists: [Playlist<PlaylistItemsReference>]
   @Binding var playlists: [Playlist<PlaylistItemsReference>]
   @Binding var tracks: [PlaylistItem]
-	
   
   // MARK: - Main view
   var body: some View {
@@ -236,5 +238,21 @@ struct RunView: View {
         }
       }
     ).store(in: &cancellables)
+	}
+	
+	func getPrediction() -> String{
+		//let input = [0.537, 0.558, 11.0, -8.678, 1.0, 0.2630, 0.910000, 0.1020, 0.505, 131.037]
+//		let input = MusicRunningInput(danceability: 0.537, energy: 0.558, key: 11.0, loudness: -8.678, mode: 1.0, acousticness: 0.2630, instrumentalness: 0.910000, liveness: 0.1020, valence: 0.505, tempo: 131.037)
+//		let prediction = try? MLModel.predict(input)
+//		return prediction?.label ?? "None"
+		
+		//let prediction = MLModel.predict(MusicRunningInput(danceability: 0.537, energy: 0.558, key: 11.0, loudness: -8.678, mode: 1.0, acousticness: 0.2630, instrumentalness: 0.910000, liveness: 0.1020, valence: 0.505, tempo: 131.037))
+		//return prediction.label
+		
+		if let prediction = try? MLModel.prediction(danceability: 0.537, energy: 0.558, key: 11.0, loudness: -8.678, mode: 1.0, acousticness: 0.2630, instrumentalness: 0.910000, liveness: 0.1020, valence: 0.505, tempo: 131.037) {
+			return(prediction.label)
+		} else {
+			return("None")
+		}
 	}
 }

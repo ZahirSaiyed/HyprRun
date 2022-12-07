@@ -42,6 +42,8 @@
 		E02D56C929146D30004C955C /* PlaylistCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D56C829146D30004C955C /* PlaylistCellView.swift */; };
 		E031EEFE291EB14D002B8164 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031EEFD291EB14D002B8164 /* SplashView.swift */; };
 		E06CA5C1291E763B004F0C6D /* SpotifyAPIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06CA5C0291E763B004F0C6D /* SpotifyAPIExtensions.swift */; };
+		E092CB7C294043DC0005473A /* MusicRunning.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E092CB7B294043DC0005473A /* MusicRunning.mlmodel */; };
+		E092CB7E294044F40005473A /* MLModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092CB7D294044F40005473A /* MLModelManager.swift */; };
 		E0B71562291046BF0037B331 /* ImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B71561291046BF0037B331 /* ImageName.swift */; };
 		E0B7156429104AB60037B331 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B7156329104AB60037B331 /* AlertItem.swift */; };
 /* End PBXBuildFile section */
@@ -81,6 +83,9 @@
 		E02D56C829146D30004C955C /* PlaylistCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCellView.swift; sourceTree = "<group>"; };
 		E031EEFD291EB14D002B8164 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		E06CA5C0291E763B004F0C6D /* SpotifyAPIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyAPIExtensions.swift; sourceTree = "<group>"; };
+		E092CB7B294043DC0005473A /* MusicRunning.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MusicRunning.mlmodel; sourceTree = "<group>"; };
+		E092CB7D294044F40005473A /* MLModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLModelManager.swift; sourceTree = "<group>"; };
+		E092CB8029404CAD0005473A /* MusicRunning.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = MusicRunning.mlmodel; path = ../../../Downloads/MusicRunning.mlmodel; sourceTree = "<group>"; };
 		E0B71561291046BF0037B331 /* ImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageName.swift; sourceTree = "<group>"; };
 		E0B7156329104AB60037B331 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 		E0D55EBD2910660600EC755E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -156,6 +161,7 @@
 			children = (
 				E013DB8529103ED50029093B /* HyprRun */,
 				E013DB8429103ED50029093B /* Products */,
+				E092CB7F29404CAD0005473A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -206,6 +212,8 @@
 			children = (
 				E013DB8829103ED50029093B /* ContentView.swift */,
 				E031EEFD291EB14D002B8164 /* SplashView.swift */,
+				E092CB7B294043DC0005473A /* MusicRunning.mlmodel */,
+				E092CB7D294044F40005473A /* MLModelManager.swift */,
 				7EAD37EC291ED5E800BCBE02 /* HomeView.swift */,
 				E02D56C129146908004C955C /* PlaylistListView.swift */,
 				E021935429180A1500FAF91E /* RunView.swift */,
@@ -215,6 +223,14 @@
 				7ECFF216293FFB25006326FB /* LoginView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		E092CB7F29404CAD0005473A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E092CB8029404CAD0005473A /* MusicRunning.mlmodel */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		E0B71560291046AA0037B331 /* Project Utilities */ = {
@@ -318,6 +334,7 @@
 				7ECFF211293FF40A006326FB /* HomeViewButtons.swift in Sources */,
 				7ECFF200293FE30B006326FB /* Location+CoreDataProperties.swift in Sources */,
 				E025E5C02914598300FF1922 /* VibeButtonView.swift in Sources */,
+				E092CB7C294043DC0005473A /* MusicRunning.mlmodel in Sources */,
 				E021935529180A1500FAF91E /* RunView.swift in Sources */,
 				7ECFF201293FE30B006326FB /* Run+CoreDataClass.swift in Sources */,
 				7EAD37DF291EC2EE00BCBE02 /* UnitExtensions.swift in Sources */,
@@ -334,6 +351,7 @@
 				E013DB8929103ED50029093B /* ContentView.swift in Sources */,
 				7EAD37E4291EC37F00BCBE02 /* HyprRun.xcdatamodeld in Sources */,
 				7EAD37E6291EC43F00BCBE02 /* LocationManager.swift in Sources */,
+				E092CB7E294044F40005473A /* MLModelManager.swift in Sources */,
 				7EAD37DD291EC2E400BCBE02 /* FormatDisplay.swift in Sources */,
 				7ECFF20E293FF27B006326FB /* NestedRunViews.swift in Sources */,
 				7EAD37ED291ED5E800BCBE02 /* HomeView.swift in Sources */,
