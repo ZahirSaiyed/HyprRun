@@ -70,7 +70,7 @@ struct HomeView: View {
         .foregroundColor(currentMode == .dark ? .white : .black)
         .frame(maxWidth: .infinity)
       }
-//      .preferredColorScheme(isDarkMode ? .dark : .light)
+      .preferredColorScheme(.dark)
       .modifier(LoginView())
       // Called when a redirect is received from Spotify
       .onOpenURL(perform: handleURL(_:))

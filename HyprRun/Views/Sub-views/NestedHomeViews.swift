@@ -74,7 +74,6 @@ extension HomeView {
           .fontWeight(.bold)
       }
     }
-    
-    
+    .onAppear(perform: self.runViewModel.retrieveRuns)
   }
 }
