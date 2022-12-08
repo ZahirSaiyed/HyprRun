@@ -27,19 +27,36 @@ struct HomeView: View {
   @Binding var vibe: Float
   @Binding var isEditing: Bool
   
+  let hyprBlue = Color(red: 0.13, green: 0.00, blue: 0.95)
+  
   var body: some View {
+
     NavigationView {
+      
       ZStack {
-        VStack(alignment: .leading, spacing: 35) {
+
+        VStack(alignment: .leading) {
           logoutButton
-          Text("Run").font(.custom("HelveticaNeue-Bold", fixedSize: 48))
-          Text("Your Running Mix").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
+          Text("Run").font(.custom("HelveticaNeue-Bold", fixedSize: 36)).lineSpacing(30)
           
-          PlaylistPreviewView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
-            .disabled(!spotify.isAuthorized)
-            .frame(height: 50)
+          Spacer().frame(maxHeight: 50)
           
-          Text("\(selectedPlaylists.count) playlists selected")
+          VStack(alignment: .leading){
+            Text("Your Running Mix")
+              .font(.custom("HelveticaNeue-Bold", fixedSize: 24))
+            Text("The playlists we use to match your current vibe")
+              .font(.custom("HelveticaNeue-Bold", fixedSize: 15))
+            
+            PlaylistPreviewView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
+              .disabled(!spotify.isAuthorized)
+              .frame(height: 50)
+              
+            
+            Text("\(selectedPlaylists.count) playlists selected")
+            
+            Spacer().frame(maxHeight: 64)
+          }
+          
           
           Text("The Vibe")
             .font(.custom("HelveticaNeue-Bold", fixedSize: 28))
@@ -56,6 +73,8 @@ struct HomeView: View {
               .foregroundColor(isEditing ? .red : .blue)
           }.frame(alignment: .center)
           
+          Spacer().frame(maxHeight: 148)
+          
           newRunButton.offset(x: 50, y: 0)
 
         }
@@ -69,7 +88,11 @@ struct HomeView: View {
       .modifier(LoginView())
       // Called when a redirect is received from Spotify
       .onOpenURL(perform: handleURL(_:))
+      .foregroundColor(Color.white)
+      .background(Color.pink)
+
     }
+    
   }
 }
 

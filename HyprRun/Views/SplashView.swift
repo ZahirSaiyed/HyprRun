@@ -45,19 +45,11 @@ struct SplashView: View {
 					
 					if (!self.isAuthorized){
 //					if(!spotify.isAuthorized){
-							Button(action: authorize) {
-//							Button(action: spotify.authorize) {
-
-						HStack {
+            Button(action: authorize) {
 							Text("Log in with Spotify")
-								.font(.title)
-						}
-						.padding()
-						.clipShape(Capsule())
-						.shadow(radius: 5)
-					}
+            }
 						.accessibility(identifier: "Log in with Spotify Identifier")
-						.buttonStyle(PlainButtonStyle())
+            .buttonStyle(LoginButton())
 					// Prevent the user from trying to login again
 					// if a request to retrieve the access and refresh
 					// tokens is currently in progress.
