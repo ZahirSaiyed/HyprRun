@@ -34,9 +34,10 @@ struct RunView: View {
   
   @State private var alert: AlertItem? = nil
   @State private var playTrackCancellable: AnyCancellable? = nil
+	
+	@State var isEditing: Bool = false
   
 	let timerSong = Timer.publish(every: 0.99, on: .main, in: .default).autoconnect()
-//	let MLModel = MusicRunning(configuration: MLModelConfiguration())
 	
 	let MLModel: MusicRunning = {
 	do {
@@ -170,6 +171,7 @@ struct RunView: View {
           receiveValue: { playlist in
             for track in playlist.items.items.compactMap(\.item) {
               self.tracks.append(track)
+							
             }
           }
         ).store(in: &cancellables)
@@ -253,13 +255,6 @@ struct RunView: View {
 	}
 	
 	func getPrediction() -> String{
-		//let input = [0.537, 0.558, 11.0, -8.678, 1.0, 0.2630, 0.910000, 0.1020, 0.505, 131.037]
-//		let input = MusicRunningInput(danceability: 0.537, energy: 0.558, key: 11.0, loudness: -8.678, mode: 1.0, acousticness: 0.2630, instrumentalness: 0.910000, liveness: 0.1020, valence: 0.505, tempo: 131.037)
-//		let prediction = try? MLModel.predict(input)
-//		return prediction?.label ?? "None"
-		
-		//let prediction = MLModel.predict(MusicRunningInput(danceability: 0.537, energy: 0.558, key: 11.0, loudness: -8.678, mode: 1.0, acousticness: 0.2630, instrumentalness: 0.910000, liveness: 0.1020, valence: 0.505, tempo: 131.037))
-		//return prediction.label
 		let featureSet = getFeature(trackNum: self.currSong)
 		if let prediction = try? MLModel.prediction(input: featureSet) {
 			return(prediction.label)
@@ -272,8 +267,7 @@ struct RunView: View {
 		self.features = []
 		if(self.tracks.count > 0){
 			for track in self.tracks{
-//				let currTrack = self.tracks[self.currSong]
-				var trackID =  track.uri ?? "None"
+				let trackID =  track.uri ?? "None"
 				if trackID != "None"{
 					spotify.api.trackAudioFeatures(trackID).sink(
 						receiveCompletion: { completion in
