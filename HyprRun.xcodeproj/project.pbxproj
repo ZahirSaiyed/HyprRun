@@ -43,7 +43,6 @@
 		E031EEFE291EB14D002B8164 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031EEFD291EB14D002B8164 /* SplashView.swift */; };
 		E06CA5C1291E763B004F0C6D /* SpotifyAPIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06CA5C0291E763B004F0C6D /* SpotifyAPIExtensions.swift */; };
 		E092CB7C294043DC0005473A /* MusicRunning.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E092CB7B294043DC0005473A /* MusicRunning.mlmodel */; };
-		E092CB7E294044F40005473A /* MLModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092CB7D294044F40005473A /* MLModelManager.swift */; };
 		E0B71562291046BF0037B331 /* ImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B71561291046BF0037B331 /* ImageName.swift */; };
 		E0B7156429104AB60037B331 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B7156329104AB60037B331 /* AlertItem.swift */; };
 /* End PBXBuildFile section */
@@ -84,7 +83,6 @@
 		E031EEFD291EB14D002B8164 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		E06CA5C0291E763B004F0C6D /* SpotifyAPIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyAPIExtensions.swift; sourceTree = "<group>"; };
 		E092CB7B294043DC0005473A /* MusicRunning.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MusicRunning.mlmodel; sourceTree = "<group>"; };
-		E092CB7D294044F40005473A /* MLModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLModelManager.swift; sourceTree = "<group>"; };
 		E092CB8029404CAD0005473A /* MusicRunning.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = MusicRunning.mlmodel; path = ../../../Downloads/MusicRunning.mlmodel; sourceTree = "<group>"; };
 		E0B71561291046BF0037B331 /* ImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageName.swift; sourceTree = "<group>"; };
 		E0B7156329104AB60037B331 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
@@ -176,6 +174,7 @@
 		E013DB8529103ED50029093B /* HyprRun */ = {
 			isa = PBXGroup;
 			children = (
+				E092CB7B294043DC0005473A /* MusicRunning.mlmodel */,
 				7ECFF1FA293FE109006326FB /* CoreData */,
 				E0B71560291046AA0037B331 /* Project Utilities */,
 				E013DB8629103ED50029093B /* HyprRunApp.swift */,
@@ -212,8 +211,6 @@
 			children = (
 				E013DB8829103ED50029093B /* ContentView.swift */,
 				E031EEFD291EB14D002B8164 /* SplashView.swift */,
-				E092CB7B294043DC0005473A /* MusicRunning.mlmodel */,
-				E092CB7D294044F40005473A /* MLModelManager.swift */,
 				7EAD37EC291ED5E800BCBE02 /* HomeView.swift */,
 				E02D56C129146908004C955C /* PlaylistListView.swift */,
 				E021935429180A1500FAF91E /* RunView.swift */,
@@ -351,7 +348,6 @@
 				E013DB8929103ED50029093B /* ContentView.swift in Sources */,
 				7EAD37E4291EC37F00BCBE02 /* HyprRun.xcdatamodeld in Sources */,
 				7EAD37E6291EC43F00BCBE02 /* LocationManager.swift in Sources */,
-				E092CB7E294044F40005473A /* MLModelManager.swift in Sources */,
 				7EAD37DD291EC2E400BCBE02 /* FormatDisplay.swift in Sources */,
 				7ECFF20E293FF27B006326FB /* NestedRunViews.swift in Sources */,
 				7EAD37ED291ED5E800BCBE02 /* HomeView.swift in Sources */,

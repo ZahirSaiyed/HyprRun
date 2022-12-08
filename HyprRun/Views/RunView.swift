@@ -36,12 +36,23 @@ struct RunView: View {
   @State private var playTrackCancellable: AnyCancellable? = nil
   
 	let timerSong = Timer.publish(every: 0.99, on: .main, in: .default).autoconnect()
-	let MLModel = MusicRunning()
+//	let MLModel = MusicRunning(configuration: MLModelConfiguration())
+	
+	let MLModel: MusicRunning = {
+	do {
+		let config = MLModelConfiguration()
+		return try MusicRunning(configuration: config)
+	} catch {
+		print(error)
+		fatalError("Couldn't create SleepCalculator")
+	}
+	}()
 	
 	@Binding var selectedPlaylists: [Playlist<PlaylistItemsReference>]
   @Binding var playlists: [Playlist<PlaylistItemsReference>]
   @Binding var tracks: [PlaylistItem]
 	@Binding var features: [MusicRunningInput]
+	@Binding var vibe: Float
   
   // MARK: - Main view
   var body: some View {

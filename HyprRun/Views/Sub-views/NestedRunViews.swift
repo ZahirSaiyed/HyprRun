@@ -19,6 +19,7 @@ extension RunView {
 					//Text("\(getFeature(trackNum:self.currSong))").foregroundColor(Color.white)
 //					let featureSet = getFeature(trackNum:self.currSong)
 				  Text("\(getPrediction())").foregroundColor(Color.white)
+				Text("\(vibe)")
           AsyncImage(url: self.currImageURL)
       }
       .onReceive(timerSong) { input in

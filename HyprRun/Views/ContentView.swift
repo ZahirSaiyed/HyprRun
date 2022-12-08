@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 import SpotifyWebAPI
+import CoreML
 
 struct ContentView: View {
   @StateObject private var viewRouter = ViewRouter()
@@ -15,12 +16,12 @@ struct ContentView: View {
   
   @EnvironmentObject var spotify: Spotify
   @ObservedObject var runViewModel: UIRunViewModel = UIRunViewModel()
-  
+	
 	@State private var selectedPlaylists: [Playlist<PlaylistItemsReference>] = []
   @State private var playlists: [Playlist<PlaylistItemsReference>] = []
   @State private var tracks: [PlaylistItem] = []
 	@State private var features: [MusicRunningInput] = []
-  @State private var vibe: Float = 0.0
+	@State private var vibe: Float = 0.0
   @State private var isEditing = false
   
   @State private var alert: AlertItem? = nil
@@ -42,7 +43,7 @@ struct ContentView: View {
       }
       
     case Route.runView:
-			RunView(runViewModel: self.runViewModel, selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks, features: $features).environmentObject(self.viewRouter).preferredColorScheme(.dark)
+			RunView(runViewModel: self.runViewModel, selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks, features: $features, vibe: $vibe).environmentObject(self.viewRouter).preferredColorScheme(.dark)
       
     case Route.postRunView:
       PostRunView(runViewModel: self.runViewModel).environmentObject(self.viewRouter)
