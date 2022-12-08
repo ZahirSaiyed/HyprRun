@@ -54,18 +54,26 @@ extension RunView {
         }
       }
       .padding(.bottom, 50)
-			HStack {
-				Slider(
-					value: $vibe,
-					in: 0...5,
-					step: 1.0,
-					onEditingChanged: { editing in
-						isEditing = editing
-					})
-				Text("\(vibe)")
-					.foregroundColor(isEditing ? .red : .blue)
+//			HStack {
+//				Slider(
+//					value: $vibe,
+//					in: 0...5,
+//					step: 1.0,
+//					onEditingChanged: { editing in
+//						isEditing = editing
+//					})
+//				Text("\(vibe)")
+//					.foregroundColor(isEditing ? .red : .blue)
+//			}
+//			.frame(alignment: .center)
+			Picker("What is your vibe?", selection: $vibe) {
+					ForEach(["Chill", "Casual", "Determined", "HYPR"], id: \.self) {
+							Text($0)
+					}
 			}
-			.frame(alignment: .center)
+			.pickerStyle(.segmented)
+
+			Text("Vibe: \(vibe)")
     }
   }
   

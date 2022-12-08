@@ -14,14 +14,15 @@ struct ContentView: View {
   @StateObject private var viewRouter = ViewRouter()
   @State var root: Route = .homeView
   
-  @EnvironmentObject var spotify: Spotify
+  @EnvironmentObject var spotify: Spotify	
   @ObservedObject var runViewModel: UIRunViewModel = UIRunViewModel()
 	
 	@State private var selectedPlaylists: [Playlist<PlaylistItemsReference>] = []
   @State private var playlists: [Playlist<PlaylistItemsReference>] = []
   @State private var tracks: [PlaylistItem] = []
 	@State private var features: [MusicRunningInput] = []
-	@State private var vibe: Float = 0.0
+//	@State private var vibe: Float = 0.0
+	@State private var vibe: String = ""
   @State private var isEditing = false
   
   @State private var alert: AlertItem? = nil

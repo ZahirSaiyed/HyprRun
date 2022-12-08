@@ -53,7 +53,7 @@ struct RunView: View {
   @Binding var playlists: [Playlist<PlaylistItemsReference>]
   @Binding var tracks: [PlaylistItem]
 	@Binding var features: [MusicRunningInput]
-	@Binding var vibe: Float
+	@Binding var vibe: String
   
   // MARK: - Main view
   var body: some View {
