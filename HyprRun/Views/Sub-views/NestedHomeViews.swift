@@ -58,10 +58,18 @@ extension HomeView {
         Text("This is the rewind page :-). You'll be able to look back at runs you've completed here. For now, try going on your first run!")
         Spacer()
       } else {
-        List(self.runViewModel.runs, id: \.self) { run in
-          HStack(spacing: 20) {
-            Text(FormatDisplay.distance(run.distance))
-            Text(FormatDisplay.time(Int(run.duration)))
+        List {
+          ForEach(self.runViewModel.runs, id: \.self) { run in
+            NavigationLink(
+              destination: RunDetailView(run: run),
+              label: {
+                HStack {
+                  Text(FormatDisplay.date(run.timestamp))
+                    .fontWeight(.bold)
+                  Spacer()
+                  Text(FormatDisplay.distance(run.distance))
+                }
+            })
           }
         }
       }

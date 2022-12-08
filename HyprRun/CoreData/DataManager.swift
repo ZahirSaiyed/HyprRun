@@ -74,11 +74,14 @@ class DataManager {
   
   // MARK: - Hard reset
   func reset() {
-    let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Run.fetchRequest()
-    let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+    let runFetchRequest: NSFetchRequest<NSFetchRequestResult> = Run.fetchRequest()
+    let locationFetchRequest: NSFetchRequest<NSFetchRequestResult> = Location.fetchRequest()
+    let runDeleteRequest = NSBatchDeleteRequest(fetchRequest: runFetchRequest)
+    let locationDeleteRequest = NSBatchDeleteRequest(fetchRequest: locationFetchRequest)
     
     do {
-      try persistentContainer.viewContext.execute(deleteRequest)
+      try persistentContainer.viewContext.execute(runDeleteRequest)
+      try persistentContainer.viewContext.execute(locationDeleteRequest)
     } catch {
       print(error.localizedDescription)
     }
