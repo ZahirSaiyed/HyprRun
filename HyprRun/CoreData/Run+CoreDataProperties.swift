@@ -9,6 +9,12 @@
 import Foundation
 import CoreData
 
+extension Run {
+  @NSManaged public var distance: Double
+  @NSManaged public var duration: Int16
+  @NSManaged public var timestamp: Date?
+}
+
 extension Run: Identifiable {
   override public func awakeFromInsert() {
     super.awakeFromInsert()
@@ -17,9 +23,9 @@ extension Run: Identifiable {
 }
 
 extension Run {
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Run> {
-        return NSFetchRequest<Run>(entityName: "Run")
-    }
+  @nonobjc public class func fetchRequest() -> NSFetchRequest<Run> {
+    return NSFetchRequest<Run>(entityName: "Run")
+  }
 }
 
 // MARK: Generated accessors for locations
