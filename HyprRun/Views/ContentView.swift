@@ -21,6 +21,7 @@ struct ContentView: View {
   @State private var playlists: [Playlist<PlaylistItemsReference>] = []
   @State private var tracks: [PlaylistItem] = []
 	@State private var features: [MusicRunningInput] = []
+	@State private var predictions: [String] = []
 //	@State private var vibe: Float = 0.0
 	@State private var vibe: String = ""
   @State private var isEditing = false
@@ -44,7 +45,7 @@ struct ContentView: View {
       }
       
     case Route.runView:
-			RunView(runViewModel: self.runViewModel, selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks, features: $features, vibe: $vibe).environmentObject(self.viewRouter).preferredColorScheme(.dark)
+			RunView(runViewModel: self.runViewModel, selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks, features: $features, predictions: $predictions, vibe: $vibe).environmentObject(self.viewRouter).preferredColorScheme(.dark)
       
     case Route.postRunView:
       PostRunView(runViewModel: self.runViewModel).environmentObject(self.viewRouter)

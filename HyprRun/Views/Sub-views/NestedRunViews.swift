@@ -15,10 +15,12 @@ extension RunView {
           Text("\(self.currSongName)").foregroundColor(Color.white)
           Text("\(self.currArtist)").foregroundColor(Color.white)
           Text("\(elapsedTimeAsString())").foregroundColor(Color.white)
+		//		Text("\(self.predictions.count)")
 					//Text("\(getPrediction())").foregroundColor(Color.white)
-					//Text("\(getFeature(trackNum:self.currSong))").foregroundColor(Color.white)
+	//			Text("\(getFeature(trackNum:self.currSong).tempo)").foregroundColor(Color.white)
+				//Text("\(makePrediction(featureSet:getFeature(trackNum:self.currSong)))")
 //					let featureSet = getFeature(trackNum:self.currSong)
-				  Text("\(getPrediction())").foregroundColor(Color.white)
+				Text("\(getPrediction(trackNum: self.currSong))").foregroundColor(Color.white)
 				Text("\(vibe)")
           AsyncImage(url: self.currImageURL)
       }
@@ -103,8 +105,18 @@ extension RunView {
     }
     .frame(maxWidth: .infinity)
     .background(Color.black)
+//		.task{
+//			retrieveTracks()
+//			retrieveFeatures(items: self.tracks)
+//			retrievePredictions(items: self.tracks)
+//		}
 		.onAppear(perform: retrieveTracks)
-		.onChange(of: self.tracks, perform: retrieveFeatures)
+		.task(id: self.tracks){
+			retrieveFeatures(items: self.tracks)
+			retrievePredictions(items: self.tracks)
+		}
+//		.onChange(of: self.tracks, perform: retrieveFeatures)
+//		.onChange(of: self.tracks, perform: retrievePredictions)
   }
   
   // MARK: - Button components

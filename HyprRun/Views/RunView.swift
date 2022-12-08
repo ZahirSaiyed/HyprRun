@@ -39,20 +39,22 @@ struct RunView: View {
   
 	let timerSong = Timer.publish(every: 0.99, on: .main, in: .default).autoconnect()
 	
-	let MLModel: MusicRunning = {
-	do {
-		let config = MLModelConfiguration()
-		return try MusicRunning(configuration: config)
-	} catch {
-		print(error)
-		fatalError("Couldn't create SleepCalculator")
-	}
-	}()
+//	let MLModel: MusicRunning = {
+//	do {
+//		let config = MLModelConfiguration()
+//		return try MusicRunning(configuration: config)
+//	} catch {
+//		print(error)
+//		fatalError("Couldn't create SleepCalculator")
+//	}
+//	}()
+	let MLModel = MusicRunning()
 	
 	@Binding var selectedPlaylists: [Playlist<PlaylistItemsReference>]
   @Binding var playlists: [Playlist<PlaylistItemsReference>]
   @Binding var tracks: [PlaylistItem]
 	@Binding var features: [MusicRunningInput]
+	@Binding var predictions: [String]
 	@Binding var vibe: String
   
   // MARK: - Main view
@@ -254,8 +256,18 @@ struct RunView: View {
     ).store(in: &cancellables)
 	}
 	
-	func getPrediction() -> String{
-		let featureSet = getFeature(trackNum: self.currSong)
+	func retrievePredictions(items : [PlaylistItem]){
+		//retrieveFeatures(items: items)
+		self.predictions = []
+		if(self.features.count > 0){
+			for featureSet in self.features{
+				self.predictions.append(makePrediction(featureSet: featureSet))
+			}
+		}
+	}
+	
+	func makePrediction(featureSet: MusicRunningInput) -> String{
+		//let featureSet = getFeature(trackNum: self.currSong)
 		if let prediction = try? MLModel.prediction(input: featureSet) {
 			return(prediction.label)
 		} else {
@@ -263,8 +275,18 @@ struct RunView: View {
 		}
 	}
 	
+	func getPrediction(trackNum:Int) -> String {
+		if(self.predictions.count > 0) {
+			return self.predictions[trackNum]
+		}
+		return "None"
+	}
+	
 	func retrieveFeatures(items : [PlaylistItem]) {
 		self.features = []
+		
+		self.predictions = []
+		
 		if(self.tracks.count > 0){
 			for track in self.tracks{
 				let trackID =  track.uri ?? "None"
@@ -274,9 +296,15 @@ struct RunView: View {
 							print("completion: ", completion, terminator: "\n\n\n")
 						},
 						receiveValue: { feature in
-							self.features.append(MusicRunningInput(danceability: feature.danceability, energy: feature.energy, key: Double(feature.key), loudness: feature.loudness, mode: Double(feature.mode), acousticness: feature.acousticness, instrumentalness: feature.instrumentalness, liveness: feature.liveness, valence: feature.valence, tempo: feature.tempo))
+							let featureToAdd = MusicRunningInput(danceability: feature.danceability, energy: feature.energy, key: Double(feature.key), loudness: feature.loudness, mode: Double(feature.mode), acousticness: feature.acousticness, instrumentalness: feature.instrumentalness, liveness: feature.liveness, valence: feature.valence, tempo: feature.tempo)
+							self.features.append(featureToAdd)
+							
+							self.predictions.append(makePrediction(featureSet: featureToAdd))
 						}
 					).store(in: &cancellables)
+					
+					
+					
 				}
 			}
 		}
