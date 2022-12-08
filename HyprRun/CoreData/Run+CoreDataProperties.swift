@@ -2,25 +2,24 @@
 //  Run+CoreDataProperties.swift
 //  HyprRun
 //
-//  Created by Katie Lin on 12/6/22.
+//  Created by Katie Lin on 12/8/22.
 //
 //
 
 import Foundation
 import CoreData
 
+extension Run: Identifiable {
+  override public func awakeFromInsert() {
+    super.awakeFromInsert()
+    setPrimitiveValue(Date(), forKey: #keyPath(Run.timestamp))
+  }
+}
 
 extension Run {
-
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Run> {
         return NSFetchRequest<Run>(entityName: "Run")
     }
-
-    @NSManaged public var duration: Int16
-    @NSManaged public var timestamp: Date?
-    @NSManaged public var distance: Double
-    @NSManaged public var locations: NSOrderedSet?
-
 }
 
 // MARK: Generated accessors for locations
@@ -55,9 +54,5 @@ extension Run {
 
     @objc(removeLocations:)
     @NSManaged public func removeFromLocations(_ values: NSOrderedSet)
-
-}
-
-extension Run : Identifiable {
 
 }

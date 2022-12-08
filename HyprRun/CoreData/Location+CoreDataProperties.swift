@@ -2,7 +2,7 @@
 //  Location+CoreDataProperties.swift
 //  HyprRun
 //
-//  Created by Katie Lin on 12/6/22.
+//  Created by Katie Lin on 12/8/22.
 //
 //
 
