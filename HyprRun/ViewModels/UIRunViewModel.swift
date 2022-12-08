@@ -83,6 +83,7 @@ class UIRunViewModel: RunViewModel, ObservableObject {
   }
   
   func retrieveRuns() {
+    self.runs.removeAll()
     runs = DataManager.shared.fetchRuns()
   }
   

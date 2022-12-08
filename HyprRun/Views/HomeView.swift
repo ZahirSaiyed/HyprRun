@@ -38,6 +38,7 @@ struct HomeView: View {
           Text("HYPRRUN")
             .font(.custom("HelveticaNeue-Bold", fixedSize: 18))
             .padding(.bottom, 8)
+          
           HStack {
             Spacer()
             Button(action: {
@@ -48,6 +49,7 @@ struct HomeView: View {
                 .font(.custom("HelveticaNeue-Medium", fixedSize: 24))
                 .foregroundColor(runViewToggled == false ? .gray : ((currentMode == .dark) ? .white : .black))
             })
+            
             Spacer()
               .frame(width: 40)
             Button(action: {
@@ -169,10 +171,7 @@ extension HomeView {
       })
       .store(in: &cancellables)
       
-      // MARK: IMPORTANT: generate a new value for the state parameter after
-      // MARK: each authorization request. This ensures an incoming redirect
-      // MARK: from Spotify was the result of a request made by this app, and
-      // MARK: and not an attacker.
+      // MARK: IMPORTANT: generate a new value for the state parameter after each authorization request. This ensures an incoming redirect from Spotify was the result of a request made by this app, and not an attacker.
       self.spotify.authorizationState = String.randomURLSafe(length: 128)
   }
 
