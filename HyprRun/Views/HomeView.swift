@@ -170,10 +170,7 @@ extension HomeView {
       })
       .store(in: &cancellables)
       
-      // MARK: IMPORTANT: generate a new value for the state parameter after
-      // MARK: each authorization request. This ensures an incoming redirect
-      // MARK: from Spotify was the result of a request made by this app, and
-      // MARK: and not an attacker.
+      // MARK: IMPORTANT: generate a new value for the state parameter after each authorization request. This ensures an incoming redirect from Spotify was the result of a request made by this app, and not an attacker.
       self.spotify.authorizationState = String.randomURLSafe(length: 128)
   }
 
