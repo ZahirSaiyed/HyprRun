@@ -9,14 +9,20 @@ import SwiftUI
 
 extension HomeView {
   func homeRunView() -> some View {
-    return VStack(alignment: .leading, spacing: 35) {
-      Text("Your Running Mix").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
+    return VStack(alignment: .leading) {
       
-      PlaylistPreviewView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
-        .disabled(!spotify.isAuthorized)
-        .frame(height: 50)
-      
-      Text("\(selectedPlaylists.count) playlists selected")
+      VStack(alignment: .leading){
+        Text("Your Running Mix")
+          .font(.custom("HelveticaNeue-Bold", fixedSize: 36))
+        Text("The playlists we use to match your current vibe")
+          .font(.custom("HelveticaNeue-Bold", fixedSize: 15))
+        PlaylistPreviewView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
+          .disabled(!spotify.isAuthorized)
+          .frame(height: 50)
+        Text("\(selectedPlaylists.count) playlists selected")
+      }
+      Spacer().frame(maxHeight: 64)
+  
       
       Text("The Vibe")
         .font(.custom("HelveticaNeue-Bold", fixedSize: 28))
@@ -33,6 +39,8 @@ extension HomeView {
           .foregroundColor(isEditing ? .red : .blue)
       }
       .frame(alignment: .center)
+      
+      Spacer().frame(maxHeight: 148)
       
       newRunButton.offset(x: 50, y: 0)
     }

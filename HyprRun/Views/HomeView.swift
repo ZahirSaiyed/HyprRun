@@ -38,6 +38,7 @@ struct HomeView: View {
           Text("HYPRRUN")
             .font(.custom("HelveticaNeue-Bold", fixedSize: 18))
             .padding(.bottom, 8)
+          
           HStack {
             Spacer()
             Button(action: {
@@ -48,6 +49,7 @@ struct HomeView: View {
                 .font(.custom("HelveticaNeue-Medium", fixedSize: 24))
                 .foregroundColor(runViewToggled == false ? .gray : ((currentMode == .dark) ? .white : .black))
             })
+            
             Spacer()
               .frame(width: 40)
             Button(action: {
