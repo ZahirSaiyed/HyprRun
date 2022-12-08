@@ -71,4 +71,16 @@ class DataManager {
       }
     }
   }
+  
+  // MARK: - Hard reset
+  func reset() {
+    let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Run.fetchRequest()
+    let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+    
+    do {
+      try persistentContainer.viewContext.execute(deleteRequest)
+    } catch {
+      print(error.localizedDescription)
+    }
+  }
 }
