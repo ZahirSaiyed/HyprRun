@@ -355,11 +355,8 @@
 				7ECFF217293FFB25006326FB /* LoginView.swift in Sources */,
 				7EFD5C1A2924044B006D4061 /* PostRunView.swift in Sources */,
 				E013DB8729103ED50029093B /* HyprRunApp.swift in Sources */,
-<<<<<<< HEAD
 				7E7FD6DC29425F3A004C2940 /* Location+CoreDataProperties.swift in Sources */,
-=======
 				A1654623294199E0005252BC /* buttonStyles.swift in Sources */,
->>>>>>> temp-branch
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
