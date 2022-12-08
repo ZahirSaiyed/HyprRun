@@ -52,30 +52,29 @@ extension HomeView {
   }
   
   func homeRewindView() -> some View {
-    // TODO: Add an EmptyState view to show "no runs - go for a run!" or something
-    
     return VStack {
-      Spacer().frame(height: 80)
-      Text("This is the rewind page :-)")
-      Spacer()
-//      ScrollView {
-//        HStack {
-//          let miles = round(self.runViewModel.runs.map({ $0.distance}).reduce(0, +) * 100)/100.0
-//          let count = self.runViewModel.runs.count
-//          let avgDist: Double = round((miles / (Double(count))) * 100)/100.0
-//          VStack {
-//            Text("\(miles)").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
-//            Text("mi. ran").font(.custom("HelveticaNeue", fixedSize: 16))
-//          }
-//          Spacer()
-//            .frame(width: 40)
-//          VStack(alignment: .leading, spacing: 4) {
-//            Text("Runs completed: \(count)")
-//            Text("Avg. distance: \(avgDist)")
-//          }
-//        }
-//      }
+      if self.runViewModel.runs.count == 0 {
+        Spacer().frame(height: 80)
+        Text("This is the rewind page :-). You'll be able to look back at runs you've completed here. For now, try going on your first run!")
+        Spacer()
+      } else {
+        List(self.runViewModel.runs, id: \.self) { run in
+          HStack(spacing: 20) {
+            Text(FormatDisplay.distance(run.distance))
+            Text(FormatDisplay.time(Int(run.duration)))
+          }
+        }
+      }
+      
+      Button {
+        self.runViewModel.resetData()
+      } label: {
+        Text("Reset data (Warning!!)")
+          .foregroundColor(.red)
+          .fontWeight(.bold)
+      }
     }
-    .onAppear(perform: self.runViewModel.retrieveRuns)
+    
+    
   }
 }
