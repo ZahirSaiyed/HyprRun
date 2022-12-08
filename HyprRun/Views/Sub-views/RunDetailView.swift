@@ -14,31 +14,38 @@ struct RunDetailView: View {
   @State var locations: [Location] = []
   
   var body: some View {
-    VStack(alignment: .leading, spacing: 20) {
-      HStack {
-        Text("Date: ")
-        Text(FormatDisplay.date(run.timestamp))
-      }
-      .font(.title)
-      .fontWeight(.bold)
-      HStack {
-        Text("Distance: ")
-        Text(FormatDisplay.distance(run.distance))
-        Spacer()
-      }
-      HStack {
-        Text("Time: ")
-        Text(FormatDisplay.time(Int(run.duration)))
-        Spacer()
-      }
-      Spacer().frame(height: 40)
-      ScrollView {
-        ForEach(locations) { loc in
-          Text("Coordinate: \(loc.latitude), \(loc.longitude)")
+    HStack {
+      Spacer().frame(width: 20)
+      VStack(alignment: .leading, spacing: 20) {
+        HStack {
+          Text("Date: ")
+          Text(FormatDisplay.date(run.timestamp))
+        }
+        .font(.title)
+        .fontWeight(.bold)
+        HStack {
+          Text("Distance: ")
+          Text(FormatDisplay.distance(run.distance))
+          Spacer()
+        }
+        HStack {
+          Text("Time: ")
+          Text(FormatDisplay.time(Int(run.duration)))
+          Spacer()
+        }
+        ScrollView {
+          ForEach(locations) { loc in
+            HStack {
+              VStack(alignment: .leading) {
+                Text("Coordinate: \(loc.latitude), \(loc.longitude)")
+              }
+              Spacer()
+            }
+          }
         }
       }
+      .onAppear(perform: fetchLocations)
     }
-    .onAppear(perform: fetchLocations)
   }
 }
 
