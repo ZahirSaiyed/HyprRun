@@ -36,3 +36,25 @@ struct LoginButton: ButtonStyle {
     }
 }
 
+struct RunControlButton: ButtonStyle {
+  var color : SwiftUI.Color;
+  var width : CGFloat;
+  
+  init(color: SwiftUI.Color = Color.gray, width: CGFloat = 150) {
+    self.color = color
+    self.width = width
+  }
+    
+  func makeBody(configuration: Configuration) -> some View {
+    configuration.label
+      .font(.custom("HelveticaNeue-Bold", fixedSize: 18))
+      .foregroundColor(.white)
+      .padding(7)
+      .frame(width: self.width, height: 50)
+      .background(self.color)
+      .cornerRadius(20)
+      .shadow(radius: 5)
+
+  }
+}
+

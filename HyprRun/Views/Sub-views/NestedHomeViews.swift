@@ -13,9 +13,11 @@ extension HomeView {
       
       VStack(alignment: .leading){
         Text("Your Running Mix")
-          .font(.custom("HelveticaNeue-Bold", fixedSize: 36))
+          .font(.custom("HelveticaNeue-Bold", fixedSize: 24))
+        
         Text("The playlists we use to match your current vibe")
-          .font(.custom("HelveticaNeue-Bold", fixedSize: 15))
+          .font(.custom("HelveticaNeue", fixedSize: 15))
+        
         PlaylistPreviewView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
           .disabled(!spotify.isAuthorized)
           .frame(height: 50)
