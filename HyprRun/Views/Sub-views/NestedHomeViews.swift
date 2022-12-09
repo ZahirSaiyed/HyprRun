@@ -54,12 +54,37 @@ extension HomeView {
   }
   
   func homeRewindView() -> some View {
-    // TODO: Add an EmptyState view to show "no runs - go for a run!" or something
-    
     return VStack {
-      Spacer().frame(height: 80)
-      Text("This is the rewind page :-)")
-      Spacer()
+      if self.runViewModel.runs.count == 0 {
+        Spacer().frame(height: 80)
+        Text("This is the rewind page :-). You'll be able to look back at runs you've completed here. For now, try going on your first run!")
+        Spacer()
+      } else {
+        List {
+          ForEach(self.runViewModel.runs, id: \.self) { run in
+            NavigationLink(
+              destination: RunDetailView(run: run),
+              label: {
+                HStack {
+                  Text(FormatDisplay.date(run.timestamp))
+                    .fontWeight(.bold)
+                  Spacer()
+                  Text(FormatDisplay.distance(run.distance))
+                }
+            })
+          }
+        }
+      }
+      
+      Button {
+        self.runViewModel.resetData()
+      } label: {
+        Text("Reset data (Warning!!)")
+          .foregroundColor(.red)
+          .fontWeight(.bold)
+      }
+
+      
 //      ScrollView {
 //        HStack {
 //          let miles = round(self.runViewModel.runs.map({ $0.distance}).reduce(0, +) * 100)/100.0

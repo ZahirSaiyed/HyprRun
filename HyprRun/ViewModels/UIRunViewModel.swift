@@ -73,18 +73,22 @@ class UIRunViewModel: RunViewModel, ObservableObject {
   }
   
   func saveRun() {
-    let newRun = DataManager.shared.run(distance: distance.value, duration: Int16(seconds), timestamp: Date())
-    DataManager.shared.save()
+    let newRun = DataManager.shared.run(distance: distance.value, duration: Int16(seconds))
     
     for loc in locationList {
       _ = DataManager.shared.location(latitude: loc.coordinate.latitude, longitude: loc.coordinate.longitude, timestamp: loc.timestamp, currRun: newRun)
     }
     
     DataManager.shared.save()
-//    runs.append(newRun)
   }
   
   func retrieveRuns() {
+    self.runs.removeAll()
     runs = DataManager.shared.fetchRuns()
+  }
+  
+  func resetData() {
+    DataManager.shared.reset()
+    retrieveRuns()
   }
 }

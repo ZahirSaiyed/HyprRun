@@ -18,7 +18,6 @@ import UIKit
 class RunViewModel: NSObject {
   let locationManager = LocationManager.shared
   
-//  var run: Run?
   var seconds = 0
   var timer: Timer?
 

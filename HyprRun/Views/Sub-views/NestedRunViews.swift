@@ -100,9 +100,8 @@ extension RunView {
   // MARK: - Button components
   var endRunButton: some View {
     Button(action: {
-      self.runViewModel.endRun()
-      self.runViewModel.saveRun()
-      // Need an if statement or something - should have a binding variable that checks if the user confirms to end run -> if they do confirm, then we redirect route from the view to the post-run view
+      self.runViewModel.endRun() // Note: Just calling 'endRun()' here because that method calls 'saveRun()' for us. This prevents us from creating a duplicate object.
+      // TODO: Need to add an if statement or something - should have a binding variable that checks if the user confirms to end run -> if they do confirm, then we redirect route from the view to the post-run view
       self.viewRouter.setRoute(.postRunView)
     }, label: {
       Text("END RUN")
@@ -112,7 +111,6 @@ extension RunView {
       color: Color(red: 290, green: 0, blue: 0),
       width: 125)
     )
-    
   }
   
   var pauseRunButton: some View {
