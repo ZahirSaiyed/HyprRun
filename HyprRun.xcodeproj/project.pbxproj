@@ -42,9 +42,9 @@
 		E02D56C929146D30004C955C /* PlaylistCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02D56C829146D30004C955C /* PlaylistCellView.swift */; };
 		E031EEFE291EB14D002B8164 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031EEFD291EB14D002B8164 /* SplashView.swift */; };
 		E06CA5C1291E763B004F0C6D /* SpotifyAPIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06CA5C0291E763B004F0C6D /* SpotifyAPIExtensions.swift */; };
-		E092CB7C294043DC0005473A /* MusicRunning.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E092CB7B294043DC0005473A /* MusicRunning.mlmodel */; };
 		E0B71562291046BF0037B331 /* ImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B71561291046BF0037B331 /* ImageName.swift */; };
 		E0B7156429104AB60037B331 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B7156329104AB60037B331 /* AlertItem.swift */; };
+		E0E8D7EE2942EFE000304A3B /* MusicRunning.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E0E8D7ED2942EFE000304A3B /* MusicRunning.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,11 +82,11 @@
 		E02D56C829146D30004C955C /* PlaylistCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCellView.swift; sourceTree = "<group>"; };
 		E031EEFD291EB14D002B8164 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		E06CA5C0291E763B004F0C6D /* SpotifyAPIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyAPIExtensions.swift; sourceTree = "<group>"; };
-		E092CB7B294043DC0005473A /* MusicRunning.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MusicRunning.mlmodel; sourceTree = "<group>"; };
 		E092CB8029404CAD0005473A /* MusicRunning.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = MusicRunning.mlmodel; path = ../../../Downloads/MusicRunning.mlmodel; sourceTree = "<group>"; };
 		E0B71561291046BF0037B331 /* ImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageName.swift; sourceTree = "<group>"; };
 		E0B7156329104AB60037B331 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 		E0D55EBD2910660600EC755E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E0E8D7ED2942EFE000304A3B /* MusicRunning.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MusicRunning.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,7 +174,7 @@
 		E013DB8529103ED50029093B /* HyprRun */ = {
 			isa = PBXGroup;
 			children = (
-				E092CB7B294043DC0005473A /* MusicRunning.mlmodel */,
+				E0E8D7ED2942EFE000304A3B /* MusicRunning.mlmodel */,
 				7ECFF1FA293FE109006326FB /* CoreData */,
 				E0B71560291046AA0037B331 /* Project Utilities */,
 				E013DB8629103ED50029093B /* HyprRunApp.swift */,
@@ -331,7 +331,7 @@
 				7ECFF211293FF40A006326FB /* HomeViewButtons.swift in Sources */,
 				7ECFF200293FE30B006326FB /* Location+CoreDataProperties.swift in Sources */,
 				E025E5C02914598300FF1922 /* VibeButtonView.swift in Sources */,
-				E092CB7C294043DC0005473A /* MusicRunning.mlmodel in Sources */,
+				E0E8D7EE2942EFE000304A3B /* MusicRunning.mlmodel in Sources */,
 				E021935529180A1500FAF91E /* RunView.swift in Sources */,
 				7ECFF201293FE30B006326FB /* Run+CoreDataClass.swift in Sources */,
 				7EAD37DF291EC2EE00BCBE02 /* UnitExtensions.swift in Sources */,
