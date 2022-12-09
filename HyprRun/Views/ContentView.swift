@@ -23,7 +23,7 @@ struct ContentView: View {
 	@State private var features: [MusicRunningInput] = []
 	@State private var predictions: [String] = []
 //	@State private var vibe: Float = 0.0
-	@State private var vibe: String = ""
+	@State private var vibe: String = "Chill"
   @State private var isEditing = false
   
   @State private var alert: AlertItem? = nil
