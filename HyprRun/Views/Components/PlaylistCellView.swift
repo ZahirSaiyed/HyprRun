@@ -50,15 +50,18 @@ struct PlaylistCellView: View {
           .frame(width: 70, height: 70)
           .padding(.trailing, 5)
         Text("\(playlist.name) - \(playlistDeduplicator.totalItems) items")
+          .font(.custom("HelveticaNeue-Medium", fixedSize: 16))
         Spacer()
         SelectBoxView(selected: $selected, selectedPlaylists: $selectedPlaylists, name: [playlist])
+//        .position(CGPoint(x: 10, y: 10))
+        
 						
 //						if playlistDeduplicator.isDeduplicating {
 //							ProgressView()
 //								.padding(.leading, 5)
 //						}
 						
-        Spacer()
+
       }
       // Ensure the hit box extends across the entire width of the frame.
       // See https://bit.ly/2HqNk4S

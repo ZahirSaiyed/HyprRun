@@ -69,7 +69,9 @@ struct RunView: View {
     VStack {
       playerView()
       progressView()
+      Spacer()
       controlsBar()
+      Spacer()
     }.frame(maxWidth: .infinity)
   }
 
@@ -183,7 +185,6 @@ struct RunView: View {
     }
   }
 	
-  
   // MARK: - API calls
 	func retrievePlaybackState() {
 		spotify.api.currentPlayback()
