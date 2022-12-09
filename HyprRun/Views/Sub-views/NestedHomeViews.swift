@@ -29,18 +29,27 @@ extension HomeView {
       Text("The Vibe")
         .font(.custom("HelveticaNeue-Bold", fixedSize: 28))
       
-      HStack {
-        Slider(
-          value: $vibe,
-          in: 0...5,
-          step: 1.0,
-          onEditingChanged: { editing in
-            isEditing = editing
-          })
-        Text("\(vibe)")
-          .foregroundColor(isEditing ? .red : .blue)
-      }
-      .frame(alignment: .center)
+//      HStack {
+//        Slider(
+//          value: $vibe,
+//          in: 0...5,
+//          step: 1.0,
+//          onEditingChanged: { editing in
+//            isEditing = editing
+//          })
+//        Text("\(vibe)")
+//          .foregroundColor(isEditing ? .red : .blue)
+//      }
+//      .frame(alignment: .center)
+			
+			Picker("What is your vibe?", selection: $vibe) {
+					ForEach(["Chill", "Casual", "Determined", "HYPR"], id: \.self) {
+							Text($0)
+					}
+			}
+			.pickerStyle(.segmented)
+
+			Text("Vibe: \(vibe)")
       
       Spacer().frame(maxHeight: 148)
       

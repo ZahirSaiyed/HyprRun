@@ -9,18 +9,24 @@ import SwiftUI
 import SpotifyWebAPI
 import Foundation
 import Combine
+import CoreML
 
 struct RunView: View {
+	
   // MARK: - Properties
   @EnvironmentObject var viewRouter: ViewRouter
   @EnvironmentObject var spotify: Spotify
   
   @ObservedObject var runViewModel: UIRunViewModel
-  
+	
   @State var songDuration = 0
 	@State var counter = 0
   @State var isPlaying: Bool = true
+	
   @State var currSong = 0
+	@State var currFastSong = 0
+	@State var currSlowSong = 0
+	
 	@State var currArtist = ""
 	@State var currURI = ""
 	@State var currSongName = ""
@@ -32,13 +38,31 @@ struct RunView: View {
   
   @State private var alert: AlertItem? = nil
   @State private var playTrackCancellable: AnyCancellable? = nil
+	
+	@State var isEditing: Bool = false
+	
+	@State var fast: [PlaylistItem] = []
+	@State var slow: [PlaylistItem] = []
   
 	let timerSong = Timer.publish(every: 0.99, on: .main, in: .default).autoconnect()
-
+	
+//	let MLModel: MusicRunning = {
+//	do {
+//		let config = MLModelConfiguration()
+//		return try MusicRunning(configuration: config)
+//	} catch {
+//		print(error)
+//		fatalError("Couldn't create SleepCalculator")
+//	}
+//	}()
+	let MLModel = MusicRunning()
+	
 	@Binding var selectedPlaylists: [Playlist<PlaylistItemsReference>]
   @Binding var playlists: [Playlist<PlaylistItemsReference>]
   @Binding var tracks: [PlaylistItem]
-	
+	@Binding var features: [MusicRunningInput]
+	@Binding var predictions: [String]
+	@Binding var vibe: String
   
   // MARK: - Main view
   var body: some View {
@@ -75,21 +99,51 @@ struct RunView: View {
   }
   
   func updateValues(){
-    let trackArray = Array(self.tracks.enumerated())
-    if (trackArray.count > 0) {
-      let trackZero = trackArray[self.currSong]
-      self.currSongName = trackZero.element.name
-      self.currURI = trackZero.element.uri ?? "No URI"
-      getTrack(uri: self.currURI)
-    }
+    var trackArray = Array(self.tracks.enumerated())
+		if(["Chill", "Casual"].contains(self.vibe)){
+			trackArray = Array(slow.enumerated())
+			if (trackArray.count > 0) {
+				let trackZero = trackArray[self.currSlowSong]
+				self.currSongName = trackZero.element.name
+				self.currURI = trackZero.element.uri ?? "No URI"
+				getTrack(uri: self.currURI)
+			}
+		}
+		else{
+			trackArray = Array(fast.enumerated())
+			if (trackArray.count > 0) {
+				let trackZero = trackArray[self.currFastSong]
+				self.currSongName = trackZero.element.name
+				self.currURI = trackZero.element.uri ?? "No URI"
+				getTrack(uri: self.currURI)
+			}
+		}
+//    if (trackArray.count > 0) {
+//      let trackZero = trackArray[self.currSong]
+//      self.currSongName = trackZero.element.name
+//      self.currURI = trackZero.element.uri ?? "No URI"
+//      getTrack(uri: self.currURI)
+//    }
   }
   
   
   // MARK: - Player methods
   func prevSong() {
-    if (self.currSong > 0) {
-      self.currSong -= 1
-    }
+//		if (self.currSong > 0) {
+//			self.currSong -= 1
+//		}
+		
+		if(["Chill", "Casual"].contains(self.vibe)){
+			if (self.currSlowSong > 0) {
+				self.currSlowSong -= 1
+			}
+		}
+		else{
+			if (self.currFastSong > 0) {
+				self.currFastSong -= 1
+			}
+		}
+
     playTrack()
 		updateValues()
     self.songDuration = 0
@@ -97,8 +151,17 @@ struct RunView: View {
   }
   
   func nextSong() {
-    self.currSong += 1
-		self.currSong = self.currSong % self.tracks.count
+//    self.currSong += 1
+//		self.currSong = self.currSong % self.tracks.count
+		if(["Chill", "Casual"].contains(self.vibe)){
+			self.currSlowSong += 1
+			self.currSlowSong = self.currSlowSong % self.slow.count
+		}
+		else{
+			self.currFastSong += 1
+			self.currFastSong = self.currFastSong % self.fast.count
+		}
+		
     playTrack()
 		updateValues()
     self.songDuration = 0
@@ -157,6 +220,7 @@ struct RunView: View {
           receiveValue: { playlist in
             for track in playlist.items.items.compactMap(\.item) {
               self.tracks.append(track)
+							
             }
           }
         ).store(in: &cancellables)
@@ -164,8 +228,20 @@ struct RunView: View {
   }
   
   func playTrack() {
-    let trackArray = Array(self.tracks.enumerated())
-		let currSongIndex = self.currSong % trackArray.count
+//    let trackArray = Array(self.tracks.enumerated())
+		var trackArray = Array(self.tracks.enumerated())
+		var currSongIndex = self.currSong % trackArray.count
+		
+		if(["Chill", "Casual"].contains(self.vibe)){
+			print("HELLLLLOOOO THIS SHOULD BE WORKING!!!!!!!!")
+			trackArray = Array(slow.enumerated())
+			currSongIndex = self.currSlowSong % trackArray.count
+		}
+		else{
+			trackArray = Array(fast.enumerated())
+			currSongIndex = self.currFastSong % trackArray.count
+		}
+		
     let track = trackArray[currSongIndex].element
     let alertTitle = "Couldn't play \(track.name)"
     
@@ -237,5 +313,73 @@ struct RunView: View {
         }
       }
     ).store(in: &cancellables)
+	}
+	
+	func retrievePredictions(items : [PlaylistItem]){
+		//retrieveFeatures(items: items)
+		self.predictions = []
+		if(self.features.count > 0){
+			for featureSet in self.features{
+				self.predictions.append(makePrediction(featureSet: featureSet))
+			}
+		}
+	}
+	
+	func makePrediction(featureSet: MusicRunningInput) -> String{
+		//let featureSet = getFeature(trackNum: self.currSong)
+		if let prediction = try? MLModel.prediction(input: featureSet) {
+			return(prediction.label)
+		} else {
+			return("None")
+		}
+	}
+	
+	func getPrediction(trackNum:Int) -> String {
+		if(self.predictions.count > 0) {
+			return self.predictions[trackNum]
+		}
+		return "None"
+	}
+	
+	func retrieveFeatures(items : [PlaylistItem]) {
+		self.features = []
+		
+		self.predictions = []
+		
+		if(self.tracks.count > 0){
+			for track in self.tracks{
+				let trackID =  track.uri ?? "None"
+				if trackID != "None"{
+					spotify.api.trackAudioFeatures(trackID).sink(
+						receiveCompletion: { completion in
+							print("completion: ", completion, terminator: "\n\n\n")
+						},
+						receiveValue: { feature in
+							let featureToAdd = MusicRunningInput(danceability: feature.danceability, energy: feature.energy, key: Double(feature.key), loudness: feature.loudness, mode: Double(feature.mode), acousticness: feature.acousticness, instrumentalness: feature.instrumentalness, liveness: feature.liveness, valence: feature.valence, tempo: feature.tempo)
+							self.features.append(featureToAdd)
+							
+							let predictionToAdd = makePrediction(featureSet: featureToAdd)
+							
+							self.predictions.append(predictionToAdd)
+							
+							if(predictionToAdd == "sprint"){
+								fast.append(track)
+							}
+							else{
+								slow.append(track)
+							}
+						}
+					).store(in: &cancellables)
+				}
+			}
+		}
+	}
+	
+	func getFeature(trackNum:Int) -> MusicRunningInput{
+		if(self.features.count > 0) {
+			return self.features[trackNum]
+		}
+		//random default MusicRunningInput
+		return MusicRunningInput(danceability: 0.537, energy: 0.558, key: 11.0, loudness: -8.678, mode: 1.0, acousticness: 0.2630, instrumentalness: 0.910000, liveness: 0.1020, valence: 0.505, tempo: 131.037)
 	}
 }

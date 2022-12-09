@@ -26,7 +26,8 @@ struct HomeView: View {
   @Binding var playlists: [Playlist<PlaylistItemsReference>]
   @Binding var tracks: [PlaylistItem]
   
-  @Binding var vibe: Float
+//  @Binding var vibe: Float
+	@Binding var vibe: String
   @Binding var isEditing: Bool
   
   var body: some View {

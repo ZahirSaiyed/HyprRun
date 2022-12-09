@@ -26,7 +26,7 @@ extension RunView {
             .foregroundColor(Color.white)
         
           Spacer().frame(maxHeight: 10)
-        
+  
           AsyncImage(url: self.currImageURL)
       }
       .frame(alignment: .center)
@@ -65,6 +65,16 @@ extension RunView {
           resumeRunButton
         }
       }
+      .padding(.bottom, 50)
+			
+			Picker("What is your vibe?", selection: $vibe) {
+					ForEach(["Chill", "Casual", "Determined", "HYPR"], id: \.self) {
+							Text($0)
+					}
+			}
+			.pickerStyle(.segmented)
+
+			Text("Vibe: \(vibe)")
     }
   }
   
@@ -94,7 +104,11 @@ extension RunView {
     }
     .frame(maxWidth: .infinity)
     .background(Color.black)
-    .onAppear(perform: retrieveTracks)
+		.onAppear(perform: retrieveTracks)
+		.task(id: self.tracks){
+			retrieveFeatures(items: self.tracks)
+			retrievePredictions(items: self.tracks)
+		}
   }
   
   // MARK: - Button components
