@@ -15,9 +15,16 @@ struct PostRunView: View {
     VStack() {
       Text("This is the post-run view").font(.title2)
       Spacer()
-      Text("Distance: \(self.runViewModel.distanceLabel)")
-      Text("Duration: \(self.runViewModel.timeLabel)")
-      Text("Average Pace: \(self.runViewModel.paceLabel)")
+      
+      VStack(spacing: 14){
+        MetricLabel(metric: "Time", val: "\(self.runViewModel.timeLabel)")
+        
+        MetricLabel(metric: "Distance", val: "\(self.runViewModel.distanceLabel)")
+        
+        MetricLabel(metric: "Pace", val: "\(self.runViewModel.paceLabel)")
+      }
+      .padding()
+
       Spacer()
       Button(action: {
         self.viewRouter.rewindView()

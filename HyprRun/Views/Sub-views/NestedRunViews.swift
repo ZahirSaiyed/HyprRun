@@ -12,11 +12,24 @@ extension RunView {
   func playerView() -> some View {
     return HStack(spacing: 20) {
       VStack(alignment: .leading) {
-          Text("\(self.currSongName)").foregroundColor(Color.white)
-          Text("\(self.currArtist)").foregroundColor(Color.white)
-          Text("\(elapsedTimeAsString())").foregroundColor(Color.white)
+          Text("\(self.currSongName)")
+            .foregroundColor(Color.white)
+            .font(.custom("HelveticaNeue-Medium", fixedSize: 14))
+        
+          Text("\(self.currArtist)")
+            .foregroundColor(Color.gray)
+            .font(.custom("HelveticaNeue-Medium", fixedSize: 12))
+            
+          Spacer().frame(maxHeight: 5)
+          
+          Text("\(elapsedTimeAsString())")
+            .foregroundColor(Color.white)
+        
+          Spacer().frame(maxHeight: 10)
+        
           AsyncImage(url: self.currImageURL)
       }
+      .frame(alignment: .center)
       .onReceive(timerSong) { input in
         if self.isPlaying {
           self.counter = self.counter + 1
@@ -26,8 +39,7 @@ extension RunView {
           }
         }
       }
-      .frame(alignment: .center)
-      .padding(.bottom, 60)
+      
     }
     .frame(maxWidth: .infinity)
     .background(Color.black)
@@ -35,12 +47,17 @@ extension RunView {
   
   func progressView() -> some View {
     return VStack {
-      Text("Time: \(self.runViewModel.timeLabel)").font(.title2)
-      Spacer()
-      Text("Distance: \(self.runViewModel.distanceLabel)").font(.title3)
-      Text("Pace: \(self.runViewModel.paceLabel)").font(.title3)
-      Spacer()
-      HStack(spacing: 40) {
+      VStack(spacing: 14){
+        MetricLabel(metric: "Time", val: "\(self.runViewModel.timeLabel)")
+        
+        MetricLabel(metric: "Distance", val: "\(self.runViewModel.distanceLabel)")
+        
+        MetricLabel(metric: "Pace", val: "\(self.runViewModel.paceLabel)")
+      }
+      .padding([.trailing, .leading, .bottom], 45)
+      .padding(.top, 20)
+
+      HStack(spacing: 30) {
         endRunButton
         if self.runViewModel.currentState == .running {
           pauseRunButton
@@ -48,7 +65,6 @@ extension RunView {
           resumeRunButton
         }
       }
-      .padding(.bottom, 50)
     }
   }
   
@@ -84,45 +100,37 @@ extension RunView {
   // MARK: - Button components
   var endRunButton: some View {
     Button(action: {
-          self.runViewModel.endRun() // Note: Just calling 'endRun()' here because that method calls 'saveRun()' for us. This prevents us from creating a duplicate object.
-          // Need an if statement or something - should have a binding variable that checks if the user confirms to end run -> if they do confirm, then we redirect route from the view to the post-run view
-          self.viewRouter.setRoute(.postRunView)
-        }, label: {
-          Text("END RUN").font(.custom("HelveticaNeue-Bold", fixedSize: 18))
-            .foregroundColor(.white)
-            .padding(7)
-            .frame(width: 150, height: 50)
-            .background(Color(red: 290, green: 0, blue: 0))
-            .cornerRadius(20)
-            .shadow(radius: 5)
-        })
+      self.runViewModel.endRun() // Note: Just calling 'endRun()' here because that method calls 'saveRun()' for us. This prevents us from creating a duplicate object.
+      // TODO: Need to add an if statement or something - should have a binding variable that checks if the user confirms to end run -> if they do confirm, then we redirect route from the view to the post-run view
+      self.viewRouter.setRoute(.postRunView)
+    }, label: {
+      Text("END RUN")
+    })
+    .accessibility(identifier: "Resume Run")
+    .buttonStyle(RunControlButton(
+      color: Color(red: 290, green: 0, blue: 0),
+      width: 125)
+    )
   }
   
   var pauseRunButton: some View {
     Button(action: {
       self.runViewModel.pauseRun()
     }, label: {
-      Text("PAUSE RUN").font(.custom("HelveticaNeue-Bold", fixedSize: 18))
-        .foregroundColor(.white)
-        .padding(7)
-        .frame(width: 150, height: 50)
-        .background(Color.orange)
-        .cornerRadius(20)
-        .shadow(radius: 5)
+      Text("PAUSE RUN")
     })
+    .accessibility(identifier: "Resume Run")
+    .buttonStyle(RunControlButton(color: Color.orange, width: 220))
   }
   
   var resumeRunButton: some View {
     Button(action: {
       self.runViewModel.resumeRun()
     }, label: {
-      Text("RESUME RUN").font(.custom("HelveticaNeue-Bold", fixedSize: 18))
-        .foregroundColor(.white)
-        .padding(7)
-        .frame(width: 150, height: 50)
-        .background(Color.green)
-        .cornerRadius(20)
-        .shadow(radius: 5)
+      Text("RESUME RUN")
     })
+    .accessibility(identifier: "Resume Run")
+    .buttonStyle(RunControlButton(color: Color.green, width: 220))
+
   }
 }
