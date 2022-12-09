@@ -22,7 +22,11 @@ struct RunView: View {
   @State var songDuration = 0
 	@State var counter = 0
   @State var isPlaying: Bool = true
+	
   @State var currSong = 0
+	@State var currFastSong = 0
+	@State var currSlowSong = 0
+	
 	@State var currArtist = ""
 	@State var currURI = ""
 	@State var currSongName = ""
@@ -36,6 +40,9 @@ struct RunView: View {
   @State private var playTrackCancellable: AnyCancellable? = nil
 	
 	@State var isEditing: Bool = false
+	
+	@State var fast: [PlaylistItem] = []
+	@State var slow: [PlaylistItem] = []
   
 	let timerSong = Timer.publish(every: 0.99, on: .main, in: .default).autoconnect()
 	
@@ -90,21 +97,51 @@ struct RunView: View {
   }
   
   func updateValues(){
-    let trackArray = Array(self.tracks.enumerated())
-    if (trackArray.count > 0) {
-      let trackZero = trackArray[self.currSong]
-      self.currSongName = trackZero.element.name
-      self.currURI = trackZero.element.uri ?? "No URI"
-      getTrack(uri: self.currURI)
-    }
+    var trackArray = Array(self.tracks.enumerated())
+		if(["Chill", "Casual"].contains(self.vibe)){
+			trackArray = Array(slow.enumerated())
+			if (trackArray.count > 0) {
+				let trackZero = trackArray[self.currSlowSong]
+				self.currSongName = trackZero.element.name
+				self.currURI = trackZero.element.uri ?? "No URI"
+				getTrack(uri: self.currURI)
+			}
+		}
+		else{
+			trackArray = Array(fast.enumerated())
+			if (trackArray.count > 0) {
+				let trackZero = trackArray[self.currFastSong]
+				self.currSongName = trackZero.element.name
+				self.currURI = trackZero.element.uri ?? "No URI"
+				getTrack(uri: self.currURI)
+			}
+		}
+//    if (trackArray.count > 0) {
+//      let trackZero = trackArray[self.currSong]
+//      self.currSongName = trackZero.element.name
+//      self.currURI = trackZero.element.uri ?? "No URI"
+//      getTrack(uri: self.currURI)
+//    }
   }
   
   
   // MARK: - Player methods
   func prevSong() {
-    if (self.currSong > 0) {
-      self.currSong -= 1
-    }
+//		if (self.currSong > 0) {
+//			self.currSong -= 1
+//		}
+		
+		if(["Chill", "Casual"].contains(self.vibe)){
+			if (self.currSlowSong > 0) {
+				self.currSlowSong -= 1
+			}
+		}
+		else{
+			if (self.currFastSong > 0) {
+				self.currFastSong -= 1
+			}
+		}
+
     playTrack()
 		updateValues()
     self.songDuration = 0
@@ -112,8 +149,17 @@ struct RunView: View {
   }
   
   func nextSong() {
-    self.currSong += 1
-		self.currSong = self.currSong % self.tracks.count
+//    self.currSong += 1
+//		self.currSong = self.currSong % self.tracks.count
+		if(["Chill", "Casual"].contains(self.vibe)){
+			self.currSlowSong += 1
+			self.currSlowSong = self.currSlowSong % self.slow.count
+		}
+		else{
+			self.currFastSong += 1
+			self.currFastSong = self.currFastSong % self.fast.count
+		}
+		
     playTrack()
 		updateValues()
     self.songDuration = 0
@@ -181,8 +227,20 @@ struct RunView: View {
   }
   
   func playTrack() {
-    let trackArray = Array(self.tracks.enumerated())
-		let currSongIndex = self.currSong % trackArray.count
+//    let trackArray = Array(self.tracks.enumerated())
+		var trackArray = Array(self.tracks.enumerated())
+		var currSongIndex = self.currSong % trackArray.count
+		
+		if(["Chill", "Casual"].contains(self.vibe)){
+			print("HELLLLLOOOO THIS SHOULD BE WORKING!!!!!!!!")
+			trackArray = Array(slow.enumerated())
+			currSongIndex = self.currSlowSong % trackArray.count
+		}
+		else{
+			trackArray = Array(fast.enumerated())
+			currSongIndex = self.currFastSong % trackArray.count
+		}
+		
     let track = trackArray[currSongIndex].element
     let alertTitle = "Couldn't play \(track.name)"
     
@@ -299,12 +357,18 @@ struct RunView: View {
 							let featureToAdd = MusicRunningInput(danceability: feature.danceability, energy: feature.energy, key: Double(feature.key), loudness: feature.loudness, mode: Double(feature.mode), acousticness: feature.acousticness, instrumentalness: feature.instrumentalness, liveness: feature.liveness, valence: feature.valence, tempo: feature.tempo)
 							self.features.append(featureToAdd)
 							
-							self.predictions.append(makePrediction(featureSet: featureToAdd))
+							let predictionToAdd = makePrediction(featureSet: featureToAdd)
+							
+							self.predictions.append(predictionToAdd)
+							
+							if(predictionToAdd == "sprint"){
+								fast.append(track)
+							}
+							else{
+								slow.append(track)
+							}
 						}
 					).store(in: &cancellables)
-					
-					
-					
 				}
 			}
 		}
