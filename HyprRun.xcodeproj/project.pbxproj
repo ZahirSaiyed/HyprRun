@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E02AEB529427BE10050DAE0 /* RunDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E02AEB429427BE10050DAE0 /* RunDetailView.swift */; };
 		7E0625692922C90A001EB66A /* RunViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0625682922C90A001EB66A /* RunViewModel.swift */; };
+		7E7FD6DB29425F3A004C2940 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FD6D729425F3A004C2940 /* Location+CoreDataClass.swift */; };
+		7E7FD6DC29425F3A004C2940 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FD6D829425F3A004C2940 /* Location+CoreDataProperties.swift */; };
+		7E7FD6DD29425F3A004C2940 /* Run+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FD6D929425F3A004C2940 /* Run+CoreDataClass.swift */; };
+		7E7FD6DE29425F3A004C2940 /* Run+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FD6DA29425F3A004C2940 /* Run+CoreDataProperties.swift */; };
 		7EAD37DD291EC2E400BCBE02 /* FormatDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37DC291EC2E400BCBE02 /* FormatDisplay.swift */; };
 		7EAD37DF291EC2EE00BCBE02 /* UnitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37DE291EC2EE00BCBE02 /* UnitExtensions.swift */; };
 		7EAD37E1291EC34A00BCBE02 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E0291EC34A00BCBE02 /* DataManager.swift */; };
@@ -16,10 +21,6 @@
 		7EAD37E9291EC51F00BCBE02 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37E8291EC51F00BCBE02 /* Route.swift */; };
 		7EAD37EB291EC7D300BCBE02 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37EA291EC7D300BCBE02 /* ViewRouter.swift */; };
 		7EAD37ED291ED5E800BCBE02 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37EC291ED5E800BCBE02 /* HomeView.swift */; };
-		7ECFF1FF293FE30B006326FB /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF1FB293FE30B006326FB /* Location+CoreDataClass.swift */; };
-		7ECFF200293FE30B006326FB /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF1FC293FE30B006326FB /* Location+CoreDataProperties.swift */; };
-		7ECFF201293FE30B006326FB /* Run+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF1FD293FE30B006326FB /* Run+CoreDataClass.swift */; };
-		7ECFF202293FE30B006326FB /* Run+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF1FE293FE30B006326FB /* Run+CoreDataProperties.swift */; };
 		7ECFF205293FE411006326FB /* UIRunViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF204293FE411006326FB /* UIRunViewModel.swift */; };
 		7ECFF20A293FEF13006326FB /* NestedHomeViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF209293FEF13006326FB /* NestedHomeViews.swift */; };
 		7ECFF20E293FF27B006326FB /* NestedRunViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFF20D293FF27B006326FB /* NestedRunViews.swift */; };
@@ -48,7 +49,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E02AEB429427BE10050DAE0 /* RunDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDetailView.swift; sourceTree = "<group>"; };
 		7E0625682922C90A001EB66A /* RunViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewModel.swift; sourceTree = "<group>"; };
+		7E7FD6D729425F3A004C2940 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7E7FD6D829425F3A004C2940 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7E7FD6D929425F3A004C2940 /* Run+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Run+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7E7FD6DA29425F3A004C2940 /* Run+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Run+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7EAD37DC291EC2E400BCBE02 /* FormatDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatDisplay.swift; sourceTree = "<group>"; };
 		7EAD37DE291EC2EE00BCBE02 /* UnitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitExtensions.swift; sourceTree = "<group>"; };
 		7EAD37E0291EC34A00BCBE02 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -57,10 +63,6 @@
 		7EAD37E8291EC51F00BCBE02 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		7EAD37EA291EC7D300BCBE02 /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
 		7EAD37EC291ED5E800BCBE02 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		7ECFF1FB293FE30B006326FB /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
-		7ECFF1FC293FE30B006326FB /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		7ECFF1FD293FE30B006326FB /* Run+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Run+CoreDataClass.swift"; sourceTree = "<group>"; };
-		7ECFF1FE293FE30B006326FB /* Run+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Run+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7ECFF204293FE411006326FB /* UIRunViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRunViewModel.swift; sourceTree = "<group>"; };
 		7ECFF209293FEF13006326FB /* NestedHomeViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedHomeViews.swift; sourceTree = "<group>"; };
 		7ECFF20D293FF27B006326FB /* NestedRunViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedRunViews.swift; sourceTree = "<group>"; };
@@ -113,12 +115,12 @@
 		7ECFF1FA293FE109006326FB /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				7ECFF1FB293FE30B006326FB /* Location+CoreDataClass.swift */,
-				7ECFF1FC293FE30B006326FB /* Location+CoreDataProperties.swift */,
-				7ECFF1FD293FE30B006326FB /* Run+CoreDataClass.swift */,
-				7ECFF1FE293FE30B006326FB /* Run+CoreDataProperties.swift */,
-				7EAD37E2291EC37F00BCBE02 /* HyprRun.xcdatamodeld */,
 				7EAD37E0291EC34A00BCBE02 /* DataManager.swift */,
+				7EAD37E2291EC37F00BCBE02 /* HyprRun.xcdatamodeld */,
+				7E7FD6D729425F3A004C2940 /* Location+CoreDataClass.swift */,
+				7E7FD6D829425F3A004C2940 /* Location+CoreDataProperties.swift */,
+				7E7FD6D929425F3A004C2940 /* Run+CoreDataClass.swift */,
+				7E7FD6DA29425F3A004C2940 /* Run+CoreDataProperties.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -149,6 +151,7 @@
 			children = (
 				7ECFF209293FEF13006326FB /* NestedHomeViews.swift */,
 				7ECFF20D293FF27B006326FB /* NestedRunViews.swift */,
+				7E02AEB429427BE10050DAE0 /* RunDetailView.swift */,
 			);
 			path = "Sub-views";
 			sourceTree = "<group>";
@@ -325,14 +328,13 @@
 				E02D56C929146D30004C955C /* PlaylistCellView.swift in Sources */,
 				E06CA5C1291E763B004F0C6D /* SpotifyAPIExtensions.swift in Sources */,
 				7E0625692922C90A001EB66A /* RunViewModel.swift in Sources */,
-				7ECFF1FF293FE30B006326FB /* Location+CoreDataClass.swift in Sources */,
 				7ECFF211293FF40A006326FB /* HomeViewButtons.swift in Sources */,
-				7ECFF200293FE30B006326FB /* Location+CoreDataProperties.swift in Sources */,
 				E025E5C02914598300FF1922 /* VibeButtonView.swift in Sources */,
 				E021935529180A1500FAF91E /* RunView.swift in Sources */,
-				7ECFF201293FE30B006326FB /* Run+CoreDataClass.swift in Sources */,
 				7EAD37DF291EC2EE00BCBE02 /* UnitExtensions.swift in Sources */,
 				7EAD37E1291EC34A00BCBE02 /* DataManager.swift in Sources */,
+				7E7FD6DD29425F3A004C2940 /* Run+CoreDataClass.swift in Sources */,
+				7E7FD6DE29425F3A004C2940 /* Run+CoreDataProperties.swift in Sources */,
 				E0B7156429104AB60037B331 /* AlertItem.swift in Sources */,
 				7ECFF20A293FEF13006326FB /* NestedHomeViews.swift in Sources */,
 				E02D56C229146908004C955C /* PlaylistListView.swift in Sources */,
@@ -340,18 +342,20 @@
 				E02D56C02914689A004C955C /* PlaylistPreviewView.swift in Sources */,
 				E0B71562291046BF0037B331 /* ImageName.swift in Sources */,
 				7EAD37E9291EC51F00BCBE02 /* Route.swift in Sources */,
+				7E7FD6DB29425F3A004C2940 /* Location+CoreDataClass.swift in Sources */,
 				E02D56C729146ADC004C955C /* PlaylistDeduplicator.swift in Sources */,
 				E02193532918071F00FAF91E /* SelectBoxView.swift in Sources */,
 				E013DB8929103ED50029093B /* ContentView.swift in Sources */,
 				7EAD37E4291EC37F00BCBE02 /* HyprRun.xcdatamodeld in Sources */,
+				7E02AEB529427BE10050DAE0 /* RunDetailView.swift in Sources */,
 				7EAD37E6291EC43F00BCBE02 /* LocationManager.swift in Sources */,
 				7EAD37DD291EC2E400BCBE02 /* FormatDisplay.swift in Sources */,
 				7ECFF20E293FF27B006326FB /* NestedRunViews.swift in Sources */,
 				7EAD37ED291ED5E800BCBE02 /* HomeView.swift in Sources */,
-				7ECFF202293FE30B006326FB /* Run+CoreDataProperties.swift in Sources */,
 				7ECFF217293FFB25006326FB /* LoginView.swift in Sources */,
 				7EFD5C1A2924044B006D4061 /* PostRunView.swift in Sources */,
 				E013DB8729103ED50029093B /* HyprRunApp.swift in Sources */,
+				7E7FD6DC29425F3A004C2940 /* Location+CoreDataProperties.swift in Sources */,
 				A1654623294199E0005252BC /* buttonStyles.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
