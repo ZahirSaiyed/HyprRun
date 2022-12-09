@@ -47,6 +47,7 @@
 		E06CA5C1291E763B004F0C6D /* SpotifyAPIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06CA5C0291E763B004F0C6D /* SpotifyAPIExtensions.swift */; };
 		E0B71562291046BF0037B331 /* ImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B71561291046BF0037B331 /* ImageName.swift */; };
 		E0B7156429104AB60037B331 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B7156329104AB60037B331 /* AlertItem.swift */; };
+		E0E8D7EE2942EFE000304A3B /* MusicRunning.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E0E8D7ED2942EFE000304A3B /* MusicRunning.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,9 +88,11 @@
 		E02D56C829146D30004C955C /* PlaylistCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCellView.swift; sourceTree = "<group>"; };
 		E031EEFD291EB14D002B8164 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		E06CA5C0291E763B004F0C6D /* SpotifyAPIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyAPIExtensions.swift; sourceTree = "<group>"; };
+		E092CB8029404CAD0005473A /* MusicRunning.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = MusicRunning.mlmodel; path = ../../../Downloads/MusicRunning.mlmodel; sourceTree = "<group>"; };
 		E0B71561291046BF0037B331 /* ImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageName.swift; sourceTree = "<group>"; };
 		E0B7156329104AB60037B331 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 		E0D55EBD2910660600EC755E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E0E8D7ED2942EFE000304A3B /* MusicRunning.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MusicRunning.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +175,7 @@
 			children = (
 				E013DB8529103ED50029093B /* HyprRun */,
 				E013DB8429103ED50029093B /* Products */,
+				E092CB7F29404CAD0005473A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -186,6 +190,7 @@
 		E013DB8529103ED50029093B /* HyprRun */ = {
 			isa = PBXGroup;
 			children = (
+				E0E8D7ED2942EFE000304A3B /* MusicRunning.mlmodel */,
 				A1654621294199D1005252BC /* Style */,
 				7ECFF1FA293FE109006326FB /* CoreData */,
 				E0B71560291046AA0037B331 /* Project Utilities */,
@@ -232,6 +237,14 @@
 				7ECFF216293FFB25006326FB /* LoginView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		E092CB7F29404CAD0005473A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E092CB8029404CAD0005473A /* MusicRunning.mlmodel */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		E0B71560291046AA0037B331 /* Project Utilities */ = {
@@ -334,6 +347,7 @@
 				7E0625692922C90A001EB66A /* RunViewModel.swift in Sources */,
 				7ECFF211293FF40A006326FB /* HomeViewButtons.swift in Sources */,
 				E025E5C02914598300FF1922 /* VibeButtonView.swift in Sources */,
+				E0E8D7EE2942EFE000304A3B /* MusicRunning.mlmodel in Sources */,
 				E021935529180A1500FAF91E /* RunView.swift in Sources */,
 				7EAD37DF291EC2EE00BCBE02 /* UnitExtensions.swift in Sources */,
 				7EAD37E1291EC34A00BCBE02 /* DataManager.swift in Sources */,
@@ -489,7 +503,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HyprRun/Preview Content\"";
-				DEVELOPMENT_TEAM = 5VW88FCKJ3;
+				DEVELOPMENT_TEAM = PXK4UD2AGP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HyprRun/Info.plist;
@@ -519,7 +533,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HyprRun/Preview Content\"";
-				DEVELOPMENT_TEAM = 5VW88FCKJ3;
+				DEVELOPMENT_TEAM = PXK4UD2AGP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HyprRun/Info.plist;
