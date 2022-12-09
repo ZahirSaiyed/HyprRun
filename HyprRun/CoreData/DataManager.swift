@@ -29,6 +29,8 @@ class DataManager {
   
   func run(distance: Double, duration: Int16) -> Run {
     let newRun = Run(context: persistentContainer.viewContext)
+    print("I'm in the run function inside of DataManager")
+    print(newRun)
     
     newRun.distance = distance
     newRun.duration = duration
