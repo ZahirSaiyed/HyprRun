@@ -53,32 +53,29 @@ struct PlaylistCellView: View {
           .font(.custom("HelveticaNeue-Medium", fixedSize: 16))
         Spacer()
         SelectBoxView(selected: $selected, selectedPlaylists: $selectedPlaylists, name: [playlist])
-//        .position(CGPoint(x: 10, y: 10))
-        
-						
-//						if playlistDeduplicator.isDeduplicating {
-//							ProgressView()
-//								.padding(.leading, 5)
-//						}
-						
-
       }
       // Ensure the hit box extends across the entire width of the frame.
       // See https://bit.ly/2HqNk4S
       .contentShape(Rectangle())
-//						.contextMenu {
-//								// you can only remove duplicates from a playlist you own
-//								if let currentUserId = spotify.currentUser?.id,
-//												playlist.owner?.id == currentUserId {
-//
-//										Button("Remove Duplicates") {
-//												playlistDeduplicator.findAndRemoveDuplicates()
-//										}
-//										.disabled(playlistDeduplicator.isDeduplicating)
-//								}
-//						}
     })
     .buttonStyle(PlainButtonStyle())
+		.swipeActions{
+			Button(){
+				self.selected.toggle()
+				if(self.selected){
+					self.selectedPlaylists = Array(self.selectedPlaylists + [playlist])
+					self.selectedPlaylists = self.selectedPlaylists.removingDuplicates()
+				} else {
+					self.selectedPlaylists.removeAll { playList in
+						playList == [playlist][0]
+					}
+				}
+			} label:{
+				Label(self.selected ? "Remove" : "Add", systemImage: self.selected ? "minus.circle.fill" : "plus.app.fill" )
+			}
+			.tint(self.selected ? .red : .green)
+		}
+		
     .alert(item: $alert) { alert in
       Alert(title: alert.title, message: alert.message)
     }

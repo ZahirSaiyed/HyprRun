@@ -58,8 +58,7 @@ struct PlaylistListView: View {
           ForEach(playlists, id: \.uri) { playlist in
             PlaylistCellView(spotify: spotify, playlist: playlist, selectedPlaylists: $selectedPlaylists)
           }
-          Text("Selected Playlists")
-          Text("There are \(selectedPlaylists.count) selected playlists")
+          Text("You Have Selected \(selectedPlaylists.count) Playlists")
         }
         .listStyle(PlainListStyle())
         .accessibility(identifier: "Playlists List View")
@@ -71,8 +70,6 @@ struct PlaylistListView: View {
       Alert(title: alert.title, message: alert.message)
       }
       .onAppear(perform: retrievePlaylists)
-//				.onChange(of: self.playlists.count, perform: retrieveTracks)
-//				.onAppear(perform: retrievePlaylists)
   }
 		
   var refreshButton: some View {
@@ -83,12 +80,7 @@ struct PlaylistListView: View {
     }
     .disabled(isLoadingPlaylists)
   }
-	
-//	func retrieveData() {
-//		retrievePlaylists()
-//		retrieveTracks()
-//	}
-//
+
   func retrievePlaylists() {
     self.isLoadingPlaylists = true
     self.playlists = []
