@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 extension RunView {
   // MARK: - Partial views
@@ -110,6 +111,11 @@ extension RunView {
 			retrievePredictions(items: self.tracks)
 		}
   }
+	
+	func mapView() -> some View{
+		Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(.follow))
+								.frame(width: 500, height: 400)
+	}
   
   // MARK: - Button components
   var endRunButton: some View {

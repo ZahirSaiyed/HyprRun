@@ -10,6 +10,7 @@ import SpotifyWebAPI
 import Foundation
 import Combine
 import CoreML
+import MapKit
 
 struct RunView: View {
 	
@@ -43,18 +44,11 @@ struct RunView: View {
 	
 	@State var fast: [PlaylistItem] = []
 	@State var slow: [PlaylistItem] = []
+	
+	@State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 40.4432, longitude: 79.9428), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
   
 	let timerSong = Timer.publish(every: 0.90, on: .main, in: .default).autoconnect()
 	
-//	let MLModel: MusicRunning = {
-//	do {
-//		let config = MLModelConfiguration()
-//		return try MusicRunning(configuration: config)
-//	} catch {
-//		print(error)
-//		fatalError("Couldn't create SleepCalculator")
-//	}
-//	}()
 	let MLModel = MusicRunning()
 	
 	@Binding var selectedPlaylists: [Playlist<PlaylistItemsReference>]
@@ -68,8 +62,17 @@ struct RunView: View {
   var body: some View {
     VStack {
       playerView()
-      progressView()
-      Spacer()
+			TabView{
+				ZStack{
+					progressView()
+				}
+				ZStack{
+					mapView()
+				}
+			}
+			.tabViewStyle(.page)
+//      progressView()
+//      Spacer()
       controlsBar()
       Spacer()
     }.frame(maxWidth: .infinity)
@@ -118,12 +121,6 @@ struct RunView: View {
 				getTrack(uri: self.currURI)
 			}
 		}
-//    if (trackArray.count > 0) {
-//      let trackZero = trackArray[self.currSong]
-//      self.currSongName = trackZero.element.name
-//      self.currURI = trackZero.element.uri ?? "No URI"
-//      getTrack(uri: self.currURI)
-//    }
   }
   
   
@@ -154,8 +151,10 @@ struct RunView: View {
 //    self.currSong += 1
 //		self.currSong = self.currSong % self.tracks.count
 		if(["Chill", "Casual"].contains(self.vibe)){
-			self.currSlowSong += 1
-			self.currSlowSong = self.currSlowSong % self.slow.count
+			if(self.slow.count > 0){
+				self.currSlowSong += 1
+				self.currSlowSong = self.currSlowSong % self.slow.count
+			}
 		}
 		else{
 			self.currFastSong += 1
