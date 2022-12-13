@@ -129,10 +129,6 @@ struct RunView: View {
   
   // MARK: - Player methods
   func prevSong() {
-//		if (self.currSong > 0) {
-//			self.currSong -= 1
-//		}
-		
 		if(["Chill", "Casual"].contains(self.vibe)){
 			if (self.currSlowSong > 0) {
 				self.currSlowSong -= 1
@@ -151,15 +147,17 @@ struct RunView: View {
   }
   
   func nextSong() {
-//    self.currSong += 1
-//		self.currSong = self.currSong % self.tracks.count
 		if(["Chill", "Casual"].contains(self.vibe)){
-			self.currSlowSong += 1
-			self.currSlowSong = self.currSlowSong % self.slow.count
+			if (self.slow.count > 0) {
+				self.currSlowSong += 1
+				self.currSlowSong = self.currSlowSong % self.slow.count
+			}
 		}
 		else{
-			self.currFastSong += 1
-			self.currFastSong = self.currFastSong % self.fast.count
+			if (self.fast.count > 0) {
+				self.currFastSong += 1
+				self.currFastSong = self.currFastSong % self.fast.count
+			}
 		}
 		
     playTrack()
