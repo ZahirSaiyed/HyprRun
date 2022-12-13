@@ -44,7 +44,7 @@ struct RunView: View {
 	@State var fast: [PlaylistItem] = []
 	@State var slow: [PlaylistItem] = []
   
-	let timerSong = Timer.publish(every: 0.99, on: .main, in: .default).autoconnect()
+	let timerSong = Timer.publish(every: 0.90, on: .main, in: .default).autoconnect()
 	
 //	let MLModel: MusicRunning = {
 //	do {
