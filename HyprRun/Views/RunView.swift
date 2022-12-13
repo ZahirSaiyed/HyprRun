@@ -61,18 +61,22 @@ struct RunView: View {
   // MARK: - Main view
   var body: some View {
     VStack {
-      playerView()
+//      playerView()
 			TabView{
 				ZStack{
-					progressView()
+					playerView()
 				}
 				ZStack{
 					mapView()
 				}
 			}
 			.tabViewStyle(.page)
-//      progressView()
-//      Spacer()
+			.indexViewStyle(.page(backgroundDisplayMode: .interactive))
+			.cornerRadius(30)
+			.padding(10)
+			
+      progressView()
+      Spacer()
       controlsBar()
       Spacer()
     }.frame(maxWidth: .infinity)
