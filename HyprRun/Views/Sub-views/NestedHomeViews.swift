@@ -22,7 +22,21 @@ extension HomeView {
           .disabled(!spotify.isAuthorized)
           .frame(height: 50)
         Text("\(selectedPlaylists.count) playlists selected")
-      }
+				
+				if(selectedPlaylists.count > 0){
+					HStack{
+						ForEach(0..<selectedPlaylists.count, id: \.self){ i in
+							if(selectedPlaylists[i].images.count > 1){
+								AsyncImage(url: selectedPlaylists[i].images[2].url)
+							}
+						}
+					}
+				}
+			}
+			
+			
+      
+
       Spacer().frame(maxHeight: 64)
   
       

@@ -75,7 +75,7 @@ extension RunView {
 			}
 			.pickerStyle(.segmented)
 
-			Text("Vibe: \(vibe)")
+//			Text("Vibe: \(vibe)")
     }
   }
   

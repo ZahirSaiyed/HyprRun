@@ -35,6 +35,7 @@ struct PlaylistListView: View {
 		
   var body: some View {
     VStack {
+			Text("You Have Selected \(selectedPlaylists.count) Playlists")
       if playlists.isEmpty {
         if isLoadingPlaylists {
           HStack {
@@ -58,7 +59,6 @@ struct PlaylistListView: View {
           ForEach(playlists, id: \.uri) { playlist in
             PlaylistCellView(spotify: spotify, playlist: playlist, selectedPlaylists: $selectedPlaylists)
           }
-          Text("You Have Selected \(selectedPlaylists.count) Playlists")
         }
         .listStyle(PlainListStyle())
         .accessibility(identifier: "Playlists List View")

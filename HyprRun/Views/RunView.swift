@@ -32,7 +32,7 @@ struct RunView: View {
 	@State var currURI = ""
 	@State var currSongName = ""
 	@State var currTrackLength = 0
-	@State var currImageURL = URL(string: "https://i.scdn.co/image/ab67616d000048517359994525d219f64872d3b1")
+	@State var currImageURL = URL(string: "https://i.scdn.co/image/ab67616d00004851cad190f1a73c024e5a40dddd")
   
   @State var cancellables: Set<AnyCancellable> = []
   @State var pTracks : [PlaylistItem] = []
