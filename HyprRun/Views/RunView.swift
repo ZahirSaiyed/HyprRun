@@ -161,8 +161,10 @@ struct RunView: View {
 			}
 		}
 		else{
-			self.currFastSong += 1
-			self.currFastSong = self.currFastSong % self.fast.count
+			if(self.fast.count > 0){
+				self.currFastSong += 1
+				self.currFastSong = self.currFastSong % self.fast.count
+			}
 		}
 		
     playTrack()
