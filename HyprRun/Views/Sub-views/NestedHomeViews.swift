@@ -13,23 +13,36 @@ extension HomeView {
       
       VStack(alignment: .leading){
         Text("Your Running Mix")
-          .font(.custom("HelveticaNeue-Bold", fixedSize: 24))
+          .font(.custom("HelveticaNeue-Bold", fixedSize: 36))
+          .foregroundStyle(hyprGreen)
+          .padding(.bottom, 4)
         
         Text("The playlists we use to match your current vibe")
           .font(.custom("HelveticaNeue", fixedSize: 15))
+          .padding(.bottom, 12)
         
         PlaylistPreviewView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
           .disabled(!spotify.isAuthorized)
           .frame(height: 50)
-					.padding(.all, 20)
+          
+        
 				Text("\(selectedPlaylists.count) playlists selected")
+          .padding(.bottom, 25)
+          .foregroundStyle(Color.gray)
+          
 				
 				if(selectedPlaylists.count > 0){
 					HStack{
-						ForEach(0..<selectedPlaylists.count, id: \.self){ i in
-							if(selectedPlaylists[i].images.count > 1){
-								AsyncImage(url: selectedPlaylists[i].images[2].url)
+						ForEach(0..<3, id: \.self){ i in
+							if(selectedPlaylists.count > i){
+								if(selectedPlaylists[i].images.count > 1){
+									AsyncImage(url: selectedPlaylists[i].images[2].url)
+								}
 							}
+						}
+						if(selectedPlaylists.count > 3){
+							let diff = selectedPlaylists.count - 3
+							Text("+\(diff)")
 						}
 					}
 				}
@@ -39,7 +52,6 @@ extension HomeView {
       
 
       Spacer().frame(maxHeight: 64)
-  
       
       Text("The Vibe")
         .font(.custom("HelveticaNeue-Bold", fixedSize: 28))
@@ -50,7 +62,7 @@ extension HomeView {
 					.foregroundStyle(
 
 							LinearGradient(
-									colors: [.red, .blue, .green, .yellow],
+                colors: [.red, .blue, hyprGreen, .yellow],
 									startPoint: .leading,
 									endPoint: .trailing
 							)
@@ -58,15 +70,16 @@ extension HomeView {
 			
 			
 			Picker("What is your vibe?", selection: $vibe) {
-					ForEach(["Chill", "Casual", "Determined", "HYPR"], id: \.self) {
+					ForEach(["Chill", "Light", "Determined", "HYPR"], id: \.self) {
 							Text($0)
 					}
 			}
 			.pickerStyle(.segmented)
 
-      Spacer().frame(maxHeight: 148)
-      
+      Spacer()
+
       newRunButton.offset(x: 50, y: 0)
+      Spacer()
     }
     .frame(
       maxWidth: .infinity,
