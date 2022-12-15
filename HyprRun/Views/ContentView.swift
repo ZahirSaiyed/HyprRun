@@ -20,9 +20,8 @@ struct ContentView: View {
 	@State private var selectedPlaylists: [Playlist<PlaylistItemsReference>] = []
   @State private var playlists: [Playlist<PlaylistItemsReference>] = []
   @State private var tracks: [PlaylistItem] = []
-	@State private var features: [MusicRunningInput] = []
+	@State private var features: [RandForestInput] = []
 	@State private var predictions: [String] = []
-//	@State private var vibe: Float = 0.0
 	@State private var vibe: String = "Chill"
   @State private var isEditing = false
   

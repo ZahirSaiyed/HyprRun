@@ -13,47 +13,73 @@ extension HomeView {
       
       VStack(alignment: .leading){
         Text("Your Running Mix")
-          .font(.custom("HelveticaNeue-Bold", fixedSize: 24))
+          .font(.custom("HelveticaNeue-Bold", fixedSize: 36))
+          .foregroundStyle(hyprGreen)
+          .padding(.bottom, 4)
         
         Text("The playlists we use to match your current vibe")
           .font(.custom("HelveticaNeue", fixedSize: 15))
+          .padding(.bottom, 12)
         
         PlaylistPreviewView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
           .disabled(!spotify.isAuthorized)
           .frame(height: 50)
-        Text("\(selectedPlaylists.count) playlists selected")
-      }
+          
+        
+				Text("\(selectedPlaylists.count) playlists selected")
+          .padding(.bottom, 25)
+          .foregroundStyle(Color.gray)
+          
+				
+				if(selectedPlaylists.count > 0){
+					HStack{
+						ForEach(0..<3, id: \.self){ i in
+							if(selectedPlaylists.count > i){
+								if(selectedPlaylists[i].images.count > 1){
+									AsyncImage(url: selectedPlaylists[i].images[2].url)
+								}
+							}
+						}
+						if(selectedPlaylists.count > 3){
+							let diff = selectedPlaylists.count - 3
+							Text("+\(diff)")
+						}
+					}
+				}
+			}
+			
+			
+      
+
       Spacer().frame(maxHeight: 64)
-  
       
       Text("The Vibe")
         .font(.custom("HelveticaNeue-Bold", fixedSize: 28))
-      
-//      HStack {
-//        Slider(
-//          value: $vibe,
-//          in: 0...5,
-//          step: 1.0,
-//          onEditingChanged: { editing in
-//            isEditing = editing
-//          })
-//        Text("\(vibe)")
-//          .foregroundColor(isEditing ? .red : .blue)
-//      }
-//      .frame(alignment: .center)
+			
+			Text("\(vibe)")
+					.font(Font.system(size: 46, weight: .bold))
+					.multilineTextAlignment(.center)
+					.foregroundStyle(
+
+							LinearGradient(
+                colors: [.red, .blue, hyprGreen, .yellow],
+									startPoint: .leading,
+									endPoint: .trailing
+							)
+					)
+			
 			
 			Picker("What is your vibe?", selection: $vibe) {
-					ForEach(["Chill", "Casual", "Determined", "HYPR"], id: \.self) {
+					ForEach(["Chill", "Light", "Determined", "HYPR"], id: \.self) {
 							Text($0)
 					}
 			}
 			.pickerStyle(.segmented)
 
-			Text("Vibe: \(vibe)")
-      
-      Spacer().frame(maxHeight: 148)
-      
+      Spacer()
+
       newRunButton.offset(x: 50, y: 0)
+      Spacer()
     }
     .frame(
       maxWidth: .infinity,
@@ -92,25 +118,6 @@ extension HomeView {
           .foregroundColor(.red)
           .fontWeight(.bold)
       }
-
-      
-//      ScrollView {
-//        HStack {
-//          let miles = round(self.runViewModel.runs.map({ $0.distance}).reduce(0, +) * 100)/100.0
-//          let count = self.runViewModel.runs.count
-//          let avgDist: Double = round((miles / (Double(count))) * 100)/100.0
-//          VStack {
-//            Text("\(miles)").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
-//            Text("mi. ran").font(.custom("HelveticaNeue", fixedSize: 16))
-//          }
-//          Spacer()
-//            .frame(width: 40)
-//          VStack(alignment: .leading, spacing: 4) {
-//            Text("Runs completed: \(count)")
-//            Text("Avg. distance: \(avgDist)")
-//          }
-//        }
-//      }
     }
     .onAppear(perform: self.runViewModel.retrieveRuns)
   }

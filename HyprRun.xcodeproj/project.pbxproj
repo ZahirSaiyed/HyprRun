@@ -29,6 +29,7 @@
 		7EFD5C1A2924044B006D4061 /* PostRunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD5C192924044B006D4061 /* PostRunView.swift */; };
 		A1654623294199E0005252BC /* buttonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1654622294199E0005252BC /* buttonStyles.swift */; };
 		A16546252942B444005252BC /* MetricLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16546242942B444005252BC /* MetricLabel.swift */; };
+		A183F28F294B0E7700CF9F6A /* VibePickerText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A183F28E294B0E7700CF9F6A /* VibePickerText.swift */; };
 		E013DB8729103ED50029093B /* HyprRunApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013DB8629103ED50029093B /* HyprRunApp.swift */; };
 		E013DB8929103ED50029093B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013DB8829103ED50029093B /* ContentView.swift */; };
 		E013DB8B29103ED60029093B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E013DB8A29103ED60029093B /* Assets.xcassets */; };
@@ -47,7 +48,7 @@
 		E06CA5C1291E763B004F0C6D /* SpotifyAPIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06CA5C0291E763B004F0C6D /* SpotifyAPIExtensions.swift */; };
 		E0B71562291046BF0037B331 /* ImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B71561291046BF0037B331 /* ImageName.swift */; };
 		E0B7156429104AB60037B331 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B7156329104AB60037B331 /* AlertItem.swift */; };
-		E0E8D7EE2942EFE000304A3B /* MusicRunning.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E0E8D7ED2942EFE000304A3B /* MusicRunning.mlmodel */; };
+		E0E02186294AE62E0050DA07 /* RandForest.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E0E02185294AE62E0050DA07 /* RandForest.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		7EFD5C192924044B006D4061 /* PostRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRunView.swift; sourceTree = "<group>"; };
 		A1654622294199E0005252BC /* buttonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = buttonStyles.swift; sourceTree = "<group>"; };
 		A16546242942B444005252BC /* MetricLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricLabel.swift; sourceTree = "<group>"; };
+		A183F28E294B0E7700CF9F6A /* VibePickerText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibePickerText.swift; sourceTree = "<group>"; };
 		E013DB8329103ED50029093B /* HyprRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HyprRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E013DB8629103ED50029093B /* HyprRunApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyprRunApp.swift; sourceTree = "<group>"; };
 		E013DB8829103ED50029093B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -92,7 +94,7 @@
 		E0B71561291046BF0037B331 /* ImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageName.swift; sourceTree = "<group>"; };
 		E0B7156329104AB60037B331 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 		E0D55EBD2910660600EC755E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		E0E8D7ED2942EFE000304A3B /* MusicRunning.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MusicRunning.mlmodel; sourceTree = "<group>"; };
+		E0E02185294AE62E0050DA07 /* RandForest.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = RandForest.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 				E02193522918071F00FAF91E /* SelectBoxView.swift */,
 				7ECFF210293FF40A006326FB /* HomeViewButtons.swift */,
 				A16546242942B444005252BC /* MetricLabel.swift */,
+				A183F28E294B0E7700CF9F6A /* VibePickerText.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -190,7 +193,7 @@
 		E013DB8529103ED50029093B /* HyprRun */ = {
 			isa = PBXGroup;
 			children = (
-				E0E8D7ED2942EFE000304A3B /* MusicRunning.mlmodel */,
+				E0E02185294AE62E0050DA07 /* RandForest.mlmodel */,
 				A1654621294199D1005252BC /* Style */,
 				7ECFF1FA293FE109006326FB /* CoreData */,
 				E0B71560291046AA0037B331 /* Project Utilities */,
@@ -347,7 +350,7 @@
 				7E0625692922C90A001EB66A /* RunViewModel.swift in Sources */,
 				7ECFF211293FF40A006326FB /* HomeViewButtons.swift in Sources */,
 				E025E5C02914598300FF1922 /* VibeButtonView.swift in Sources */,
-				E0E8D7EE2942EFE000304A3B /* MusicRunning.mlmodel in Sources */,
+				E0E02186294AE62E0050DA07 /* RandForest.mlmodel in Sources */,
 				E021935529180A1500FAF91E /* RunView.swift in Sources */,
 				7EAD37DF291EC2EE00BCBE02 /* UnitExtensions.swift in Sources */,
 				7EAD37E1291EC34A00BCBE02 /* DataManager.swift in Sources */,
@@ -370,6 +373,7 @@
 				7EAD37DD291EC2E400BCBE02 /* FormatDisplay.swift in Sources */,
 				7ECFF20E293FF27B006326FB /* NestedRunViews.swift in Sources */,
 				7EAD37ED291ED5E800BCBE02 /* HomeView.swift in Sources */,
+				A183F28F294B0E7700CF9F6A /* VibePickerText.swift in Sources */,
 				7ECFF217293FFB25006326FB /* LoginView.swift in Sources */,
 				7EFD5C1A2924044B006D4061 /* PostRunView.swift in Sources */,
 				E013DB8729103ED50029093B /* HyprRunApp.swift in Sources */,
