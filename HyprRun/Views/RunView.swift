@@ -106,7 +106,7 @@ struct RunView: View {
   
   func updateValues(){
     var trackArray = Array(self.tracks.enumerated())
-		if(["Chill", "Casual"].contains(self.vibe)){
+		if(["Chill", "Light"].contains(self.vibe)){
 			trackArray = Array(slow.enumerated())
 			if (trackArray.count > 0) {
 				let trackZero = trackArray[self.currSlowSong]
@@ -133,7 +133,7 @@ struct RunView: View {
 //			self.currSong -= 1
 //		}
 		
-		if(["Chill", "Casual"].contains(self.vibe)){
+		if(["Chill", "Light"].contains(self.vibe)){
 			if (self.currSlowSong > 0) {
 				self.currSlowSong -= 1
 			}
@@ -153,7 +153,7 @@ struct RunView: View {
   func nextSong() {
 //    self.currSong += 1
 //		self.currSong = self.currSong % self.tracks.count
-		if(["Chill", "Casual"].contains(self.vibe)){
+		if(["Chill", "Light"].contains(self.vibe)){
 			if(self.slow.count > 0){
 				self.currSlowSong += 1
 				self.currSlowSong = self.currSlowSong % self.slow.count
@@ -176,8 +176,6 @@ struct RunView: View {
 		updateValues()
     self.isPlaying.toggle()
 		retrievePlaybackState()
-		print(self.isPlaying)
-		print(self.songDuration)
     if (self.isPlaying && self.tracks.count > 0) {
       if (self.songDuration > 0) {
         resumeTrack()
@@ -236,8 +234,7 @@ struct RunView: View {
 		var trackArray = Array(self.tracks.enumerated())
 		var currSongIndex = self.currSong % trackArray.count
 		
-		if(["Chill", "Casual"].contains(self.vibe)){
-			print("HELLLLLOOOO THIS SHOULD BE WORKING!!!!!!!!")
+		if(["Chill", "Light"].contains(self.vibe)){
 			trackArray = Array(slow.enumerated())
 			currSongIndex = self.currSlowSong % trackArray.count
 		}
