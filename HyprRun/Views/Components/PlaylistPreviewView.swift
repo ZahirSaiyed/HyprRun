@@ -66,33 +66,6 @@ struct PlaylistPreviewView: View {
 			)
 			.store(in: &cancellables)
 	}
-	
-//	func retrieveTracks() {
-//		//retrievePlaylists()
-//		self.tracks = []
-//		print("\(playlists.count)")
-//		//for playlist in playlists {
-//		for playlist in selectedPlaylists{
-//			let pURI = playlist.uri
-//			spotify.api.playlist(pURI, market: "US")
-//				.sink(receiveCompletion: { completion in
-//					print("completion:", completion, terminator: "\n\n\n")
-//				}, receiveValue: { playlist in
-//						print("\nReceived Playlist")
-//						print("------------------------")
-//						print("name:", playlist.name)
-//						print("link:", playlist.externalURLs?["spotify"] ?? "nil")
-//						print("description:", playlist.description ?? "nil")
-//						print("total tracks:", playlist.items.total)
-//
-//						for track in playlist.items.items.compactMap(\.item) {
-//							self.tracks.append(track)
-//						}
-//						}
-//				)
-//				.store(in: &cancellables)
-//		}
-//	}
 }
 
 

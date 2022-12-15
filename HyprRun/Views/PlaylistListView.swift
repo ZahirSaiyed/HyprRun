@@ -14,7 +14,6 @@ struct PlaylistListView: View {
 		
   @EnvironmentObject var spotify: Spotify
 
-  //@Binding var selectedPlaylists: [String]
 	@Binding var selectedPlaylists: [Playlist<PlaylistItemsReference>]
   @Binding var playlists: [Playlist<PlaylistItemsReference>]
   @Binding var tracks: [PlaylistItem]

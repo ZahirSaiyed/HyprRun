@@ -49,13 +49,11 @@ struct RunView: View {
   
 	let timerSong = Timer.publish(every: 0.90, on: .main, in: .default).autoconnect()
 	
-	//let MLModel = MusicRunning()
 	let MLModel = RandForest()
 	
 	@Binding var selectedPlaylists: [Playlist<PlaylistItemsReference>]
   @Binding var playlists: [Playlist<PlaylistItemsReference>]
   @Binding var tracks: [PlaylistItem]
-	//@Binding var features: [MusicRunningInput]
 	@Binding var features: [RandForestInput]
 	@Binding var predictions: [String]
 	@Binding var vibe: String
@@ -63,7 +61,6 @@ struct RunView: View {
   // MARK: - Main view
   var body: some View {
     VStack {
-//      playerView()
 			TabView{
 				ZStack{
 					playerView()
@@ -132,10 +129,6 @@ struct RunView: View {
   
   // MARK: - Player methods
   func prevSong() {
-//		if (self.currSong > 0) {
-//			self.currSong -= 1
-//		}
-		
 		if(["Chill", "Casual"].contains(self.vibe)){
 			if (self.currSlowSong > 0) {
 				self.currSlowSong -= 1
@@ -154,8 +147,6 @@ struct RunView: View {
   }
   
   func nextSong() {
-//    self.currSong += 1
-//		self.currSong = self.currSong % self.tracks.count
 		if(["Chill", "Casual"].contains(self.vibe)){
 			if(self.slow.count > 0){
 				self.currSlowSong += 1
@@ -235,7 +226,6 @@ struct RunView: View {
   }
   
   func playTrack() {
-//    let trackArray = Array(self.tracks.enumerated())
 		var trackArray = Array(self.tracks.enumerated())
 		var currSongIndex = self.currSong % trackArray.count
 		
@@ -332,9 +322,7 @@ struct RunView: View {
 		}
 	}
 	
-//	func makePrediction(featureSet: MusicRunningInput) -> String{
 	func makePrediction(featureSet: RandForestInput) -> String{
-		//let featureSet = getFeature(trackNum: self.currSong)
 		if let prediction = try? MLModel.prediction(input: featureSet) {
 			return(prediction.label)
 		} else {
@@ -363,7 +351,6 @@ struct RunView: View {
 							print("completion: ", completion, terminator: "\n\n\n")
 						},
 						receiveValue: { feature in
-//							let featureToAdd = MusicRunningInput(danceability: feature.danceability, energy: feature.energy, key: Double(feature.key), loudness: feature.loudness, mode: Double(feature.mode), acousticness: feature.acousticness, instrumentalness: feature.instrumentalness, liveness: feature.liveness, valence: feature.valence, tempo: feature.tempo)
 							let featureToAdd = RandForestInput(danceability: feature.danceability, energy: feature.energy, key: Double(feature.key), loudness: feature.loudness, mode: Double(feature.mode), acousticness: feature.acousticness, instrumentalness: feature.instrumentalness, liveness: feature.liveness, valence: feature.valence, tempo: feature.tempo)
 							self.features.append(featureToAdd)
 							
@@ -384,13 +371,11 @@ struct RunView: View {
 		}
 	}
 	
-//	func getFeature(trackNum:Int) -> MusicRunningInput{
 	func getFeature(trackNum:Int) -> RandForestInput{
 		if(self.features.count > 0) {
 			return self.features[trackNum]
 		}
-		//random default MusicRunningInput
-//		return MusicRunningInput(danceability: 0.537, energy: 0.558, key: 11.0, loudness: -8.678, mode: 1.0, acousticness: 0.2630, instrumentalness: 0.910000, liveness: 0.1020, valence: 0.505, tempo: 131.037)
+		
 		return RandForestInput(danceability: 0.537, energy: 0.558, key: 11.0, loudness: -8.678, mode: 1.0, acousticness: 0.2630, instrumentalness: 0.910000, liveness: 0.1020, valence: 0.505, tempo: 131.037)
 	}
 }
