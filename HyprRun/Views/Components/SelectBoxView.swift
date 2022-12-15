@@ -10,17 +10,14 @@ import SpotifyWebAPI
 
 struct SelectBoxView: View {
   @Binding var selected: Bool
-  //@Binding var selectedPlaylists: [String]
 	@Binding var selectedPlaylists: [Playlist<PlaylistItemsReference>]
 
-  //@State var name: String
 	@State var playlist: [Playlist<PlaylistItemsReference>] 
 	
 	init(selected: Binding<Bool> , selectedPlaylists: Binding<[Playlist<PlaylistItemsReference>]>, name: [Playlist<PlaylistItemsReference>]) {
 		self._selected = selected
 		self._selectedPlaylists = selectedPlaylists
 		self.playlist = name
-		//self.name = name
 	}
 
 	
@@ -30,10 +27,6 @@ struct SelectBoxView: View {
       .onTapGesture {
         self.selected.toggle()
         if(self.selected){
-				//	if self.playlist != nil{
-			//		self.selectedPlaylists.append(self.playlist ?? [])
-				//		self.selectedPlaylists = self.selectedPlaylists + self.playlist
-		//			}
 					print("Before \(self.selectedPlaylists.count)")
 					print("Before \(self.playlist.count)")
 					self.selectedPlaylists = Array(self.selectedPlaylists + self.playlist)
