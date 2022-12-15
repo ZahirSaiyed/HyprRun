@@ -28,8 +28,9 @@ struct PlaylistPreviewView: View {
 		var body: some View {
 				List {
 						NavigationLink(
-							"Selected Playlists", destination: PlaylistListView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
+							"Select Your Playlists", destination: PlaylistListView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
 						)
+						.font(.system(size: 20))
 				}
 				.listStyle(PlainListStyle())
 				.onAppear(perform: retrievePlaylists)

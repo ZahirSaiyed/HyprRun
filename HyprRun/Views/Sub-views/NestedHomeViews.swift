@@ -21,7 +21,8 @@ extension HomeView {
         PlaylistPreviewView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
           .disabled(!spotify.isAuthorized)
           .frame(height: 50)
-        Text("\(selectedPlaylists.count) playlists selected")
+					.padding(.all, 20)
+				Text("\(selectedPlaylists.count) playlists selected")
 				
 				if(selectedPlaylists.count > 0){
 					HStack{
