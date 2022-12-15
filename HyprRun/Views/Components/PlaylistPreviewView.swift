@@ -30,7 +30,7 @@ struct PlaylistPreviewView: View {
 						NavigationLink(
 							"Select Your Playlists", destination: PlaylistListView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
 						)
-						.font(.system(size: 20))
+						.font(.custom("HelveticaNeue-Bold", fixedSize: 20))
 				}
 				.listStyle(PlainListStyle())
 				.onAppear(perform: retrievePlaylists)
