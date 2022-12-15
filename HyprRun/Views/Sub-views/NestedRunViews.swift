@@ -128,9 +128,12 @@ extension RunView {
   // MARK: - Button components
   var endRunButton: some View {
     Button(action: {
+//      print("1")
       self.runViewModel.endRun() // Note: Just calling 'endRun()' here because that method calls 'saveRun()' for us. This prevents us from creating a duplicate object.
       // TODO: Need to add an if statement or something - should have a binding variable that checks if the user confirms to end run -> if they do confirm, then we redirect route from the view to the post-run view
+//      print("2")
       self.viewRouter.setRoute(.postRunView)
+//      print("3")
     }, label: {
       Text("END RUN")
     })
