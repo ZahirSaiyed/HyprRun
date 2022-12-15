@@ -33,10 +33,16 @@ extension HomeView {
 				
 				if(selectedPlaylists.count > 0){
 					HStack{
-						ForEach(0..<selectedPlaylists.count, id: \.self){ i in
-							if(selectedPlaylists[i].images.count > 1){
-								AsyncImage(url: selectedPlaylists[i].images[2].url)
+						ForEach(0..<3, id: \.self){ i in
+							if(selectedPlaylists.count > i){
+								if(selectedPlaylists[i].images.count > 1){
+									AsyncImage(url: selectedPlaylists[i].images[2].url)
+								}
 							}
+						}
+						if(selectedPlaylists.count > 3){
+							let diff = selectedPlaylists.count - 3
+							Text("+\(diff)")
 						}
 					}
 				}
