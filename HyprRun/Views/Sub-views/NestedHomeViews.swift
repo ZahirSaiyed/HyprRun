@@ -56,6 +56,31 @@ extension HomeView {
 //      }
 //      .frame(alignment: .center)
 			
+//			LinearGradient(
+//					colors: [.red, .blue, .green, .yellow],
+//					startPoint: .leading,
+//					endPoint: .trailing
+//			)
+//			.mask(
+//					// 1
+//					Text("\(vibe)")
+//							.font(Font.system(size: 46, weight: .bold))
+//							.multilineTextAlignment(.center)
+//			)
+			
+			Text("\(vibe)")
+					.font(Font.system(size: 46, weight: .bold))
+					.multilineTextAlignment(.center)
+					.foregroundStyle(
+
+							LinearGradient(
+									colors: [.red, .blue, .green, .yellow],
+									startPoint: .leading,
+									endPoint: .trailing
+							)
+					)
+			
+			
 			Picker("What is your vibe?", selection: $vibe) {
 					ForEach(["Chill", "Casual", "Determined", "HYPR"], id: \.self) {
 							Text($0)
@@ -63,8 +88,8 @@ extension HomeView {
 			}
 			.pickerStyle(.segmented)
 
-			Text("Vibe: \(vibe)")
-      
+//			Text("Vibe: \(vibe)")
+			
       Spacer().frame(maxHeight: 148)
       
       newRunButton.offset(x: 50, y: 0)
