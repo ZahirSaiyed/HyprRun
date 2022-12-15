@@ -56,18 +56,6 @@ extension HomeView {
 //      }
 //      .frame(alignment: .center)
 			
-//			LinearGradient(
-//					colors: [.red, .blue, .green, .yellow],
-//					startPoint: .leading,
-//					endPoint: .trailing
-//			)
-//			.mask(
-//					// 1
-//					Text("\(vibe)")
-//							.font(Font.system(size: 46, weight: .bold))
-//							.multilineTextAlignment(.center)
-//			)
-			
 			Text("\(vibe)")
 					.font(Font.system(size: 46, weight: .bold))
 					.multilineTextAlignment(.center)
