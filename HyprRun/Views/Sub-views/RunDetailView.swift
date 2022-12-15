@@ -17,27 +17,26 @@ struct RunDetailView: View {
     HStack {
       Spacer().frame(width: 20)
       VStack(alignment: .leading, spacing: 20) {
-        HStack {
-          Text("Date: ")
-          Text(FormatDisplay.date(run.timestamp))
-        }
-        .font(.title)
-        .fontWeight(.bold)
-        HStack {
-          Text("Distance: ")
-          Text(FormatDisplay.distance(run.distance))
-          Spacer()
-        }
-        HStack {
-          Text("Time: ")
-          Text(FormatDisplay.time(Int(run.duration)))
-          Spacer()
-        }
+        Text((FormatDisplay.date(run.timestamp)))
+          .font(.custom("HelveticaNeue-Medium", fixedSize: 32))
+//        MetricLabel(metric: "", val: "\(FormatDisplay.date(run.timestamp))")
+        
+        MetricLabel(metric: "Distance", val: "\(FormatDisplay.distance(run.distance))")
+        
+        MetricLabel(metric: "Duration", val: "\(FormatDisplay.time(Int(run.duration)))")
+
+//        HStack {
+//          Text("Time: ")
+//          Text(FormatDisplay.time(Int(run.duration)))
+//          Spacer()
+//        }
         ScrollView {
           ForEach(locations) { loc in
             HStack {
               VStack(alignment: .leading) {
                 Text("Coordinate: \(loc.latitude), \(loc.longitude)")
+                  .font(.custom("HelveticaNeue-Medium", fixedSize: 16))
+                  .foregroundColor(.gray)
               }
               Spacer()
             }
