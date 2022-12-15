@@ -53,19 +53,6 @@ extension HomeView {
 
       Spacer().frame(maxHeight: 64)
       
-//      HStack {
-//        Slider(
-//          value: $vibe,
-//          in: 0...5,
-//          step: 1.0,
-//          onEditingChanged: { editing in
-//            isEditing = editing
-//          })
-//        Text("\(vibe)")
-//          .foregroundColor(isEditing ? .red : .blue)
-//      }
-//      .frame(alignment: .center)
-      
       Text("The Vibe")
         .font(.custom("HelveticaNeue-Bold", fixedSize: 28))
 			
@@ -90,6 +77,7 @@ extension HomeView {
 			.pickerStyle(.segmented)
 
       Spacer()
+
       newRunButton.offset(x: 50, y: 0)
       Spacer()
     }
@@ -130,25 +118,6 @@ extension HomeView {
           .foregroundColor(.red)
           .fontWeight(.bold)
       }
-
-      
-//      ScrollView {
-//        HStack {
-//          let miles = round(self.runViewModel.runs.map({ $0.distance}).reduce(0, +) * 100)/100.0
-//          let count = self.runViewModel.runs.count
-//          let avgDist: Double = round((miles / (Double(count))) * 100)/100.0
-//          VStack {
-//            Text("\(miles)").font(.custom("HelveticaNeue-Bold", fixedSize: 28))
-//            Text("mi. ran").font(.custom("HelveticaNeue", fixedSize: 16))
-//          }
-//          Spacer()
-//            .frame(width: 40)
-//          VStack(alignment: .leading, spacing: 4) {
-//            Text("Runs completed: \(count)")
-//            Text("Avg. distance: \(avgDist)")
-//          }
-//        }
-//      }
     }
     .onAppear(perform: self.runViewModel.retrieveRuns)
   }

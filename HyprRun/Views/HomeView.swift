@@ -44,7 +44,6 @@ struct HomeView: View {
             Spacer()
             Button(action: {
               self.viewRouter.runView()
-//              runViewToggled = true
             }, label: {
               Text("Run")
                 .font(.custom("HelveticaNeue-Medium", fixedSize: 24))
@@ -55,7 +54,6 @@ struct HomeView: View {
               .frame(width: 40)
             Button(action: {
               self.viewRouter.rewindView()
-//              runViewToggled = false
             }, label: {
               Text("Rewind")
                 .font(.custom("HelveticaNeue-Medium", fixedSize: 24))
@@ -90,11 +88,6 @@ struct HomeView: View {
     .background(currentMode == .dark ? .black : .white)
     .foregroundColor(currentMode == .dark ? .white : .black)
   }
-  
-//  @State private var isDarkMode = true
-//  // Need to nest the toggle inside of a View
-//  //      Toggle("Dark Mode", isOn: $isDarkMode)
-//  //      Spacer()
 }
 
 

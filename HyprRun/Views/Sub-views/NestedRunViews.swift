@@ -82,7 +82,6 @@ extension RunView {
 					}
 			}
 			.pickerStyle(.segmented)
-
     }
   }
   
