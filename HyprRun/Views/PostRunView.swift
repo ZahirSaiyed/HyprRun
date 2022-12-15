@@ -23,9 +23,9 @@ struct PostRunView: View {
         .frame(maxHeight: 28)
       VStack(spacing: 14){
         MetricLabel(metric: "Time", val: "\(self.runViewModel.timeLabel)")
-        
+
         MetricLabel(metric: "Distance", val: "\(self.runViewModel.distanceLabel)")
-        
+
         MetricLabel(metric: "Pace", val: "\(self.runViewModel.paceLabel)")
       }
       .padding(20)
@@ -37,7 +37,7 @@ struct PostRunView: View {
         self.viewRouter.setRoute(.homeView)
       }, label: {
         Text("Finish")
-          font(.custom("HelveticaNeue-Bold", fixedSize: 28))
+          .font(.custom("HelveticaNeue-Bold", fixedSize: 28))
           .foregroundColor(.white)
           .padding(7)
           .frame(width: 250, height: 50)
@@ -45,6 +45,7 @@ struct PostRunView: View {
           .cornerRadius(50)
           .shadow(radius: 10)
       })
+      
       Spacer()
         .frame(maxHeight: 35)
     }
