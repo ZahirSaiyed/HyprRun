@@ -74,5 +74,5 @@ Interative development and extensive user research enabled us to implement the f
 - [x] Users can review end of run summary statistics for a specific past run 
 - [x] Users can view a list of their prior run history grouped by month
 - [ ] As part of their end of run summary, users can see how their music vibe levels change over time in relation to how their pace changes over time
-   - After more user studies and performing a round of prioritization, we decided not to pursue this use case during this sprint because we considered it low priority. Users were not as interested in this ffeature as we originaly thought. Instead, we worked on improving our music recommendation algorihtm and cleaning up our user interface.
+   - After more user studies and performing a round of prioritization, we decided not to pursue this use case during this sprint because we considered it low priority. Instead, we put more time into improving our music recommendation algorithm and cleaning up our user interface. 
 
