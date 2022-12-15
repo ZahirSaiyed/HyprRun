@@ -11,6 +11,11 @@ import SpotifyWebAPI
 
 let skyBlue = Color(red: 0.4627, green: 0.8392, blue: 1.0)
 let hyprBlue = Color(red: 0.13, green: 0.00, blue: 0.95)
+let hyprGreen = Color(red: 0.44, green: 0.95, blue: 0.58)
+
+let gradient = LinearGradient(colors: [hyprBlue, hyprGreen],
+                        startPoint: .center,
+                        endPoint: .bottom)
 
 struct SplashView: View {
 		@EnvironmentObject var spotify: Spotify
@@ -19,7 +24,7 @@ struct SplashView: View {
 	
 		var body: some View {
 			ZStack {
-				hyprBlue.ignoresSafeArea() // 1
+        gradient.ignoresSafeArea() // 1
 				VStack {
 					Text("HyprRun")
 						.font(.system(size: 44))

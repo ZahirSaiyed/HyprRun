@@ -26,12 +26,17 @@ struct PlaylistPreviewView: View {
 	@Binding var tracks: [PlaylistItem]
 		
 		var body: some View {
+      let gray = Color(red: 0.06, green: 0.06, blue: 0.06);
 				List {
 						NavigationLink(
 							"Select Your Playlists", destination: PlaylistListView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
 						)
+            .padding([.leading, .trailing], 20)
 						.font(.custom("HelveticaNeue-Bold", fixedSize: 20))
+            .listRowBackground(gray)
+
 				}
+        
 				.listStyle(PlainListStyle())
 				.onAppear(perform: retrievePlaylists)
 		}

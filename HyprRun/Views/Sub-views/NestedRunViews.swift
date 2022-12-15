@@ -13,9 +13,12 @@ extension RunView {
   func playerView() -> some View {
     return HStack(spacing: 20) {
       VStack(alignment: .leading) {
+          Text("SONG INFO LOADING...")
+        
           Text("\(self.currSongName)")
             .foregroundColor(Color.white)
             .font(.custom("HelveticaNeue-Medium", fixedSize: 14))
+            .padding(.top, 10)
         
           Text("\(self.currArtist)")
             .foregroundColor(Color.gray)
@@ -29,6 +32,7 @@ extension RunView {
           Spacer().frame(maxHeight: 10)
   
           AsyncImage(url: self.currImageURL)
+            .scaledToFit()
       }
       .frame(alignment: .center)
       .onReceive(timerSong) { input in
@@ -48,16 +52,19 @@ extension RunView {
   
   func progressView() -> some View {
     return VStack {
-      VStack(spacing: 14){
+      Spacer()
+      
+      VStack(spacing: 10){
         MetricLabel(metric: "Time", val: "\(self.runViewModel.timeLabel)")
         
         MetricLabel(metric: "Distance", val: "\(self.runViewModel.distanceLabel)")
         
         MetricLabel(metric: "Pace", val: "\(self.runViewModel.paceLabel)")
       }
-      .padding([.trailing, .leading, .bottom], 45)
-      .padding(.top, 20)
-
+      .padding([.trailing, .leading], 45)
+      
+      Spacer()
+      
       HStack(spacing: 30) {
         endRunButton
         if self.runViewModel.currentState == .running {
@@ -66,7 +73,8 @@ extension RunView {
           resumeRunButton
         }
       }
-      .padding(.bottom, 50)
+      
+      Spacer()
 			
 			Picker("What is your vibe?", selection: $vibe) {
 					ForEach(["Chill", "Casual", "Determined", "HYPR"], id: \.self) {

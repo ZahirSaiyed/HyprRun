@@ -48,7 +48,7 @@ struct HomeView: View {
             }, label: {
               Text("Run")
                 .font(.custom("HelveticaNeue-Medium", fixedSize: 24))
-                .foregroundColor(runViewToggled == false ? .gray : ((currentMode == .dark) ? .white : .black))
+                .foregroundColor(runViewToggled == false ? .gray : ((currentMode == .dark) ? hyprBlue : .black))
             })
             
             Spacer()
@@ -59,7 +59,7 @@ struct HomeView: View {
             }, label: {
               Text("Rewind")
                 .font(.custom("HelveticaNeue-Medium", fixedSize: 24))
-                .foregroundColor(runViewToggled == true ? .gray : ((currentMode == .dark) ? .white : .black))
+                .foregroundColor(runViewToggled == true ? .gray : ((currentMode == .dark) ? hyprBlue : .black))
             })
             Spacer()
           }

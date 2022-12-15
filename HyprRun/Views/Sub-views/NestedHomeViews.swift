@@ -13,16 +13,23 @@ extension HomeView {
       
       VStack(alignment: .leading){
         Text("Your Running Mix")
-          .font(.custom("HelveticaNeue-Bold", fixedSize: 24))
+          .font(.custom("HelveticaNeue-Bold", fixedSize: 36))
+          .foregroundStyle(hyprGreen)
+          .padding(.bottom, 4)
         
         Text("The playlists we use to match your current vibe")
           .font(.custom("HelveticaNeue", fixedSize: 15))
+          .padding(.bottom, 12)
         
         PlaylistPreviewView(selectedPlaylists: $selectedPlaylists, playlists: $playlists, tracks: $tracks)
           .disabled(!spotify.isAuthorized)
           .frame(height: 50)
-					.padding(.all, 20)
+          
+        
 				Text("\(selectedPlaylists.count) playlists selected")
+          .padding(.bottom, 25)
+          .foregroundStyle(Color.gray)
+          
 				
 				if(selectedPlaylists.count > 0){
 					HStack{
@@ -39,10 +46,6 @@ extension HomeView {
       
 
       Spacer().frame(maxHeight: 64)
-  
-      
-      Text("The Vibe")
-        .font(.custom("HelveticaNeue-Bold", fixedSize: 28))
       
 //      HStack {
 //        Slider(
@@ -56,6 +59,9 @@ extension HomeView {
 //          .foregroundColor(isEditing ? .red : .blue)
 //      }
 //      .frame(alignment: .center)
+      
+      Text("The Vibe")
+        .font(.custom("HelveticaNeue-Bold", fixedSize: 28))
 			
 			Text("\(vibe)")
 					.font(Font.system(size: 46, weight: .bold))
@@ -63,7 +69,7 @@ extension HomeView {
 					.foregroundStyle(
 
 							LinearGradient(
-									colors: [.red, .blue, .green, .yellow],
+                colors: [.red, .blue, hyprGreen, .yellow],
 									startPoint: .leading,
 									endPoint: .trailing
 							)
@@ -71,17 +77,15 @@ extension HomeView {
 			
 			
 			Picker("What is your vibe?", selection: $vibe) {
-					ForEach(["Chill", "Casual", "Determined", "HYPR"], id: \.self) {
+					ForEach(["Chill", "Light", "Determined", "HYPR"], id: \.self) {
 							Text($0)
 					}
 			}
 			.pickerStyle(.segmented)
 
-//			Text("Vibe: \(vibe)")
-			
-      Spacer().frame(maxHeight: 148)
-      
+      Spacer()
       newRunButton.offset(x: 50, y: 0)
+      Spacer()
     }
     .frame(
       maxWidth: .infinity,

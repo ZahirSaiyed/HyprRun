@@ -62,6 +62,7 @@ struct RunView: View {
   var body: some View {
     VStack {
 //      playerView()
+
 			TabView{
 				ZStack{
 					playerView()
@@ -72,8 +73,6 @@ struct RunView: View {
 			}
 			.tabViewStyle(.page)
 			.indexViewStyle(.page(backgroundDisplayMode: .interactive))
-			.cornerRadius(30)
-			.padding(10)
 			
       progressView()
       Spacer()

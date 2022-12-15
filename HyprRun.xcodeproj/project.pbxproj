@@ -29,6 +29,7 @@
 		7EFD5C1A2924044B006D4061 /* PostRunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD5C192924044B006D4061 /* PostRunView.swift */; };
 		A1654623294199E0005252BC /* buttonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1654622294199E0005252BC /* buttonStyles.swift */; };
 		A16546252942B444005252BC /* MetricLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16546242942B444005252BC /* MetricLabel.swift */; };
+		A183F28F294B0E7700CF9F6A /* VibePickerText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A183F28E294B0E7700CF9F6A /* VibePickerText.swift */; };
 		E013DB8729103ED50029093B /* HyprRunApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013DB8629103ED50029093B /* HyprRunApp.swift */; };
 		E013DB8929103ED50029093B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013DB8829103ED50029093B /* ContentView.swift */; };
 		E013DB8B29103ED60029093B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E013DB8A29103ED60029093B /* Assets.xcassets */; };
@@ -73,6 +74,7 @@
 		7EFD5C192924044B006D4061 /* PostRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRunView.swift; sourceTree = "<group>"; };
 		A1654622294199E0005252BC /* buttonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = buttonStyles.swift; sourceTree = "<group>"; };
 		A16546242942B444005252BC /* MetricLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricLabel.swift; sourceTree = "<group>"; };
+		A183F28E294B0E7700CF9F6A /* VibePickerText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibePickerText.swift; sourceTree = "<group>"; };
 		E013DB8329103ED50029093B /* HyprRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HyprRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E013DB8629103ED50029093B /* HyprRunApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyprRunApp.swift; sourceTree = "<group>"; };
 		E013DB8829103ED50029093B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				E02193522918071F00FAF91E /* SelectBoxView.swift */,
 				7ECFF210293FF40A006326FB /* HomeViewButtons.swift */,
 				A16546242942B444005252BC /* MetricLabel.swift */,
+				A183F28E294B0E7700CF9F6A /* VibePickerText.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				7EAD37DD291EC2E400BCBE02 /* FormatDisplay.swift in Sources */,
 				7ECFF20E293FF27B006326FB /* NestedRunViews.swift in Sources */,
 				7EAD37ED291ED5E800BCBE02 /* HomeView.swift in Sources */,
+				A183F28F294B0E7700CF9F6A /* VibePickerText.swift in Sources */,
 				7ECFF217293FFB25006326FB /* LoginView.swift in Sources */,
 				7EFD5C1A2924044B006D4061 /* PostRunView.swift in Sources */,
 				E013DB8729103ED50029093B /* HyprRunApp.swift in Sources */,

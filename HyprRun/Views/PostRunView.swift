@@ -13,9 +13,14 @@ struct PostRunView: View {
   
   var body: some View {
     VStack() {
-      Text("This is the post-run view").font(.title2)
       Spacer()
+      Text("Run Complete!")
+        .font(.custom("HelveticaNeue-Bold", fixedSize: 36))
+        .foregroundStyle(hyprGreen)
+        .padding(.bottom, 4)
       
+      Spacer()
+        .frame(maxHeight: 28)
       VStack(spacing: 14){
         MetricLabel(metric: "Time", val: "\(self.runViewModel.timeLabel)")
         
@@ -23,22 +28,25 @@ struct PostRunView: View {
         
         MetricLabel(metric: "Pace", val: "\(self.runViewModel.paceLabel)")
       }
-      .padding()
+      .padding(20)
 
       Spacer()
+
       Button(action: {
         self.viewRouter.rewindView()
         self.viewRouter.setRoute(.homeView)
       }, label: {
-        Text("Finish").font(.custom("HelveticaNeue-Bold", fixedSize: 18))
+        Text("Finish")
+          font(.custom("HelveticaNeue-Bold", fixedSize: 28))
           .foregroundColor(.white)
           .padding(7)
-          .frame(width: 150, height: 50)
-          .background(Color.blue)
-          .cornerRadius(20)
-          .shadow(radius: 5)
+          .frame(width: 250, height: 50)
+          .background(hyprBlue)
+          .cornerRadius(50)
+          .shadow(radius: 10)
       })
       Spacer()
+        .frame(maxHeight: 35)
     }
   }
 }
