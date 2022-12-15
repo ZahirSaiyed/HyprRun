@@ -54,6 +54,7 @@ Interative development and extensive user research enabled us to implement the f
 
 - Unit Testing
   - Due to the robust nature of the Spotify API, we decided to place our efforts elsewhere. Despite its steep learning curve, the Spotify API is really well tested and maintained. So, rather than dedicating valuable resources towards testing an established API, we worked on improving our machine learning classifier. 
-  - We felt this was a valuable tradeoff because our users emphasized the need for their music to match the "vibe" of their run. We did not simply want to merge a running app with a music app. We wanted to merge the two and create something special, and that required us to move quicky and focus on the more novel aspects of our solution. 
+  - We felt this was a valuable tradeoff because our users emphasized the need for their music to match the "vibe" of their run. We did not simply want to merge a running app with a music app. We wanted to merge the two and create something special, and that required us to move quicky and focus on the more novel aspects of our solution. Examples include fusing data from the Spotify API and Core Location.
+  - We are really proud of the vast music and location functionalities we were able to provide to our users in such a short time. If we had prioritized unit testing well-established API end points we beleive we would not have been able to deliver this experience. 
 - Features
   - We tried to capture all the features we mentioned in last phase. However, we prioritized certain features over others. We also prioritized the overall design of our application so that it did not feel "cheap" or "raw".
